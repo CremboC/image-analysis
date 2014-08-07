@@ -20,8 +20,10 @@ public class DicomEJML {
 
 	public static void main(String[] args) throws IOException {
 		DicomEJML ej = new DicomEJML();
+		
+		Matrix matrix;
 
-		ej.moments();
+		matrix = ej.moments();
 	}
 
 	public final static int THRESHOLD = 500;
@@ -33,7 +35,7 @@ public class DicomEJML {
 	 * @throws IOException
 	 * @see <a href="http://academic.thydzik.com/computer-vision-412/lab-2.htm">moments.m</a>
 	 */
-	private void moments() throws IOException {
+	private Matrix moments() throws IOException {
 		long startTime = System.currentTimeMillis();
 
 		// loads the image file into a matrix
@@ -165,16 +167,67 @@ public class DicomEJML {
 		Point from = new Point(x2y2.x + meanx, x2y2.y + meany);
 		// corected to get rid of negative coordinates
 		Point correctedFrom = MathHelper.pol2cart(360 - MathHelper.angleToHor(from), 0.1);
-		
-//		System.out.println(MathHelper.pol2cart(360 - MathHelper.angleToHor(new Point(-363.598, -342.035)), 0.1));
 
 		imageMatrix = MatrixHelper.bresenham(imageMatrix, correctedFrom, to);
 
 		// time checking
 		long stopTime = System.currentTimeMillis();
 		long elapsedTime = stopTime - startTime;
-		System.out.println(elapsedTime);
+		System.out.println("moments:" + elapsedTime);
 
-		imageMatrix.showGUI();
+		return rotate(imageMatrix, to);
+	}
+	
+	/**
+	 * Rotates the matrix to correct it
+	 * @param matrix
+	 * @return
+	 */
+	private Matrix rotate(Matrix matrix, Point to) {
+		long startTime = System.currentTimeMillis();
+		
+		Matrix imageMatrix = matrix;
+		Matrix rotatedMatrix = null;
+		
+//		double angle = MathHelper.angleToHor(to);
+		double angle = 95.0;
+		
+		// create the rotation matrix [cos a, -sin a; sin a, cos a]
+		Matrix rotationMatrix = Matrix.factory.zeros(3, 3); // (row , col)
+		rotationMatrix.setAsDouble(Math.cos(Math.toRadians(angle)), 0, 0);
+		rotationMatrix.setAsDouble(-Math.sin(Math.toRadians(angle)), 0, 1);
+		rotationMatrix.setAsDouble(Math.sin(Math.toRadians(angle)), 1, 0);
+		rotationMatrix.setAsDouble(Math.cos(Math.toRadians(angle)), 1, 1);
+		rotationMatrix.setAsDouble(0, 2, 0);
+		rotationMatrix.setAsDouble(0, 2, 1);
+		rotationMatrix.setAsDouble(0, 0, 2);
+		rotationMatrix.setAsDouble(0, 1, 2);
+		rotationMatrix.setAsDouble(1, 2, 2);
+		
+		long cols = imageMatrix.getColumnCount();
+
+		Matrix lastCoord = Matrix.factory.zeros(1, 3);
+		lastCoord.setAsInt((int) cols, 0, 0);
+		lastCoord.setAsInt(0, 0, 1);
+		lastCoord.setAsInt(1, 0, 2);
+		lastCoord.times(Ret.ORIG, true, rotationMatrix);
+		
+		// get the new side size
+		double side = Math.sqrt(Math.pow(cols, 2) - Math.pow(lastCoord.getAsDouble(0, 0), 2)) + lastCoord.getAsDouble(0, 0);
+		
+		// set the size of the new rotated matrix
+		rotatedMatrix = Matrix.factory.zeros((int) Math.round(side), (int) Math.round(side));
+		
+		// transform the whole matrix
+		rotatedMatrix = MatrixHelper.transform(imageMatrix, rotationMatrix, rotatedMatrix);
+		
+		// time checking
+		long stopTime = System.currentTimeMillis();
+		long elapsedTime = stopTime - startTime;
+		System.out.println("rotation: " + elapsedTime);
+		
+		rotatedMatrix.showGUI();
+		
+		return rotatedMatrix;
 	}
 }

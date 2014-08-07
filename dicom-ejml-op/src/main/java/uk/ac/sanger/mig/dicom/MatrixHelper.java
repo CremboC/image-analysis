@@ -135,4 +135,43 @@ public class MatrixHelper {
 		
 		return mani;
 	}
+	
+	/**
+	 * Applies a transformation matrix over another matrix and stores it in the provided matrix
+	 * 
+	 * @param m Original matrix
+	 * @param r Rotation matrix
+	 * @param store Matrix where changes will be stored
+	 * @return
+	 */
+	public static Matrix transform(Matrix m, Matrix r, Matrix store) {
+		boolean value;
+		Matrix newCoords;
+		for (int row = 0; row < m.getRowCount(); row++) {
+			for (int col = 0; col < m.getColumnCount(); col++) {
+
+				newCoords = Matrix.factory.zeros(1, 2);
+				newCoords.setAsInt(col, 0, 0);
+				newCoords.setAsInt(row, 0, 1);
+				newCoords.times(Ret.ORIG, true, r);
+				
+				// if (newCoords.getAsInt(0, 0) <= 0.0000000000000001 || newCoords.getAsInt(0, 1) <= 0.0000000000001) {
+				// System.out.println("why?");
+				// System.out.println(newCoords);
+				// System.out.println(row + " " + col);
+				// }
+				
+				value = m.getAsBoolean(row, col);
+				
+				int newRow = newCoords.getAsInt(0, 1);
+				int newCol = newCoords.getAsInt(0, 0);
+						
+				store.setAsBoolean(value, 
+						(newRow < 0 ) ? -newRow : newRow, 
+						(newCol < 0 ) ? -newCol : newCol);
+			}
+		}
+		
+		return store;
+	}
 }

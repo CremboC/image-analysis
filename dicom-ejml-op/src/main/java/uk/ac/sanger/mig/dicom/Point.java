@@ -6,12 +6,21 @@ package uk.ac.sanger.mig.dicom;
  * @author pi1
  */
 public class Point {
+	
 	public double x;
 	public double y;
 	
+	// for convience
+	
+	/** Synonym for x */
+	public double col;
+	
+	/** Synonym for y */
+	public double row;
+	
 	public Point(double x, double y) {
-		this.x = x;
-		this.y = y;
+		this.col = this.x = x;
+		this.row = this.y = y;
 	}
 	
 	@Override

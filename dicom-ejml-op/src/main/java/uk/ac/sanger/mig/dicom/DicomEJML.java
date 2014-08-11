@@ -189,8 +189,6 @@ public class DicomEJML {
 		long stopTime = System.currentTimeMillis();
 		long elapsedTime = stopTime - startTime;
 		System.out.println("moments: " + elapsedTime);
-		
-		imageMatrix.exportToFile("test.jpg");
 
 		return rotate(imageMatrix, centroid);
 	}

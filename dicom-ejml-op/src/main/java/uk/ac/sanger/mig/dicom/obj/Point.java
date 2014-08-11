@@ -1,4 +1,4 @@
-package uk.ac.sanger.mig.dicom;
+package uk.ac.sanger.mig.dicom.obj;
 
 /**
  * Container for a point, x y coordinates
@@ -26,5 +26,20 @@ public class Point {
 	@Override
 	public String toString() {
 		return "x: " + x + " y: " + y;
+	}
+	
+	@Override
+	public boolean equals(Object ob) {
+		if (!(ob instanceof Point)) {
+			return false;
+		}
+		
+		Point p = (Point) ob;
+		
+		if (p.x == this.x && p.y == this.y) {
+			return true;
+		}
+		
+		return false;
 	}
 }

@@ -1,4 +1,4 @@
-package uk.ac.sanger.mig.dicom;
+package uk.ac.sanger.mig.dicom.helpers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,23 @@ import org.ujmp.core.Matrix;
 import org.ujmp.core.calculation.Calculation.Ret;
 import org.ujmp.core.enums.ValueType;
 
+import uk.ac.sanger.mig.dicom.obj.Point;
+
 public class MatrixHelper {
+	
+	public static double area(Matrix m) {
+		Matrix areaMatrix = m.sum(Ret.NEW, Matrix.ALL, false);
+		double area = areaMatrix.getValueSum();
+		
+		return area;
+	}
+	
+	public static double meanOf(Matrix m, Matrix mult, double area) {
+		Matrix meanMatrix = m.times(mult).sum(Ret.NEW, Matrix.ALL, false);
+		double mean = (meanMatrix.getValueSum() / area);
+		
+		return mean;
+	}
 
 	/**
 	 * Equivalent to matlab x = [from : to]
@@ -82,10 +98,10 @@ public class MatrixHelper {
 	public static Matrix threshold(Matrix m, int threshold) {
 		Matrix mani = m.clone(); // create a clone to not modify the original matrix
 
-		mani = mani.convert(ValueType.SHORT);
+		mani = mani.convert(ValueType.INT);
 
-		int max = (int) mani.max(Ret.NEW, Matrix.ALL).getValueSum();
-		int min = (int) mani.min(Ret.NEW, Matrix.ALL).getValueSum();
+		double max = mani.max(Ret.NEW, Matrix.ALL).getValueSum();
+		double min = mani.min(Ret.NEW, Matrix.ALL).getValueSum();
 
 		Map<Integer, Integer> normalized = MathHelper.normalize(min, max);
 

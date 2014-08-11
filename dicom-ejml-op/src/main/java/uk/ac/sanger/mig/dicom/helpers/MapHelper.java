@@ -1,4 +1,4 @@
-package uk.ac.sanger.mig.dicom;
+package uk.ac.sanger.mig.dicom.helpers;
 
 import java.util.HashMap;
 import java.util.Map;

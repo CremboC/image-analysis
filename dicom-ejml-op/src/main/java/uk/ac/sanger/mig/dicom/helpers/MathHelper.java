@@ -1,7 +1,10 @@
-package uk.ac.sanger.mig.dicom;
+package uk.ac.sanger.mig.dicom.helpers;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import uk.ac.sanger.mig.dicom.DicomEJML;
+import uk.ac.sanger.mig.dicom.obj.Point;
 
 public class MathHelper {
 	/**

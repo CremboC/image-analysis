@@ -290,9 +290,6 @@ public class MatrixHelper {
 	 */
 	public static Matrix fillEmptyPixels(Matrix m, final int x) {
 		
-		long columns = m.getColumnCount();
-		long rows = m.getRowCount();
-		
 		Point potentialPoint = new Point(0, 0);
 		
 		boolean is = false;

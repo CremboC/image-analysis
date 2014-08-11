@@ -21,25 +21,27 @@ public class DicomEJML {
 	public static void main(String[] args) throws IOException {
 		DicomEJML ej = new DicomEJML();
 
+		File file = new File("largentail.jpg");
+
 		Matrix matrix;
 
-		matrix = ej.moments();
+		matrix = ej.moments(file, true);
 	}
 
 	public final static int THRESHOLD = 500;
 	public final static double normalizationFactor = 1000;
 
 	/**
-	 * Implements moments.m. See link.
+	 * Implements moments.m. See <a href="http://academic.thydzik.com/computer-vision-412/lab-2.htm">moments.m</a>.
 	 * 
+	 * @param file
+	 * @param findCenterAxis
 	 * @throws IOException
-	 * @see <a href="http://academic.thydzik.com/computer-vision-412/lab-2.htm">moments.m</a>
 	 */
-	private Matrix moments() throws IOException {
+	private Matrix moments(File file, boolean findCenterAxis) throws IOException {
 		long startTime = System.currentTimeMillis();
 
 		// loads the image file into a matrix
-		File file = new File("big.jpg");
 		Matrix imageMatrix = new ImageMatrix(file);
 
 		// resizing image to be a square, will help later on when dealing with
@@ -93,91 +95,102 @@ public class DicomEJML {
 		// draw the centroid
 		imageMatrix.setAsBoolean(false, (int) meanx, (int) meany);
 
-		// x = x - meanx
-		// y = y - meany
-		// x.minus(Ret.ORIG, false, meanx);
-		// y.minus(Ret.ORIG, false, meany);
-		//
-		// // a = sum(sum(double(im).*x.^2));
-		// Matrix aMatrix = imageMatrix.times(x).power(Ret.NEW, 2).sum(Ret.NEW, Matrix.ALL, false);
-		// double a = aMatrix.getValueSum();
-		//
-		// // b = sum(sum(double(im).*x.*y))*2;
-		// Matrix bMatrix = imageMatrix.times(x).times(y).sum(Ret.NEW, Matrix.ALL, false);
-		// double b = bMatrix.getValueSum() * 2.0;
-		//
-		// // c = sum(sum(double(im).*y.^2));
-		// Matrix cMatrix = imageMatrix.times(y).power(Ret.NEW, 2).sum(Ret.NEW, Matrix.ALL, false);
-		// double c = cMatrix.getValueSum();
-		//
-		// // denom = b^2 + (a-c)^2;
-		// double denom = Math.pow(b, 2) + Math.pow((a - c), 2);
-		//
-		// double thetamin = 0.0, thetamax = 0.0, roundess = 0.0;
-		//
-		// if (denom == 0) {
-		// /**
-		// * thetamin = 2*pi*rand;
-		// * thetamax = 2*pi*rand;
-		// * roundness = 1;
-		// */
-		// thetamin = 2 * Math.PI * Math.random();
-		// thetamax = 2 * Math.PI * Math.random();
-		// roundess = 1.0;
-		// } else {
-		// /**
-		// * sin2thetamin = b/sqrt(denom); %positive solution
-		// * sin2thetamax = -sin2thetamin;
-		// * cos2thetamin = (a-c)/sqrt(denom); %positive solution
-		// * cos2thetamax = -cos2thetamin;
-		// */
-		// double sin2thetamin, sin2thetamax, cos2thetamin, cos2thetamax;
-		//
-		// sin2thetamin = b / Math.sqrt(denom);
-		// sin2thetamax = -sin2thetamin;
-		//
-		// cos2thetamin = (a - c) / Math.sqrt(denom);
-		// cos2thetamax = -cos2thetamin;
-		//
-		// double Imin, Imax;
-		//
-		// /**
-		// * thetamin = atan2(sin2thetamin, cos2thetamin)/2;
-		// * thetamax = atan2(sin2thetamax, cos2thetamax)/2;
-		// * Imin = 0.5*(c+a) - 0.5*(a-c)*cos2thetamin - 0.5*b*sin2thetamin;
-		// * Imax = 0.5*(c+a) - 0.5*(a-c)*cos2thetamax - 0.5*b*sin2thetamax;
-		// * roundess = Imin/Imax;
-		// */
-		// thetamin = Math.atan2(sin2thetamin, cos2thetamin) / 2;
-		// thetamax = Math.atan2(sin2thetamax, cos2thetamax) / 2;
-		// Imin = 0.5 * (c + a) - 0.5 * (a - c) * cos2thetamin - 0.5 * b * sin2thetamin;
-		// Imax = 0.5 * (c + a) - 0.5 * (a - c) * cos2thetamax - 0.5 * b * sin2thetamax;
-		//
-		// roundess = Imin / Imax;
-		// }
-		//
-		// /**
-		// * rho = sqrt(area)/(roundness + 0.5) + 5;
-		// * [X1,Y1] = pol2cart(thetamin, rho);
-		// * [X2,Y2] = pol2cart(thetamin + pi, rho);
-		// */
-		// double rho = Math.sqrt(area) / (roundess + 0.5) + 5;
-		//
-		// Point x1y1 = MathHelper.pol2cart(thetamin, rho);
-		// Point x2y2 = MathHelper.pol2cart(thetamin + Math.PI, rho);
-		//
-		// // line([X1 + meanx, X2 + meanx],[Y1 + meany, Y2 + meany])
-		// Point to = new Point(x1y1.x + meanx, x1y1.y + meany);
-		// Point from = new Point(x2y2.x + meanx, x2y2.y + meany);
-		// // corected to get rid of negative coordinates
-		// Point correctedFrom = MathHelper.pol2cart(360 - MathHelper.angleToHor(from), 0.1);
-		//
-		// imageMatrix = MatrixHelper.bresenham(imageMatrix, correctedFrom, to);
+		if (findCenterAxis) {
+			// x = x - meanx
+			// y = y - meany
+			x.minus(Ret.ORIG, false, meanx);
+			y.minus(Ret.ORIG, false, meany);
+
+			// a = sum(sum(double(im).*x.^2));
+			Matrix aMatrix = imageMatrix.times(x).power(Ret.NEW, 2).sum(Ret.NEW, Matrix.ALL, false);
+			double a = aMatrix.getValueSum();
+
+			// b = sum(sum(double(im).*x.*y))*2;
+			Matrix bMatrix = imageMatrix.times(x).times(y).sum(Ret.NEW, Matrix.ALL, false);
+			double b = bMatrix.getValueSum() * 2.0;
+
+			// c = sum(sum(double(im).*y.^2));
+			Matrix cMatrix = imageMatrix.times(y).power(Ret.NEW, 2).sum(Ret.NEW, Matrix.ALL, false);
+			double c = cMatrix.getValueSum();
+
+			// denom = b^2 + (a-c)^2;
+			double denom = Math.pow(b, 2) + Math.pow((a - c), 2);
+
+			double thetamin = 0.0, thetamax = 0.0, roundess = 0.0;
+
+			if (denom == 0) {
+				/**
+				 * thetamin = 2*pi*rand;
+				 * thetamax = 2*pi*rand;
+				 * roundness = 1;
+				 */
+				thetamin = 2 * Math.PI * Math.random();
+				thetamax = 2 * Math.PI * Math.random();
+				roundess = 1.0;
+			} else {
+				/**
+				 * sin2thetamin = b/sqrt(denom); %positive solution
+				 * sin2thetamax = -sin2thetamin;
+				 * cos2thetamin = (a-c)/sqrt(denom); %positive solution
+				 * cos2thetamax = -cos2thetamin;
+				 */
+				double sin2thetamin, sin2thetamax, cos2thetamin, cos2thetamax;
+
+				sin2thetamin = b / Math.sqrt(denom);
+				sin2thetamax = -sin2thetamin;
+
+				cos2thetamin = (a - c) / Math.sqrt(denom);
+				cos2thetamax = -cos2thetamin;
+
+				double Imin, Imax;
+
+				/**
+				 * thetamin = atan2(sin2thetamin, cos2thetamin)/2;
+				 * thetamax = atan2(sin2thetamax, cos2thetamax)/2;
+				 * Imin = 0.5*(c+a) - 0.5*(a-c)*cos2thetamin - 0.5*b*sin2thetamin;
+				 * Imax = 0.5*(c+a) - 0.5*(a-c)*cos2thetamax - 0.5*b*sin2thetamax;
+				 * roundess = Imin/Imax;
+				 */
+				thetamin = Math.atan2(sin2thetamin, cos2thetamin) / 2;
+				thetamax = Math.atan2(sin2thetamax, cos2thetamax) / 2;
+				Imin = 0.5 * (c + a) - 0.5 * (a - c) * cos2thetamin - 0.5 * b * sin2thetamin;
+				Imax = 0.5 * (c + a) - 0.5 * (a - c) * cos2thetamax - 0.5 * b * sin2thetamax;
+
+				roundess = Imin / Imax;
+			}
+
+			/**
+			 * rho = sqrt(area)/(roundness + 0.5) + 5;
+			 * [X1,Y1] = pol2cart(thetamin, rho);
+			 * [X2,Y2] = pol2cart(thetamin + pi, rho);
+			 */
+			double rho = Math.sqrt(area) / (roundess + 0.5) + 5;
+
+			Point x1y1 = MathHelper.pol2cart(thetamin, rho);
+			Point x2y2 = MathHelper.pol2cart(thetamin + Math.PI, rho);
+
+			// line([X1 + meanx, X2 + meanx],[Y1 + meany, Y2 + meany])
+			Point to = new Point(x1y1.x + meanx, x1y1.y + meany);
+			Point from = new Point(x2y2.x + meanx, x2y2.y + meany);
+			
+			System.out.println(to);
+			System.out.println(from);
+			
+			// corected to get rid of negative coordinates
+			Point correctedFrom = MathHelper.pol2cart(360 - MathHelper.angleToHor(from), 0.1);
+
+			imageMatrix = MatrixHelper.bresenham(imageMatrix, correctedFrom, to);
+			
+			System.out.println(MathHelper.angleToHor(to));
+			System.out.println(MathHelper.angleToHor(centroid));
+		}
 
 		// time checking
 		long stopTime = System.currentTimeMillis();
 		long elapsedTime = stopTime - startTime;
 		System.out.println("moments: " + elapsedTime);
+		
+		imageMatrix.exportToFile("test.jpg");
 
 		return rotate(imageMatrix, centroid);
 	}

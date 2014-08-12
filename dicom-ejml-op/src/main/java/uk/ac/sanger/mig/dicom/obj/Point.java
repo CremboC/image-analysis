@@ -7,20 +7,38 @@ package uk.ac.sanger.mig.dicom.obj;
  */
 public class Point {
 	
-	public double x;
-	public double y;
+	private final double x;
+	private final double y;
 	
 	// for convience
 	
 	/** Synonym for x */
-	public double col;
+	private final double col;
 	
 	/** Synonym for y */
-	public double row;
+	private final double row;
 	
 	public Point(double x, double y) {
 		this.col = this.x = x;
 		this.row = this.y = y;
+	}
+	
+	public double x() {
+		return x;
+	}
+	
+	public double y() {
+		return y;
+	}
+	
+	/** Synonym for X */
+	public double col() {
+		return x();
+	}
+	
+	/** Synonym for Y */
+	public double row() {
+		return y();
 	}
 	
 	@Override

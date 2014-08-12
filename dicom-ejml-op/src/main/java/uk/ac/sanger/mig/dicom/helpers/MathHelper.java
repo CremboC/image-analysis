@@ -7,6 +7,24 @@ import uk.ac.sanger.mig.dicom.DicomEJML;
 import uk.ac.sanger.mig.dicom.obj.Point;
 
 public class MathHelper {
+	
+	public static Point yFromLine(double x, float[] mc) {
+		return new Point(x, mc[0] * x + mc[1]);
+	}
+	
+	public static float[] lineEquation(Point p1, Point p2) {
+		float[] mc = new float[2];
+		double c, m;
+		
+		m = (p1.y() - p2.y()) / (p1.x() - p2.x());
+		c = p2.x() - p2.y() * m;
+		
+		mc[0] = (float) m;
+		mc[1] = (float) c;
+		
+		return mc;
+	}
+	
 	/**
 	 * Converts polar coordinates to cartesian
 	 * 
@@ -19,16 +37,6 @@ public class MathHelper {
 		double y = rho * Math.sin(theta);
 		
 		return new Point(x, y);
-	}
-	
-	/**
-	 * Angle to horizontal line in DEGREES
-	 * @return DEGREES
-	 */
-	public static double angleToHor(Point p) {
-		double angle =  Math.toDegrees(Math.atan2(p.y, p.x));
-		if (angle < 0) angle += 360;
-		return  angle; 
 	}
 	
 	/**

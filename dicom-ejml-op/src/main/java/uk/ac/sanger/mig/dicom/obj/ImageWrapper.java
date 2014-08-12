@@ -25,7 +25,7 @@ import uk.ac.sanger.mig.dicom.helpers.MatrixHelper;
  */
 public class ImageWrapper {
 
-	public final static int THRESHOLD = 100;
+	public final static int THRESHOLD = 500;
 
 	private Image originalImage;
 
@@ -42,8 +42,19 @@ public class ImageWrapper {
 	private long cols, rows;
 
 	private Matrix xMatrix, yMatrix;
-
-	public ImageWrapper(String resource) {
+	
+	private boolean showUI = true;
+	
+	/**
+	 * And image wrapper. Saves it in 3 formats: binary (pure b&w), 
+	 * original matrix and original Java Image
+	 * 
+	 * @param resource path to image to load, must be in java/resources
+	 * @param showUI whether to show the debug UI or not
+	 */
+	public ImageWrapper(String resource, boolean showUI) {
+		this.showUI = showUI;
+		
 		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 		URL url = classloader.getResource(resource);
 		File file = new File(url.getPath());
@@ -77,26 +88,22 @@ public class ImageWrapper {
 
 		binaryImage = MatrixHelper.threshold(imageMatrix, THRESHOLD);
 		
-//		imageMatrix.showGUI();
-		binaryImage.showGUI();
+		if (showUI) {
+			imageMatrix.showGUI();
+			binaryImage.showGUI();
+		}
 	}
 
-	private void resizeImage() {
-		// TODO: handle non-square images
-		
-		/*
-		 * old code:
-		 * 		// resizing image to be a square, will help later on when dealing with
-				// rotation of it
-				// FIXME: hardcoded to make a size 800 dicom to be square
-				List<Number> toRemove = new ArrayList<Number>();
-		
-				for (long i = imageMatrix.getSize(Matrix.X); i != imageMatrix.getSize(Matrix.X) - 11; i--) {
-					toRemove.add(i);
-				}
-		
-				imageMatrix = imageMatrix.deleteColumns(Ret.NEW, toRemove);
-		 */
+	/**
+	 * And image wrapper. Saves it in 3 formats: binary (pure b&w), 
+	 * original matrix and original Java Image.
+	 * 
+	 * Shows the the debug UI by default
+	 * 
+	 * @param resource path to image to load, must be in java/resources
+	 */
+	public ImageWrapper(String resource) {
+		this(resource, true);
 	}
 
 	/**
@@ -123,7 +130,7 @@ public class ImageWrapper {
 	 * Calculate the central axis of an image. If {@link centroid} wasn't called
 	 * before, this function will call it.
 	 * 
-	 * @return the central axis wrapped as two points in form of a line
+	 * @return the central axis wrapped as two points in form of a {@link Line}
 	 */
 	public Line centralAxis() {
 		if (centroid == null)
@@ -203,22 +210,41 @@ public class ImageWrapper {
 		Point x2y2 = MathHelper.pol2cart(thetamin + Math.PI, rho);
 
 		// line([X1 + meanx, X2 + meanx],[Y1 + meany, Y2 + meany])
-		Point to = new Point(x1y1.x + meanx, x1y1.y + meany);
-		Point from = new Point(x2y2.x + meanx, x2y2.y + meany);
+		Point to = new Point(x1y1.x() + meanx, x1y1.y() + meany);
+		Point from = new Point(x2y2.x() + meanx, x2y2.y() + meany);
 
 		centralAxis = new Line(from, to);
 
 		return centralAxis;
 	}
+	
+	private void resizeImage() {
+		// TODO: handle non-square images
+		
+		/*
+		 * old code:
+		 * 		// resizing image to be a square, will help later on when dealing with
+				// rotation of it
+				// FIXME: hardcoded to make a size 800 dicom to be square
+				List<Number> toRemove = new ArrayList<Number>();
+		
+				for (long i = imageMatrix.getSize(Matrix.X); i != imageMatrix.getSize(Matrix.X) - 11; i--) {
+					toRemove.add(i);
+				}
+		
+				imageMatrix = imageMatrix.deleteColumns(Ret.NEW, toRemove);
+		 */
+	}
 
+	/**
+	 * The original image loaded as a Java Image
+	 */
 	public Image getOriginalImage() {
 		return this.originalImage;
 	}
 
 	/**
 	 * If centroid is not calculated yet, will calculate it using {@link centroid}.
-	 * 
-	 * @return
 	 */
 	public Point getCentroid() {
 		if (centroid == null)
@@ -229,8 +255,6 @@ public class ImageWrapper {
 
 	/**
 	 * If the central axis is not calculate yet, will call {@link centralAxis}.
-	 * 
-	 * @return
 	 */
 	public Line getCentralAxis() {
 		if (centralAxis == null)

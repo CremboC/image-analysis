@@ -43,17 +43,29 @@ public class ImageWrapper {
 
 	private Matrix xMatrix, yMatrix;
 	
+	private ImageWrapper tailless;
+	
 	private boolean showUI = true;
+	private boolean removeTail = false;
+	
+	public ImageWrapper(String resource) {
+		this(resource, true, true);
+	}
+	
+	public ImageWrapper(String resource, boolean removeTail) {
+		this(resource, false, removeTail);
+	}
 	
 	/**
-	 * And image wrapper. Saves it in 3 formats: binary (pure b&w), 
+	 * An image wrapper. Saves it in 3 formats: binary (pure b&w), 
 	 * original matrix and original Java Image
 	 * 
 	 * @param resource path to image to load, must be in java/resources
 	 * @param showUI whether to show the debug UI or not
 	 */
-	public ImageWrapper(String resource, boolean showUI) {
+	public ImageWrapper(String resource, boolean showUI, boolean removeTail) {
 		this.showUI = showUI;
+		this.removeTail = removeTail;
 		
 		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 		URL url = classloader.getResource(resource);
@@ -73,7 +85,7 @@ public class ImageWrapper {
 		
 		// may have to handle it if it is not a square
 		if (cols != rows) {
-			resizeImage();
+			// maybe have to do something
 		}
 
 		// x = ones(rows, 1) * [1 : cols];
@@ -95,35 +107,79 @@ public class ImageWrapper {
 	}
 
 	/**
-	 * And image wrapper. Saves it in 3 formats: binary (pure b&w), 
-	 * original matrix and original Java Image.
+	 * Analyse the current image loaded by this instance.
 	 * 
-	 * Shows the the debug UI by default
-	 * 
-	 * @param resource path to image to load, must be in java/resources
+	 * @param centroid
+	 * @param axis
+	 * @return
 	 */
-	public ImageWrapper(String resource) {
-		this(resource, true);
+	public ImageWrapper analyse(boolean centroid, boolean axis) {
+		
+		if (centroid) {
+			centroid();
+			
+			if (removeTail) {
+				removeTail();
+			}
+		}
+		
+		if (axis) {
+			centralAxis();
+		}
+		
+		return this;
+	}
+	
+	/**
+	 * Removes the tail of the mouse using masking
+	 */
+	private void removeTail() {
+		tailless = new ImageWrapper("test_images/bwntail.jpg", false, false);
+		
+		// to show difference
+		if (showUI) {
+			binaryImage.minus(Ret.NEW, true, tailless.getBinaryImage()).showGUI();
+		}
+		
+		binaryImage.times(Ret.ORIG, true, tailless.getBinaryImage());
+		
+		// show the result
+		if (showUI) {
+			binaryImage.showGUI();
+		}
 	}
 
 	/**
-	 * Calculates the centroid of an image.
+	 * Calculates the centroid of the image loaded by this instance.
 	 * 
 	 * @return the centroid
 	 */
-	public Point centroid() {
+	private Point centroid() {
+		return centroid(binaryImage);
+	}
+	
+	/**
+	 * Calculate centroid of a given matrix
+	 * @param m
+	 * @return
+	 */
+	public Point centroid(Matrix m) {
 		// area = sum(sum(im));
-		area = MatrixHelper.area(binaryImage);
+		area = MatrixHelper.area(m);
 
 		// meanx = sum(sum(double(im) .* x)) / area;
-		meanx = MatrixHelper.meanOf(binaryImage, xMatrix, area);
+		meanx = MatrixHelper.meanOf(m, xMatrix, area);
 
 		// meany = sum(sum(double(im) .* y)) / area;
-		meany = MatrixHelper.meanOf(binaryImage, yMatrix, area);
+		meany = MatrixHelper.meanOf(m, yMatrix, area);
 
 		centroid = new Point(meanx, meany);
 
 		return centroid;
+	}
+	
+	private Line centralAxis() {
+		return centralAxis(binaryImage);
 	}
 
 	/**
@@ -132,7 +188,7 @@ public class ImageWrapper {
 	 * 
 	 * @return the central axis wrapped as two points in form of a {@link Line}
 	 */
-	public Line centralAxis() {
+	public Line centralAxis(Matrix m) {
 		if (centroid == null)
 			centroid();
 
@@ -217,24 +273,6 @@ public class ImageWrapper {
 
 		return centralAxis;
 	}
-	
-	private void resizeImage() {
-		// TODO: handle non-square images
-		
-		/*
-		 * old code:
-		 * 		// resizing image to be a square, will help later on when dealing with
-				// rotation of it
-				// FIXME: hardcoded to make a size 800 dicom to be square
-				List<Number> toRemove = new ArrayList<Number>();
-		
-				for (long i = imageMatrix.getSize(Matrix.X); i != imageMatrix.getSize(Matrix.X) - 11; i--) {
-					toRemove.add(i);
-				}
-		
-				imageMatrix = imageMatrix.deleteColumns(Ret.NEW, toRemove);
-		 */
-	}
 
 	/**
 	 * The original image loaded as a Java Image
@@ -248,7 +286,7 @@ public class ImageWrapper {
 	 */
 	public Point getCentroid() {
 		if (centroid == null)
-			centroid();
+			analyse(true, false);
 
 		return this.centroid;
 	}
@@ -258,7 +296,7 @@ public class ImageWrapper {
 	 */
 	public Line getCentralAxis() {
 		if (centralAxis == null)
-			centralAxis();
+			analyse(true, true);
 
 		return this.centralAxis;
 	}
@@ -289,5 +327,9 @@ public class ImageWrapper {
 
 	public double getThetamax() {
 		return this.thetamax;
+	}
+
+	public Matrix getBinaryImage() {
+		return this.binaryImage;
 	}
 }

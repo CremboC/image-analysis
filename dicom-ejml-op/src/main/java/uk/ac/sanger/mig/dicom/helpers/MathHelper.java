@@ -6,12 +6,32 @@ import java.util.Map;
 import uk.ac.sanger.mig.dicom.DicomEJML;
 import uk.ac.sanger.mig.dicom.obj.Point;
 
+/**
+ *
+ * @author pi1@sanger.ac.uk
+ *
+ */
 public class MathHelper {
 	
+	/**
+	 * Creates a vector (or rather point) after getting m and c from the line equation.
+	 * Requires the need X and returns a point with the correct Y.
+	 * 
+	 * @param x
+	 * @param mc result from {@link lineEquation}
+	 * @return
+	 */
 	public static Point yFromLine(double x, float[] mc) {
 		return new Point(x, mc[0] * x + mc[1]);
 	}
 	
+	/**
+	 * Calculates the m and c in y = mx + c of a line equation.
+	 * 
+	 * @param p1 one point on the line
+	 * @param p2 other point on the line
+	 * @return
+	 */
 	public static float[] lineEquation(Point p1, Point p2) {
 		float[] mc = new float[2];
 		double c, m;

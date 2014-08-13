@@ -1,6 +1,6 @@
 package uk.ac.sanger.mig.dicom.tests;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +9,9 @@ import uk.ac.sanger.mig.dicom.obj.ImageWrapper;
 import uk.ac.sanger.mig.dicom.obj.Point;
 
 /**
- * Tests cases for different images, due to rounding need to check roughly, within 1px accuracy
+ * Tests cases for different images, due to rounding need to check roughly, within 1px accuracy.
+ * 
+ * Need to change threshold for all tests to pass.
  * @author pi1@sanger.ac.uk
  *
  */

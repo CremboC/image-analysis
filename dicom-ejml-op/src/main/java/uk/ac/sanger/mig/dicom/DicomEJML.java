@@ -12,7 +12,7 @@ import uk.ac.sanger.mig.dicom.obj.Line;
 /**
  * Matlab -> Java test
  * 
- * @author pi1 pi1@sanger.ac.uk
+ * @author pi1@sanger.ac.uk
  *
  */
 public class DicomEJML extends JPanel {
@@ -23,11 +23,10 @@ public class DicomEJML extends JPanel {
 	public final static double MAGIC_NUMBER = 90;
 
 	private ImageWrapper image;
-	private double angle;
 
 	public DicomEJML() {
-		image = new ImageWrapper("test_images/largentail.jpg", false);
-		image.centralAxis();
+		image = new ImageWrapper("test_images/big.jpg", true, true);
+		image.analyse(true, true);
 	}
 
 	@Override
@@ -39,10 +38,16 @@ public class DicomEJML extends JPanel {
 		final Image drawImg = image.getOriginalImage();
 		final Line axis = image.getCentralAxis();
 
-		g2d.rotate(Math.toRadians(MAGIC_NUMBER) - image.getThetamin(), drawImg.getWidth(this) / 2, drawImg.getHeight(this) / 2);
+		g2d.rotate(
+				Math.toRadians(MAGIC_NUMBER) - image.getThetamin(), 
+				drawImg.getWidth(this) / 2, 
+				drawImg.getHeight(this) / 2
+				);
+		
 		g2d.drawImage(drawImg, 0, 0, this);
 		
-		g2d.drawLine((int) axis.from().x(), 
+		g2d.drawLine(
+				(int) axis.from().x(), 
 				(int) axis.from().y(), 
 				(int) axis.to().x(), 
 				(int) axis.to().y()

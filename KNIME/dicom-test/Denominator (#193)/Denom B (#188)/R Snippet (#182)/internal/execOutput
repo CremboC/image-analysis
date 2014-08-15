@@ -1,0 +1,44 @@
+#############################################
+#
+# Content of .Rout file: 
+#
+#############################################
+ 
+
+R version 3.0.3 (2014-03-06) -- "Warm Puppy"
+Copyright (C) 2014 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> setwd("C:/Users/pi1/AppData/Local/Temp/knime_dicom_test81265");
+> load("C:/Users/pi1/AppData/Local/Temp/knime_dicom_test81265/R-workspace2727303648857873984.RData");
+> cols <- knime.flow.in[["cols"]]
+> rows <- knime.flow.in[["rows"]]
+> 
+> im <- as.matrix(knime.in[0 : rows, 0 : cols])
+> x <- as.matrix(knime.in[0 : rows, (cols + 1) : (cols * 2)])
+> y <- as.matrix(knime.in[0 : rows, (cols * 2 + 1) : (cols * 3)])
+> 
+> rez <- (im * x * y ) * 2
+> 
+> rez <- sum(rez)
+> 
+> knime.out <- data.frame(rez)
+> 
+> knime.loaded.libraries <- (.packages());
+> save.image("C:/Users/pi1/AppData/Local/Temp/knime_dicom_test81265/R-workspace2727303648857873984.RData");
+> 
+> proc.time()
+   user  system elapsed 
+   0.87    0.07    0.95 

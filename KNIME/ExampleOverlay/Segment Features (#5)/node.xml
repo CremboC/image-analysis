@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="settings.xml">
+<entry key="name" type="xstring" value="Segment Features"/>
+<config key="model">
+<config key="segment_feature_set_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_stringarray"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<config key="segment_feature_set">
+<entry key="array-size" type="xint" value="6"/>
+<entry key="0" type="xstring" value="Num Pix"/>
+<entry key="1" type="xstring" value="Circularity"/>
+<entry key="2" type="xstring" value="Perimeter"/>
+<entry key="3" type="xstring" value="Convexity"/>
+<entry key="4" type="xstring" value="Extend"/>
+<entry key="5" type="xstring" value="Diameter"/>
+</config>
+<config key="feature_selection_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_stringarray"/>
+<entry key="EnabledStatus" type="xboolean" value="false"/>
+</config>
+<config key="feature_selection">
+<entry key="array-size" type="xint" value="0"/>
+</config>
+<config key="samplingRate_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
+<entry key="EnabledStatus" type="xboolean" value="false"/>
+</config>
+<entry key="samplingRate" type="xint" value="128"/>
+<config key="binSize_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
+<entry key="EnabledStatus" type="xboolean" value="false"/>
+</config>
+<entry key="binSize" type="xint" value="128"/>
+<config key="active_feature_sets_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_stringarray"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<config key="active_feature_sets">
+<entry key="array-size" type="xint" value="1"/>
+<entry key="0" type="xstring" value="Segment geometry"/>
+</config>
+<config key="lab_column_selection_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="lab_column_selection" type="xstring" value="Image"/>
+<config key="mode_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="mode" type="xboolean" value="false"/>
+<config key="filter_left_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_filterSelection"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<config key="filter_left">
+<entry key="numrules" type="xint" value="0"/>
+<entry key="operator" type="xint" value="0"/>
+</config>
+<config key="filter_right_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_filterSelection"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<config key="filter_right">
+<entry key="numrules" type="xint" value="0"/>
+<entry key="operator" type="xint" value="0"/>
+</config>
+<config key="appendDependencies_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="appendDependencies" type="xboolean" value="false"/>
+<config key="append_segment_information_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="append_segment_information" type="xboolean" value="true"/>
+</config>
+<entry key="hasContent" type="xboolean" value="false"/>
+<entry key="isInactive" type="xboolean" value="false"/>
+<config key="ports">
+<config key="port_1">
+<entry key="index" type="xint" value="1"/>
+<entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+</config>
+</config>
+<config key="filestores">
+<entry key="file_store_location" type="xstring" isnull="true" value=""/>
+<entry key="file_store_id" type="xstring" isnull="true" value=""/>
+</config>
+</config>

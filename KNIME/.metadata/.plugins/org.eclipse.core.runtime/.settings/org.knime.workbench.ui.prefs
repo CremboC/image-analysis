@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+knime.autosave.enable=true
+knime.confirm.delete=false
+knime.confirm.exec_nodes_not_saved=always
+knime.confirm.reset=false
+knime.gridsize.x=40
+knime.gridsize.y=40
+knime.showgrid=true
+knime.snaptogrid=true

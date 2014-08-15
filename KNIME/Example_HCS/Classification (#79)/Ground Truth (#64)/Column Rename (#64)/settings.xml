@@ -1,0 +1,857 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="settings.xml">
+<entry key="node_file" type="xstring" value="settings.xml"/>
+<config key="flow_stack"/>
+<config key="internal_node_subsettings">
+<entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
+</config>
+<config key="model">
+<config key="all_columns">
+<config key="SBS_Controls">
+<entry key="old_column_name" type="xstring" value="SBS_Controls"/>
+<entry key="new_column_name" type="xstring" value="class"/>
+<entry key="new_column_type" type="xint" value="7"/>
+</config>
+<config key="ASM | DIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ASM | DIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Contrast | DIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="Contrast | DIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Correlation | DIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="Correlation | DIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Variance | DIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="Variance | DIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="IFDM | DIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="IFDM | DIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumAverage | DIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="SumAverage | DIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumVariance | DIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="SumVariance | DIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumEntropy | DIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="SumEntropy | DIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Entropy | DIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="Entropy | DIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="DifferenceVariance | DIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="DifferenceVariance | DIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="DifferenceEntropy | DIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="DifferenceEntropy | DIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ICM1 | DIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ICM1 | DIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ICM2 | DIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ICM2 | DIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ClusterShade | DIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ClusterShade | DIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ClusterProminence | DIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ClusterProminence | DIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ASM | ANTIDIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ASM | ANTIDIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Contrast | ANTIDIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="Contrast | ANTIDIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Correlation | ANTIDIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="Correlation | ANTIDIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Variance | ANTIDIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="Variance | ANTIDIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="IFDM | ANTIDIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="IFDM | ANTIDIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumAverage | ANTIDIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="SumAverage | ANTIDIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumVariance | ANTIDIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="SumVariance | ANTIDIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumEntropy | ANTIDIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="SumEntropy | ANTIDIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Entropy | ANTIDIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="Entropy | ANTIDIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="DifferenceVariance | ANTIDIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="DifferenceVariance | ANTIDIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="DifferenceEntropy | ANTIDIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="DifferenceEntropy | ANTIDIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ICM1 | ANTIDIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ICM1 | ANTIDIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ICM2 | ANTIDIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ICM2 | ANTIDIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ClusterShade | ANTIDIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ClusterShade | ANTIDIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ClusterProminence | ANTIDIAGONAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ClusterProminence | ANTIDIAGONAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ASM | HORIZONTAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ASM | HORIZONTAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Contrast | HORIZONTAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="Contrast | HORIZONTAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Correlation | HORIZONTAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="Correlation | HORIZONTAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Variance | HORIZONTAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="Variance | HORIZONTAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="IFDM | HORIZONTAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="IFDM | HORIZONTAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumAverage | HORIZONTAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="SumAverage | HORIZONTAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumVariance | HORIZONTAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="SumVariance | HORIZONTAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumEntropy | HORIZONTAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="SumEntropy | HORIZONTAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Entropy | HORIZONTAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="Entropy | HORIZONTAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="DifferenceVariance | HORIZONTAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="DifferenceVariance | HORIZONTAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="DifferenceEntropy | HORIZONTAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="DifferenceEntropy | HORIZONTAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ICM1 | HORIZONTAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ICM1 | HORIZONTAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ICM2 | HORIZONTAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ICM2 | HORIZONTAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ClusterShade | HORIZONTAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ClusterShade | HORIZONTAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ClusterProminence | HORIZONTAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ClusterProminence | HORIZONTAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ASM | VERTICAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ASM | VERTICAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Contrast | VERTICAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="Contrast | VERTICAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Correlation | VERTICAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="Correlation | VERTICAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Variance | VERTICAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="Variance | VERTICAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="IFDM | VERTICAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="IFDM | VERTICAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumAverage | VERTICAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="SumAverage | VERTICAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumVariance | VERTICAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="SumVariance | VERTICAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumEntropy | VERTICAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="SumEntropy | VERTICAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Entropy | VERTICAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="Entropy | VERTICAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="DifferenceVariance | VERTICAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="DifferenceVariance | VERTICAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="DifferenceEntropy | VERTICAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="DifferenceEntropy | VERTICAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ICM1 | VERTICAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ICM1 | VERTICAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ICM2 | VERTICAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ICM2 | VERTICAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ClusterShade | VERTICAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ClusterShade | VERTICAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ClusterProminence | VERTICAL | 1 | 40">
+<entry key="old_column_name" type="xstring" value="ClusterProminence | VERTICAL | 1 | 40"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Min">
+<entry key="old_column_name" type="xstring" value="Min"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Max">
+<entry key="old_column_name" type="xstring" value="Max"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Mean">
+<entry key="old_column_name" type="xstring" value="Mean"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Geometric Mean">
+<entry key="old_column_name" type="xstring" value="Geometric Mean"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Sum">
+<entry key="old_column_name" type="xstring" value="Sum"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Squares of Sum">
+<entry key="old_column_name" type="xstring" value="Squares of Sum"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Std Dev">
+<entry key="old_column_name" type="xstring" value="Std Dev"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Variance">
+<entry key="old_column_name" type="xstring" value="Variance"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Skewness">
+<entry key="old_column_name" type="xstring" value="Skewness"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Kurtosis">
+<entry key="old_column_name" type="xstring" value="Kurtosis"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Quantil 25">
+<entry key="old_column_name" type="xstring" value="Quantil 25"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Quantil 50">
+<entry key="old_column_name" type="xstring" value="Quantil 50"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Quantil 75">
+<entry key="old_column_name" type="xstring" value="Quantil 75"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Median absolute deviation (MAD)">
+<entry key="old_column_name" type="xstring" value="Median absolute deviation (MAD)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="WeightedCentroid Dim 1">
+<entry key="old_column_name" type="xstring" value="WeightedCentroid Dim 1"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="WeightedCentroid Dim 2">
+<entry key="old_column_name" type="xstring" value="WeightedCentroid Dim 2"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="WeightedCentroid Dim 3">
+<entry key="old_column_name" type="xstring" value="WeightedCentroid Dim 3"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="WeightedCentroid Dim 4">
+<entry key="old_column_name" type="xstring" value="WeightedCentroid Dim 4"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="WeightedCentroid Dim 5">
+<entry key="old_column_name" type="xstring" value="WeightedCentroid Dim 5"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Mass Displacement">
+<entry key="old_column_name" type="xstring" value="Mass Displacement"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Bitmask">
+<entry key="old_column_name" type="xstring" value="Bitmask"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Label">
+<entry key="old_column_name" type="xstring" value="Label"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Source Labeling">
+<entry key="old_column_name" type="xstring" value="Source Labeling"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ASM | DIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ASM | DIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Contrast | DIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="Contrast | DIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Correlation | DIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="Correlation | DIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Variance | DIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="Variance | DIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="IFDM | DIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="IFDM | DIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumAverage | DIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="SumAverage | DIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumVariance | DIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="SumVariance | DIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumEntropy | DIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="SumEntropy | DIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Entropy | DIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="Entropy | DIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="DifferenceVariance | DIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="DifferenceVariance | DIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="DifferenceEntropy | DIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="DifferenceEntropy | DIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ICM1 | DIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ICM1 | DIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ICM2 | DIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ICM2 | DIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ClusterShade | DIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ClusterShade | DIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ClusterProminence | DIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ClusterProminence | DIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ASM | ANTIDIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ASM | ANTIDIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Contrast | ANTIDIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="Contrast | ANTIDIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Correlation | ANTIDIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="Correlation | ANTIDIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Variance | ANTIDIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="Variance | ANTIDIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="IFDM | ANTIDIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="IFDM | ANTIDIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumAverage | ANTIDIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="SumAverage | ANTIDIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumVariance | ANTIDIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="SumVariance | ANTIDIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumEntropy | ANTIDIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="SumEntropy | ANTIDIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Entropy | ANTIDIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="Entropy | ANTIDIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="DifferenceVariance | ANTIDIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="DifferenceVariance | ANTIDIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="DifferenceEntropy | ANTIDIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="DifferenceEntropy | ANTIDIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ICM1 | ANTIDIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ICM1 | ANTIDIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ICM2 | ANTIDIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ICM2 | ANTIDIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ClusterShade | ANTIDIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ClusterShade | ANTIDIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ClusterProminence | ANTIDIAGONAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ClusterProminence | ANTIDIAGONAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ASM | HORIZONTAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ASM | HORIZONTAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Contrast | HORIZONTAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="Contrast | HORIZONTAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Correlation | HORIZONTAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="Correlation | HORIZONTAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Variance | HORIZONTAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="Variance | HORIZONTAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="IFDM | HORIZONTAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="IFDM | HORIZONTAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumAverage | HORIZONTAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="SumAverage | HORIZONTAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumVariance | HORIZONTAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="SumVariance | HORIZONTAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumEntropy | HORIZONTAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="SumEntropy | HORIZONTAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Entropy | HORIZONTAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="Entropy | HORIZONTAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="DifferenceVariance | HORIZONTAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="DifferenceVariance | HORIZONTAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="DifferenceEntropy | HORIZONTAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="DifferenceEntropy | HORIZONTAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ICM1 | HORIZONTAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ICM1 | HORIZONTAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ICM2 | HORIZONTAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ICM2 | HORIZONTAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ClusterShade | HORIZONTAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ClusterShade | HORIZONTAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ClusterProminence | HORIZONTAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ClusterProminence | HORIZONTAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ASM | VERTICAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ASM | VERTICAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Contrast | VERTICAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="Contrast | VERTICAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Correlation | VERTICAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="Correlation | VERTICAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Variance | VERTICAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="Variance | VERTICAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="IFDM | VERTICAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="IFDM | VERTICAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumAverage | VERTICAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="SumAverage | VERTICAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumVariance | VERTICAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="SumVariance | VERTICAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="SumEntropy | VERTICAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="SumEntropy | VERTICAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Entropy | VERTICAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="Entropy | VERTICAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="DifferenceVariance | VERTICAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="DifferenceVariance | VERTICAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="DifferenceEntropy | VERTICAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="DifferenceEntropy | VERTICAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ICM1 | VERTICAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ICM1 | VERTICAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ICM2 | VERTICAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ICM2 | VERTICAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ClusterShade | VERTICAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ClusterShade | VERTICAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="ClusterProminence | VERTICAL | 1 | 40(*)">
+<entry key="old_column_name" type="xstring" value="ClusterProminence | VERTICAL | 1 | 40(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Min(*)">
+<entry key="old_column_name" type="xstring" value="Min(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Max(*)">
+<entry key="old_column_name" type="xstring" value="Max(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Mean(*)">
+<entry key="old_column_name" type="xstring" value="Mean(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Geometric Mean(*)">
+<entry key="old_column_name" type="xstring" value="Geometric Mean(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Sum(*)">
+<entry key="old_column_name" type="xstring" value="Sum(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Squares of Sum(*)">
+<entry key="old_column_name" type="xstring" value="Squares of Sum(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Std Dev(*)">
+<entry key="old_column_name" type="xstring" value="Std Dev(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Variance(*)">
+<entry key="old_column_name" type="xstring" value="Variance(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Skewness(*)">
+<entry key="old_column_name" type="xstring" value="Skewness(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Kurtosis(*)">
+<entry key="old_column_name" type="xstring" value="Kurtosis(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Quantil 25(*)">
+<entry key="old_column_name" type="xstring" value="Quantil 25(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Quantil 50(*)">
+<entry key="old_column_name" type="xstring" value="Quantil 50(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Quantil 75(*)">
+<entry key="old_column_name" type="xstring" value="Quantil 75(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Median absolute deviation (MAD)(*)">
+<entry key="old_column_name" type="xstring" value="Median absolute deviation (MAD)(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="WeightedCentroid Dim 1(*)">
+<entry key="old_column_name" type="xstring" value="WeightedCentroid Dim 1(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="WeightedCentroid Dim 2(*)">
+<entry key="old_column_name" type="xstring" value="WeightedCentroid Dim 2(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="WeightedCentroid Dim 3(*)">
+<entry key="old_column_name" type="xstring" value="WeightedCentroid Dim 3(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="WeightedCentroid Dim 4(*)">
+<entry key="old_column_name" type="xstring" value="WeightedCentroid Dim 4(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="WeightedCentroid Dim 5(*)">
+<entry key="old_column_name" type="xstring" value="WeightedCentroid Dim 5(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+<config key="Mass Displacement(*)">
+<entry key="old_column_name" type="xstring" value="Mass Displacement(*)"/>
+<entry key="new_column_name" type="xstring" isnull="true" value=""/>
+<entry key="new_column_type" type="xint" value="0"/>
+</config>
+</config>
+</config>
+<entry key="customDescription" type="xstring" isnull="true" value=""/>
+<entry key="state" type="xstring" value="EXECUTED"/>
+<entry key="factory" type="xstring" value="org.knime.base.node.preproc.rename.RenameNodeFactory"/>
+<entry key="node-name" type="xstring" value="Column Rename"/>
+<entry key="node-bundle-name" type="xstring" value="KNIME Base Nodes"/>
+<entry key="node-bundle-symbolic-name" type="xstring" value="org.knime.base"/>
+<entry key="node-bundle-vendor" type="xstring" value="KNIME GmbH, Konstanz, Germany"/>
+<entry key="node-bundle-version" type="xstring" value="2.10.1.0043839"/>
+<config key="factory_settings"/>
+<entry key="name" type="xstring" value="Column Rename"/>
+<entry key="hasContent" type="xboolean" value="true"/>
+<entry key="isInactive" type="xboolean" value="false"/>
+<config key="ports">
+<config key="port_1">
+<entry key="index" type="xint" value="1"/>
+<entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
+<entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
+<entry key="port_object_summary" type="xstring" value="Rows: 14835, Cols: 164"/>
+<entry key="port_dir_location" type="xstring" value="port_1"/>
+</config>
+</config>
+<config key="filestores">
+<entry key="file_store_location" type="xstring" isnull="true" value=""/>
+<entry key="file_store_id" type="xstring" value="b3f08087-e2f7-4fda-8963-dd6d638fd084"/>
+</config>
+</config>

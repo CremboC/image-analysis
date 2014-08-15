@@ -1,0 +1,34 @@
+#############################################
+#
+# Content of .Rout file: 
+#
+#############################################
+ 
+
+R version 2.15.2 (2012-10-26) -- "Trick or Treat"
+Copyright (C) 2012 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+Platform: i386-w64-mingw32/i386 (32-bit)
+
+R ist freie Software und kommt OHNE JEGLICHE GARANTIE.
+Sie sind eingeladen, es unter bestimmten Bedingungen weiter zu verbreiten.
+Tippen Sie 'license()' or 'licence()' für Details dazu.
+
+R ist ein Gemeinschaftsprojekt mit vielen Beitragenden.
+Tippen Sie 'contributors()' für mehr Information und 'citation()',
+um zu erfahren, wie R oder R packages in Publikationen zitiert werden können.
+
+Tippen Sie 'demo()' für einige Demos, 'help()' für on-line Hilfe, oder
+'help.start()' für eine HTML Browserschnittstelle zur Hilfe.
+Tippen Sie 'q()', um R zu verlassen.
+
+> setwd("C:/Users/kilian/AppData/Local/Temp");
+> R <- read.csv("C:/Users/kilian/AppData/Local/Temp/R-inDataTempFile-4967589181847423846.csv", header = TRUE, row.names = 1);
+> m1<-as.matrix(R[1:3,1:3])
+> m2<-as.matrix(R[1:3,4:6])
+> R<-m1 %*% m2
+> write.csv(R, "C:/Users/kilian/AppData/Local/Temp/R-outDataTempFile-4638370449313912937.csv", row.names = TRUE);
+> 
+> proc.time()
+       User      System verstrichen 
+       0.35        0.06        0.39 

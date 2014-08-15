@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+template.snippets=("http\://idisk-srv1.mpi-cbg.de/knime/scripting-templates_public/R/snippet-templates.txt",true)
+templates.figures=("http\://idisk-srv1.mpi-cbg.de/knime/scripting-templates_public/R/figure-templates.txt",true)

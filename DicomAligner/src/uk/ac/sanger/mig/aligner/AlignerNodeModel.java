@@ -2,14 +2,12 @@ package uk.ac.sanger.mig.aligner;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
-import net.imglib2.Cursor;
-import net.imglib2.RandomAccess;
-import net.imglib2.img.array.ArrayImgFactory;
 import net.imglib2.meta.ImgPlus;
 import net.imglib2.type.logic.BitType;
-import net.imglib2.type.numeric.integer.UnsignedByteType;
 
 import org.knime.core.data.DataColumnSpec;
 import org.knime.core.data.DataRow;
@@ -27,9 +25,13 @@ import org.knime.core.node.NodeLogger;
 import org.knime.core.node.NodeModel;
 import org.knime.core.node.NodeSettingsRO;
 import org.knime.core.node.NodeSettingsWO;
+import org.knime.core.node.defaultnodesettings.SettingsModelDouble;
 import org.knime.core.node.defaultnodesettings.SettingsModelIntegerBounded;
 import org.knime.knip.base.data.img.ImgPlusCell;
-import org.knime.knip.base.data.img.ImgPlusCellFactory;
+
+import uk.ac.sanger.mig.aligner.helpers.Aligner;
+import uk.ac.sanger.mig.aligner.helpers.Denominator;
+import uk.ac.sanger.mig.aligner.helpers.MatrixHelper;
 
 /**
  * This is the model implementation of Aligner.
@@ -49,6 +51,8 @@ public class AlignerNodeModel extends NodeModel {
 	 * the dialog).
 	 */
 	static final String CFGKEY_THRESHOLD = "Threshold";
+	static final String CFGKEY_CENTROID_X = "Centroid X";
+	static final String CFGKEY_CENTROID_Y = "Centroid Y";
 
 	/** initial default count value. */
 	static final int DEFAULT_THRESHOLD = 50;
@@ -56,16 +60,22 @@ public class AlignerNodeModel extends NodeModel {
 	// example value: the models count variable filled from the dialog
 	// and used in the models execution method. The default components of the
 	// dialog work with "SettingsModels".
-	public static final SettingsModelIntegerBounded m_threshold = new SettingsModelIntegerBounded(
-			AlignerNodeModel.CFGKEY_THRESHOLD, AlignerNodeModel.DEFAULT_THRESHOLD,
-			0, 255);
+	static final SettingsModelIntegerBounded m_threshold = new SettingsModelIntegerBounded(
+			AlignerNodeModel.CFGKEY_THRESHOLD,
+			AlignerNodeModel.DEFAULT_THRESHOLD, 0, 255);
+
+	static final SettingsModelDouble m_centroidx = new SettingsModelDouble(
+			CFGKEY_CENTROID_X, 0);
+
+	static final SettingsModelDouble m_centroidy = new SettingsModelDouble(
+			CFGKEY_CENTROID_Y, 0);
 
 	/**
 	 * Constructor for the node model.
 	 */
 	protected AlignerNodeModel() {
 
-		// TODO one incoming port and one outgoing port is assumed
+		// TODO number of incoming and outgoing ports
 		super(1, 1);
 	}
 
@@ -80,76 +90,69 @@ public class AlignerNodeModel extends NodeModel {
 		Iterator<DataRow> iter = inData[0].iterator();
 		DataRow row = null;
 
-		// have to ensure input image is an unsigned short byte type for now
-		// get the image from the input, goes thru the rows and finds 
-		// the image cell of each row (now only works with one row)
-		ImgPlus<UnsignedByteType> ip = null;
+		double centroidX = m_centroidx.getDoubleValue(), 
+			centroidY = m_centroidy.getDoubleValue();
+
+		// have to ensure input image is of bit type for now
+		// get the image from the input, goes thru the rows and finds
+		// the image cell of each row 
+		List<ImgPlus<BitType>> ips = new ArrayList<ImgPlus<BitType>>();
 		while (iter.hasNext()) {
 			row = iter.next();
-			
-			ImgPlusCell<UnsignedByteType> img = null;
-			
+
+			ImgPlusCell<BitType> img = null;
+
 			for (int i = 0; i < row.getNumCells(); i++) {
 				if (row.getCell(i) instanceof ImgPlusCell<?>) {
-					img = (ImgPlusCell<UnsignedByteType>) row.getCell(i);
+					img = (ImgPlusCell<BitType>) row.getCell(i);
 					break;
 				}
 			}
-			
+
 			if (img == null) {
 				throw new IllegalStateException("No image in the input.");
 			} else {
-				ip = img.getImgPlus();
+				ips.add(img.getImgPlus());
 			}
-		
+
 		}
-
-		// create a new output image which will house the modifications
-		// not really needed for our needs
-		ImgPlus<BitType> output = new ImgPlus<BitType>(
-				new ArrayImgFactory<BitType>().create(ip, new BitType()));
-
-		// access the pixels of the output image
-		final RandomAccess<BitType> outAccess = output.randomAccess();
-
-		// cursor over input image
-		final Cursor<UnsignedByteType> inCursor = ip.localizingCursor();
-
-		// iterate over pixels of in input image
-		while (inCursor.hasNext()) {
-			inCursor.fwd();
-
-			// set outaccess on position of incursor
-			outAccess.setPosition(inCursor);
-
-			// set pixel value of output true, if pixel value of incoming image
-			// > manual threshold
-			outAccess.get().set(
-					inCursor.get().getInteger() > m_threshold.getIntValue());
-		}
-
-		// start creating the output table which will house all the required info
 		
+		// start creating the output table which will house all the required
+		// info
 		// this creates the schema for the output table
 		DataColumnSpec[] columnSpecs = DataTableSpec.createColumnSpecs(
-				new String[] { "value", "image" }, new DataType[] { DoubleCell.TYPE, ImgPlusCell.TYPE });		
+				new String[] { "thetamin" }, new DataType[] {
+						DoubleCell.TYPE });
 		DataTableSpec tableSpecs = new DataTableSpec(columnSpecs);
-		
+
 		// actually create the table using the previously created schema
 		BufferedDataContainer buf = exec.createDataContainer(tableSpecs);
 		
-		// factory required to create an image cell
-		ImgPlusCellFactory imgFactory = new ImgPlusCellFactory(exec);
+		int key = 0;
+		for (ImgPlus<BitType> ip : ips) {
+			int[] x = MatrixHelper.generateX((int) ip.dimension(0), (int) ip.dimension(1));
+			int[] y = MatrixHelper.generateY((int) ip.dimension(0), (int) ip.dimension(1));
+			
+			x = MatrixHelper.deductFromEach(x, centroidX);
+			y = MatrixHelper.deductFromEach(y, centroidY);
+			
+			Denominator denomCalculator = new Denominator(x, y, ip);
+			Aligner aligner = new Aligner(denomCalculator);
+			
+			System.out.println(denomCalculator.denom());
+			System.out.println(aligner.thetamin());
+			
+
+			// insert the row, must conform the schema
+			DataRow insertRow = new DefaultRow("" + key++, new DoubleCell(aligner.thetamin()));
+
+			buf.addRowToTable(insertRow);
+		}
 		
-		// insert the row, must conform the schema
-		DataRow insertRow = new DefaultRow("1", new DoubleCell(1.2139012), imgFactory.createCell(output));
-
-		buf.addRowToTable(insertRow);
-
 		buf.close();
-		
-		BufferedDataTable table = buf.getTable();
 
+		BufferedDataTable table = buf.getTable();
+		
 		return new BufferedDataTable[] { table };
 	}
 
@@ -188,7 +191,8 @@ public class AlignerNodeModel extends NodeModel {
 		// TODO save user settings to the config object.
 
 		m_threshold.saveSettingsTo(settings);
-
+		m_centroidx.saveSettingsTo(settings);
+		m_centroidy.saveSettingsTo(settings);
 	}
 
 	/**
@@ -203,6 +207,8 @@ public class AlignerNodeModel extends NodeModel {
 		// method below.
 
 		m_threshold.loadSettingsFrom(settings);
+		m_centroidx.loadSettingsFrom(settings);
+		m_centroidy.loadSettingsFrom(settings);
 
 	}
 
@@ -219,7 +225,8 @@ public class AlignerNodeModel extends NodeModel {
 		// Do not actually set any values of any member variables.
 
 		m_threshold.validateSettings(settings);
-
+		m_centroidx.validateSettings(settings);
+		m_centroidy.validateSettings(settings);
 	}
 
 	/**

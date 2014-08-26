@@ -87,6 +87,8 @@ public class AlignerNodeModel extends NodeModel {
 
 		double centroidX = m_centroidx.getDoubleValue(), centroidY = m_centroidy
 				.getDoubleValue();
+		
+		exec.setProgress(0.1);
 
 		// have to ensure input image is of bit type for now
 		// get the image from the input, goes thru the rows and finds
@@ -111,10 +113,10 @@ public class AlignerNodeModel extends NodeModel {
 			}
 
 		}
+		exec.setProgress(0.2);
 
 		// start creating the output table which will house all the required
-		// info
-		// this creates the schema for the output table
+		// info this creates the schema for the output table
 		DataColumnSpec[] columnSpecs = DataTableSpec
 				.createColumnSpecs(new String[] { "thetamin" },
 						new DataType[] { DoubleCell.TYPE });
@@ -122,6 +124,8 @@ public class AlignerNodeModel extends NodeModel {
 
 		// actually create the table using the previously created schema
 		BufferedDataContainer buf = exec.createDataContainer(tableSpecs);
+		
+		exec.setProgress(0.3);
 
 		for (Entry<String, ImgPlusCell<BitType>> e : imgs.entrySet()) {
 			ImgPlus<BitType> ip = e.getValue().getImgPlus();
@@ -130,12 +134,18 @@ public class AlignerNodeModel extends NodeModel {
 					(int) ip.dimension(1));
 			int[] y = MatrixHelper.generateY((int) ip.dimension(0),
 					(int) ip.dimension(1));
+			
+			exec.setProgress(0.4);
 
 			x = MatrixHelper.deductFromEach(x, centroidX);
 			y = MatrixHelper.deductFromEach(y, centroidY);
+			
+			exec.setProgress(0.5);
 
 			Denominator denomCalculator = new Denominator(x, y, ip);
+			exec.setProgress(0.8);
 			Aligner aligner = new Aligner(denomCalculator);
+			exec.setProgress(0.9);
 
 			// insert the row, must conform the schema
 			DataRow insertRow = new DefaultRow(e.getKey(), new DoubleCell(
@@ -143,6 +153,8 @@ public class AlignerNodeModel extends NodeModel {
 
 			buf.addRowToTable(insertRow);
 		}
+		
+		exec.setProgress(1.0);
 
 		buf.close();
 

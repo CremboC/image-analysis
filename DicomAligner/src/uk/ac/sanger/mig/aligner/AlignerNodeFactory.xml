@@ -7,7 +7,8 @@
     </shortDescription>
     
     <fullDescription>
-        <intro>Insert long description here...</intro>
+        <intro>Take a binary image and using its centroid (calculate using the Image Features node) theta is calculated. This can be used to align an image.
+        Specifically this is used to align x-rays of mice so their head point north</intro>
         
         
         <option name="Centroid X">The X coordinate of the centroid</option>

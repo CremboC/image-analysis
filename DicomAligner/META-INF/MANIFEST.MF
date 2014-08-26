@@ -2,10 +2,10 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Aligner-Node extension for KNIME Workbench
 Bundle-SymbolicName: uk.ac.sanger.mig.aligner; singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.1
 Bundle-ClassPath: aligner.jar
 Bundle-Activator: uk.ac.sanger.mig.aligner.AlignerNodePlugin
-Bundle-Vendor: pi1@WTSI
+Bundle-Vendor: WTSI
 Require-Bundle: org.eclipse.core.runtime,
  org.knime.workbench.core,
  org.knime.workbench.repository,

@@ -92,6 +92,8 @@ public class AlignerNodeModel extends NodeModel {
 		
 		exec.setProgress(0.1);
 		
+		// get the index of the column which is specified in the settings
+		// makes it faster to retrieve it later on
 		int columnIndex = 0;
 		String[] as = inData[0].getDataTableSpec().getColumnNames();
 		for (columnIndex = 0; columnIndex < as.length; columnIndex++) {
@@ -128,8 +130,6 @@ public class AlignerNodeModel extends NodeModel {
 
 		for (Entry<String, ImgPlusCell<BitType>> e : imgs.entrySet()) {
 			ImgPlus<BitType> ip = e.getValue().getImgPlus();
-			
-			System.out.println(ip.dimension(0) + "." + ip.dimension(1) + "." + ip.dimension(2));
 
 			int[] x = MatrixHelper.x((int) ip.dimension(0),
 					(int) ip.dimension(1));

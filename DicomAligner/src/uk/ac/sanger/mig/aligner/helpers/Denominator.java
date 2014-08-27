@@ -75,21 +75,27 @@ public class Denominator {
 		final Cursor<BitType> inCursor = im.localizingCursor();
 
 		// iterate over pixels of in input image
-		int i = 0;
-		while (inCursor.hasNext()) {
-			inCursor.fwd();
+		try {
+			int i = 0;
+			while (inCursor.hasNext()) {
+				inCursor.fwd();
 
-			double val = inCursor.get().getRealDouble();
+				double val = inCursor.get().getRealDouble();
 
-			int xi = x[i], yi = y[i];
+				int xi = x[i], yi = y[i];
 
-			a += Math.pow((val * xi), 2);
-			b += val * xi * yi;
-			c += Math.pow((val * yi), 2);
+				a += Math.pow((val * xi), 2);
+				b += val * xi * yi;
+				c += Math.pow((val * yi), 2);
 
-			i++;
+				i++;
+				if (i == im.dimension(0) * im.dimension(1))
+					break;
+			}
+		} catch (Exception e) {
+			System.out.println(e.getClass() + ": " + e.getMessage() + " at " + this.getClass());
 		}
-
+		
 		b *= 2;
 
 		return (denom = Math.pow(b, 2) + Math.pow((a - c), 2));

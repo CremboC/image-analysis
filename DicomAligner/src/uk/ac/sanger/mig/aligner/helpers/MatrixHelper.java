@@ -12,7 +12,7 @@ public class MatrixHelper {
 	 *            rows
 	 * @return
 	 */
-	public static int[] generateY(int dX, int dY) {
+	public static int[] y(int dX, int dY) {
 		int[] y = new int[(dX * dY) + dX + dY];
 
 		int val = 1;
@@ -36,7 +36,7 @@ public class MatrixHelper {
 	 *            rows
 	 * @return
 	 */
-	public static int[] generateX(int dX, int dY) {
+	public static int[] x(int dX, int dY) {
 		int[] x = new int[(dX * dY) + dX + dY];
 
 		for (int i = 0; i <= dY; i++) {

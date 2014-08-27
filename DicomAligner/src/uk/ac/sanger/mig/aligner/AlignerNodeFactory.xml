@@ -11,6 +11,7 @@
         Specifically this is used to align x-rays of mice so their head point north</intro>
         
         
+        <option name="Column">If the input table has multiple image columns, which one to choose?</option>
         <option name="Centroid X">The X coordinate of the centroid</option>
         <option name="Centroid Y">The Y coordinate of the centroid</option>
         <!-- possibly more options that can also be grouped by tabs -->

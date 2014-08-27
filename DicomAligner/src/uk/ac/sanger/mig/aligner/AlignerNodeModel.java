@@ -27,6 +27,7 @@ import org.knime.core.node.NodeModel;
 import org.knime.core.node.NodeSettingsRO;
 import org.knime.core.node.NodeSettingsWO;
 import org.knime.core.node.defaultnodesettings.SettingsModelDouble;
+import org.knime.core.node.defaultnodesettings.SettingsModelString;
 import org.knime.knip.base.data.img.ImgPlusCell;
 
 import uk.ac.sanger.mig.aligner.helpers.Aligner;
@@ -52,9 +53,7 @@ public class AlignerNodeModel extends NodeModel {
 	 */
 	static final String CFGKEY_CENTROID_X = "Centroid X";
 	static final String CFGKEY_CENTROID_Y = "Centroid Y";
-
-	/** initial default count value. */
-	static final int DEFAULT_THRESHOLD = 50;
+	static final String CFGKEY_COLUMN = "Column";
 
 	// example value: the models count variable filled from the dialog
 	// and used in the models execution method. The default components of the
@@ -64,6 +63,9 @@ public class AlignerNodeModel extends NodeModel {
 
 	static final SettingsModelDouble m_centroidy = new SettingsModelDouble(
 			CFGKEY_CENTROID_Y, 0);
+	
+	static final SettingsModelString m_column = new SettingsModelString(
+			CFGKEY_COLUMN, "Image");
 
 	/**
 	 * Constructor for the node model.
@@ -89,6 +91,14 @@ public class AlignerNodeModel extends NodeModel {
 				.getDoubleValue();
 		
 		exec.setProgress(0.1);
+		
+		int columnIndex = 0;
+		String[] as = inData[0].getDataTableSpec().getColumnNames();
+		for (columnIndex = 0; columnIndex < as.length; columnIndex++) {
+			if (as[columnIndex].equals(m_column.getStringValue())) {
+				break;
+			}
+		}
 
 		// have to ensure input image is of bit type for now
 		// get the image from the input, goes thru the rows and finds
@@ -97,20 +107,9 @@ public class AlignerNodeModel extends NodeModel {
 		while (iter.hasNext()) {
 			row = iter.next();
 
-			ImgPlusCell<BitType> img = null;
+			ImgPlusCell<BitType> img = (ImgPlusCell<BitType>) row.getCell(columnIndex);
 
-			for (int i = 0; i < row.getNumCells(); i++) {
-				if (row.getCell(i) instanceof ImgPlusCell<?>) {
-					img = (ImgPlusCell<BitType>) row.getCell(i);
-					break;
-				}
-			}
-
-			if (img == null) {
-				throw new IllegalStateException("No image in the input.");
-			} else {
-				imgs.put(row.getKey().getString(), img);
-			}
+			imgs.put(row.getKey().getString(), img);
 
 		}
 		exec.setProgress(0.2);
@@ -129,10 +128,12 @@ public class AlignerNodeModel extends NodeModel {
 
 		for (Entry<String, ImgPlusCell<BitType>> e : imgs.entrySet()) {
 			ImgPlus<BitType> ip = e.getValue().getImgPlus();
+			
+			System.out.println(ip.dimension(0) + "." + ip.dimension(1) + "." + ip.dimension(2));
 
-			int[] x = MatrixHelper.generateX((int) ip.dimension(0),
+			int[] x = MatrixHelper.x((int) ip.dimension(0),
 					(int) ip.dimension(1));
-			int[] y = MatrixHelper.generateY((int) ip.dimension(0),
+			int[] y = MatrixHelper.y((int) ip.dimension(0),
 					(int) ip.dimension(1));
 			
 			exec.setProgress(0.4);
@@ -199,6 +200,7 @@ public class AlignerNodeModel extends NodeModel {
 
 		m_centroidx.saveSettingsTo(settings);
 		m_centroidy.saveSettingsTo(settings);
+		m_column.saveSettingsTo(settings);
 	}
 
 	/**
@@ -214,7 +216,7 @@ public class AlignerNodeModel extends NodeModel {
 
 		m_centroidx.loadSettingsFrom(settings);
 		m_centroidy.loadSettingsFrom(settings);
-
+		m_column.loadSettingsFrom(settings);
 	}
 
 	/**
@@ -231,6 +233,7 @@ public class AlignerNodeModel extends NodeModel {
 
 		m_centroidx.validateSettings(settings);
 		m_centroidy.validateSettings(settings);
+		m_column.validateSettings(settings);
 	}
 
 	/**

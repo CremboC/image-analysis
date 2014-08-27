@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import net.imglib2.meta.ImgPlus;
 import net.imglib2.type.logic.BitType;
@@ -26,7 +25,6 @@ import org.knime.core.node.NodeLogger;
 import org.knime.core.node.NodeModel;
 import org.knime.core.node.NodeSettingsRO;
 import org.knime.core.node.NodeSettingsWO;
-import org.knime.core.node.defaultnodesettings.SettingsModelDouble;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 import org.knime.knip.base.data.img.ImgPlusCell;
 
@@ -51,21 +49,22 @@ public class AlignerNodeModel extends NodeModel {
 	 * the dialog or from a settings file) (package visibility to be usable from
 	 * the dialog).
 	 */
-	static final String CFGKEY_CENTROID_X = "Centroid X";
-	static final String CFGKEY_CENTROID_Y = "Centroid Y";
-	static final String CFGKEY_COLUMN = "Column";
+	static final String CFGKEY_CENTROID_X = "Centroid X Column";
+	static final String CFGKEY_CENTROID_Y = "Centroid Y Column";
+	static final String CFGKEY_COLUMN = "Image Column";
 
 	// example value: the models count variable filled from the dialog
 	// and used in the models execution method. The default components of the
 	// dialog work with "SettingsModels".
-	static final SettingsModelDouble m_centroidx = new SettingsModelDouble(
-			CFGKEY_CENTROID_X, 0);
 
-	static final SettingsModelDouble m_centroidy = new SettingsModelDouble(
-			CFGKEY_CENTROID_Y, 0);
-	
 	static final SettingsModelString m_column = new SettingsModelString(
 			CFGKEY_COLUMN, "Image");
+
+	static final SettingsModelString m_centroidx_name = new SettingsModelString(
+			CFGKEY_CENTROID_X, "WeightedCentroid Dim 1");
+
+	static final SettingsModelString m_centroidy_name = new SettingsModelString(
+			CFGKEY_CENTROID_Y, "WeightedCentroid Dim 2");
 
 	/**
 	 * Constructor for the node model.
@@ -83,37 +82,30 @@ public class AlignerNodeModel extends NodeModel {
 	protected BufferedDataTable[] execute(final BufferedDataTable[] inData,
 			final ExecutionContext exec) throws Exception {
 
-		// get data from the first port
-		Iterator<DataRow> iter = inData[0].iterator();
-		DataRow row = null;
-
-		double centroidX = m_centroidx.getDoubleValue(), centroidY = m_centroidy
-				.getDoubleValue();
-		
 		exec.setProgress(0.1);
-		
+
 		// get the index of the column which is specified in the settings
 		// makes it faster to retrieve it later on
-		int columnIndex = 0;
+		int imageIndex = -1, centroidXIndex = -1, centroidYIndex = -1;
 		String[] as = inData[0].getDataTableSpec().getColumnNames();
-		for (columnIndex = 0; columnIndex < as.length; columnIndex++) {
-			if (as[columnIndex].equals(m_column.getStringValue())) {
-				break;
+		for (int i = 0; i < as.length; i++) {
+			if (as[i].equals(m_column.getStringValue())) {
+				imageIndex = i;
+			}
+				
+			if (as[i].equals(m_centroidx_name.getStringValue())) {
+				centroidXIndex = i;
+			}
+			
+			if (as[i].equals(m_centroidy_name.getStringValue())) {
+				centroidYIndex = i;
 			}
 		}
-
-		// have to ensure input image is of bit type for now
-		// get the image from the input, goes thru the rows and finds
-		// the image cell of each row
-		Map<String, ImgPlusCell<BitType>> imgs = new HashMap<String, ImgPlusCell<BitType>>();
-		while (iter.hasNext()) {
-			row = iter.next();
-
-			ImgPlusCell<BitType> img = (ImgPlusCell<BitType>) row.getCell(columnIndex);
-
-			imgs.put(row.getKey().getString(), img);
-
+		
+		if (imageIndex == -1 || centroidXIndex == -1 || centroidYIndex == -1) {
+			throw new IllegalArgumentException("Input table is incorrectly formatted: missing columns");
 		}
+
 		exec.setProgress(0.2);
 
 		// start creating the output table which will house all the required
@@ -125,22 +117,40 @@ public class AlignerNodeModel extends NodeModel {
 
 		// actually create the table using the previously created schema
 		BufferedDataContainer buf = exec.createDataContainer(tableSpecs);
-		
+
 		exec.setProgress(0.3);
 
-		for (Entry<String, ImgPlusCell<BitType>> e : imgs.entrySet()) {
-			ImgPlus<BitType> ip = e.getValue().getImgPlus();
+		// get data from the first port
+		Iterator<DataRow> iter = inData[0].iterator();
+
+		// have to ensure input image is of bit type for now
+		// get the image from the input, goes thru the rows and finds
+		// the image cell of each row
+		Map<String, ImgPlusCell<BitType>> imgs = new HashMap<String, ImgPlusCell<BitType>>();
+		while (iter.hasNext()) {
+			DataRow row = iter.next();
+
+			double centroidX = ((DoubleCell) row.getCell(centroidXIndex))
+					.getDoubleValue();
+			
+			double centroidY = ((DoubleCell) row.getCell(centroidYIndex))
+					.getDoubleValue();
+
+			ImgPlusCell<BitType> img = (ImgPlusCell<BitType>) row
+					.getCell(imageIndex);
+
+			ImgPlus<BitType> ip = img.getImgPlus();
 
 			int[] x = MatrixHelper.x((int) ip.dimension(0),
 					(int) ip.dimension(1));
 			int[] y = MatrixHelper.y((int) ip.dimension(0),
 					(int) ip.dimension(1));
-			
+
 			exec.setProgress(0.4);
 
 			x = MatrixHelper.deductFromEach(x, centroidX);
 			y = MatrixHelper.deductFromEach(y, centroidY);
-			
+
 			exec.setProgress(0.5);
 
 			Denominator denomCalculator = new Denominator(x, y, ip);
@@ -149,12 +159,15 @@ public class AlignerNodeModel extends NodeModel {
 			exec.setProgress(0.9);
 
 			// insert the row, must conform the schema
-			DataRow insertRow = new DefaultRow(e.getKey(), new DoubleCell(
+			DataRow insertRow = new DefaultRow(row.getKey(), new DoubleCell(
 					aligner.thetamin()));
 
 			buf.addRowToTable(insertRow);
+
+			imgs.put(row.getKey().getString(), img);
+
 		}
-		
+
 		exec.setProgress(1.0);
 
 		buf.close();
@@ -198,8 +211,8 @@ public class AlignerNodeModel extends NodeModel {
 
 		// TODO save user settings to the config object.
 
-		m_centroidx.saveSettingsTo(settings);
-		m_centroidy.saveSettingsTo(settings);
+		m_centroidx_name.saveSettingsTo(settings);
+		m_centroidy_name.saveSettingsTo(settings);
 		m_column.saveSettingsTo(settings);
 	}
 
@@ -214,8 +227,8 @@ public class AlignerNodeModel extends NodeModel {
 		// It can be safely assumed that the settings are valided by the
 		// method below.
 
-		m_centroidx.loadSettingsFrom(settings);
-		m_centroidy.loadSettingsFrom(settings);
+		m_centroidx_name.loadSettingsFrom(settings);
+		m_centroidy_name.loadSettingsFrom(settings);
 		m_column.loadSettingsFrom(settings);
 	}
 
@@ -231,8 +244,8 @@ public class AlignerNodeModel extends NodeModel {
 		// SettingsModel).
 		// Do not actually set any values of any member variables.
 
-		m_centroidx.validateSettings(settings);
-		m_centroidy.validateSettings(settings);
+		m_centroidx_name.validateSettings(settings);
+		m_centroidy_name.validateSettings(settings);
 		m_column.validateSettings(settings);
 	}
 

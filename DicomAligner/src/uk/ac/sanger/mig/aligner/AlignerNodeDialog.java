@@ -1,7 +1,6 @@
 package uk.ac.sanger.mig.aligner;
 
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
-import org.knime.core.node.defaultnodesettings.DialogComponentNumber;
 import org.knime.core.node.defaultnodesettings.DialogComponentString;
 
 /**
@@ -24,13 +23,13 @@ public class AlignerNodeDialog extends DefaultNodeSettingsPane {
 	protected AlignerNodeDialog() {
 		super();
 
-		addDialogComponent(new DialogComponentNumber(
-				AlignerNodeModel.m_centroidx,
-				AlignerNodeModel.CFGKEY_CENTROID_X, 1));
+		addDialogComponent(new DialogComponentString(
+				AlignerNodeModel.m_centroidx_name,
+				AlignerNodeModel.CFGKEY_CENTROID_X));
 		
-		addDialogComponent(new DialogComponentNumber(
-				AlignerNodeModel.m_centroidy,
-				AlignerNodeModel.CFGKEY_CENTROID_Y, 1));
+		addDialogComponent(new DialogComponentString(
+				AlignerNodeModel.m_centroidy_name,
+				AlignerNodeModel.CFGKEY_CENTROID_Y));
 		
 		addDialogComponent(new DialogComponentString(
 				AlignerNodeModel.m_column,

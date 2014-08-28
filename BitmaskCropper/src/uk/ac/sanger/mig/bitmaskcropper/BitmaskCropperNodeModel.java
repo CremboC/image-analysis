@@ -20,6 +20,7 @@ import org.knime.core.node.NodeSettingsWO;
 import org.knime.core.node.defaultnodesettings.SettingsModelIntegerBounded;
 
 import uk.ac.sanger.mig.bitmaskcropper.utils.Cropper;
+import uk.ac.sanger.mig.bitmaskcropper.utils.OutputHelper;
 import uk.ac.sanger.mig.bitmaskcropper.utils.Utils;
 
 /**
@@ -67,20 +68,18 @@ public class BitmaskCropperNodeModel extends NodeModel {
 	@Override
 	protected BufferedDataTable[] execute(final BufferedDataTable[] inData,
 			final ExecutionContext exec) throws Exception {
-		
+
 		// original image
 		ImgPlus<UnsignedByteType> ip = Utils.findImageInInput(inData[0]);
-		
+
 		// bitmask
 		ImgPlus<BitType> mask = Utils.findImageInInput(inData[1]);
 
-
-		Cropper cropper = new Cropper(ip, mask);
-		
-		cropper.createOutputTable(exec);
+		OutputHelper output = new OutputHelper(exec);
+		Cropper cropper = new Cropper(ip, mask, output);
 		cropper.crop();
-		
-		return new BufferedDataTable[] { cropper.getOutputTable(exec) };
+
+		return new BufferedDataTable[] { output.getOutputTable() };
 	}
 
 	/**

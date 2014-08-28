@@ -612,3 +612,621 @@ java.io.IOException: Stream closed
 	at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer$1.performFileTransfer(AbstractRetrieveFileTransfer.java:173)
 	at org.eclipse.ecf.filetransfer.FileTransferJob.run(FileTransferJob.java:73)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SESSION 2014-08-15 10:01:13.064 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.7.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data C:\Projects\image-analysis-research\KNIME
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2014-08-21 10:07:17.245
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:07:17.245
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:17.245
+!MESSAGE Software being installed: KNIME Image Processing - ImageJ Integration (Beta) 0.9.0.201408141233 (org.knime.knip.imagej.feature.feature.group 0.9.0.201408141233)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:17.245
+!MESSAGE Software currently installed: KNIME Image Processing 1.2.0.201408121131 (org.knime.knip.feature.feature.group 1.2.0.201408121131)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:07:17.245
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:17.245
+!MESSAGE SciJava Wrapper for KNIP 2.24.0.201406270743 (org.knime.knip.scijava 2.24.0.201406270743)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:17.245
+!MESSAGE SciJava Wrapper for KNIP 2.29.0.201408141233 (org.knime.knip.scijava 2.29.0.201408141233)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:17.245
+!MESSAGE SciJava Wrapper for KNIP 2.29.0.201408111216 (org.knime.knip.scijava 2.29.0.201408111216)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:07:17.245
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:17.245
+!MESSAGE From: KNIME Image Processing 1.2.0.201408121131 (org.knime.knip.feature.feature.group 1.2.0.201408121131)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:17.245
+!MESSAGE To: org.knime.knip.scijava [2.29.0.201408111216]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:07:17.245
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:17.245
+!MESSAGE From: KNIME Image Processing - ImageJ Integration (Beta) 0.9.0.201408141233 (org.knime.knip.imagej.feature.feature.group 0.9.0.201408141233)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:17.245
+!MESSAGE To: org.knime.knip.scijava [2.29.0.201408141233]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2014-08-21 10:07:17.251
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:07:17.251
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:17.251
+!MESSAGE Software being installed: KNIME Image Processing - ImageJ Integration (Beta) 0.9.0.201408141233 (org.knime.knip.imagej.feature.feature.group 0.9.0.201408141233)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:17.251
+!MESSAGE Software currently installed: KNIME Image Processing 1.2.0.201408121131 (org.knime.knip.feature.feature.group 1.2.0.201408121131)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:07:17.251
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:17.251
+!MESSAGE SciJava Wrapper for KNIP 2.24.0.201406270743 (org.knime.knip.scijava 2.24.0.201406270743)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:17.251
+!MESSAGE SciJava Wrapper for KNIP 2.29.0.201408141233 (org.knime.knip.scijava 2.29.0.201408141233)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:17.251
+!MESSAGE SciJava Wrapper for KNIP 2.29.0.201408111216 (org.knime.knip.scijava 2.29.0.201408111216)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:07:17.251
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:17.251
+!MESSAGE From: KNIME Image Processing 1.2.0.201408121131 (org.knime.knip.feature.feature.group 1.2.0.201408121131)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:17.251
+!MESSAGE To: org.knime.knip.scijava [2.29.0.201408111216]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:07:17.251
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:17.251
+!MESSAGE From: KNIME Image Processing - ImageJ Integration (Beta) 0.9.0.201408141233 (org.knime.knip.imagej.feature.feature.group 0.9.0.201408141233)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:17.251
+!MESSAGE To: org.knime.knip.scijava [2.29.0.201408141233]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2014-08-21 10:07:45.899
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:07:45.899
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:45.899
+!MESSAGE Software being installed: KNIME Image Processing - ImageJ Integration (Beta) 0.9.0.201407091506 (org.knime.knip.imagej.feature.feature.group 0.9.0.201407091506)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:45.899
+!MESSAGE Software currently installed: KNIME Image Processing 1.2.0.201408121131 (org.knime.knip.feature.feature.group 1.2.0.201408121131)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:07:45.899
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:45.899
+!MESSAGE SciJava Wrapper for KNIP 2.24.0.201406270743 (org.knime.knip.scijava 2.24.0.201406270743)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:45.899
+!MESSAGE SciJava Wrapper for KNIP 2.29.0.201408141233 (org.knime.knip.scijava 2.29.0.201408141233)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:45.900
+!MESSAGE SciJava Wrapper for KNIP 2.29.0.201408111216 (org.knime.knip.scijava 2.29.0.201408111216)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:07:45.900
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:45.900
+!MESSAGE From: KNIME Image Processing 1.2.0.201408121131 (org.knime.knip.feature.feature.group 1.2.0.201408121131)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:45.900
+!MESSAGE To: org.knime.knip.scijava [2.29.0.201408111216]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:07:45.900
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:45.900
+!MESSAGE From: KNIME Image Processing - ImageJ Integration (Beta) 0.9.0.201407091506 (org.knime.knip.imagej.feature.feature.group 0.9.0.201407091506)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:45.900
+!MESSAGE To: org.knime.knip.scijava [2.24.0.201406270743]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2014-08-21 10:07:45.903
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:07:45.903
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:45.903
+!MESSAGE Software being installed: KNIME Image Processing - ImageJ Integration (Beta) 0.9.0.201407091506 (org.knime.knip.imagej.feature.feature.group 0.9.0.201407091506)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:45.903
+!MESSAGE Software currently installed: KNIME Image Processing 1.2.0.201408121131 (org.knime.knip.feature.feature.group 1.2.0.201408121131)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:07:45.903
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:45.903
+!MESSAGE SciJava Wrapper for KNIP 2.24.0.201406270743 (org.knime.knip.scijava 2.24.0.201406270743)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:45.903
+!MESSAGE SciJava Wrapper for KNIP 2.29.0.201408141233 (org.knime.knip.scijava 2.29.0.201408141233)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:45.903
+!MESSAGE SciJava Wrapper for KNIP 2.29.0.201408111216 (org.knime.knip.scijava 2.29.0.201408111216)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:07:45.904
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:45.904
+!MESSAGE From: KNIME Image Processing 1.2.0.201408121131 (org.knime.knip.feature.feature.group 1.2.0.201408121131)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:45.904
+!MESSAGE To: org.knime.knip.scijava [2.29.0.201408111216]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:07:45.904
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:45.904
+!MESSAGE From: KNIME Image Processing - ImageJ Integration (Beta) 0.9.0.201407091506 (org.knime.knip.imagej.feature.feature.group 0.9.0.201407091506)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:07:45.904
+!MESSAGE To: org.knime.knip.scijava [2.24.0.201406270743]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2014-08-21 10:08:41.734
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:08:41.734
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:08:41.734
+!MESSAGE Software being installed: KNIME Image Processing - ImageJ Integration (Beta) 0.9.0.201408141233 (org.knime.knip.imagej.feature.feature.group 0.9.0.201408141233)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:08:41.734
+!MESSAGE Software currently installed: KNIME Image Processing 1.2.0.201408121131 (org.knime.knip.feature.feature.group 1.2.0.201408121131)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:08:41.734
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:08:41.734
+!MESSAGE SciJava Wrapper for KNIP 2.24.0.201406270743 (org.knime.knip.scijava 2.24.0.201406270743)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:08:41.734
+!MESSAGE SciJava Wrapper for KNIP 2.29.0.201408141233 (org.knime.knip.scijava 2.29.0.201408141233)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:08:41.734
+!MESSAGE SciJava Wrapper for KNIP 2.29.0.201408111216 (org.knime.knip.scijava 2.29.0.201408111216)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:08:41.734
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:08:41.734
+!MESSAGE From: KNIME Image Processing 1.2.0.201408121131 (org.knime.knip.feature.feature.group 1.2.0.201408121131)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:08:41.735
+!MESSAGE To: org.knime.knip.scijava [2.29.0.201408111216]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:08:41.735
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:08:41.735
+!MESSAGE From: KNIME Image Processing - ImageJ Integration (Beta) 0.9.0.201408141233 (org.knime.knip.imagej.feature.feature.group 0.9.0.201408141233)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:08:41.735
+!MESSAGE To: org.knime.knip.scijava [2.29.0.201408141233]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2014-08-21 10:08:41.737
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:08:41.737
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:08:41.737
+!MESSAGE Software being installed: KNIME Image Processing - ImageJ Integration (Beta) 0.9.0.201408141233 (org.knime.knip.imagej.feature.feature.group 0.9.0.201408141233)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:08:41.737
+!MESSAGE Software currently installed: KNIME Image Processing 1.2.0.201408121131 (org.knime.knip.feature.feature.group 1.2.0.201408121131)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:08:41.737
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:08:41.737
+!MESSAGE SciJava Wrapper for KNIP 2.24.0.201406270743 (org.knime.knip.scijava 2.24.0.201406270743)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:08:41.737
+!MESSAGE SciJava Wrapper for KNIP 2.29.0.201408141233 (org.knime.knip.scijava 2.29.0.201408141233)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:08:41.737
+!MESSAGE SciJava Wrapper for KNIP 2.29.0.201408111216 (org.knime.knip.scijava 2.29.0.201408111216)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:08:41.737
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:08:41.737
+!MESSAGE From: KNIME Image Processing 1.2.0.201408121131 (org.knime.knip.feature.feature.group 1.2.0.201408121131)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:08:41.737
+!MESSAGE To: org.knime.knip.scijava [2.29.0.201408111216]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:08:41.737
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:08:41.737
+!MESSAGE From: KNIME Image Processing - ImageJ Integration (Beta) 0.9.0.201408141233 (org.knime.knip.imagej.feature.feature.group 0.9.0.201408141233)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:08:41.737
+!MESSAGE To: org.knime.knip.scijava [2.29.0.201408141233]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2014-08-21 10:26:01.923
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:26:01.923
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:26:01.923
+!MESSAGE Software being installed: KNIME Image Processing - ImageJ Integration (Beta) 0.9.0.201408141233 (org.knime.knip.imagej.feature.feature.group 0.9.0.201408141233)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:26:01.923
+!MESSAGE Software currently installed: KNIME Image Processing 1.2.0.201408121131 (org.knime.knip.feature.feature.group 1.2.0.201408121131)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:26:01.923
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:26:01.923
+!MESSAGE SciJava Wrapper for KNIP 2.24.0.201406270743 (org.knime.knip.scijava 2.24.0.201406270743)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:26:01.923
+!MESSAGE SciJava Wrapper for KNIP 2.29.0.201408141233 (org.knime.knip.scijava 2.29.0.201408141233)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:26:01.923
+!MESSAGE SciJava Wrapper for KNIP 2.29.0.201408111216 (org.knime.knip.scijava 2.29.0.201408111216)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:26:01.923
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:26:01.923
+!MESSAGE From: KNIME Image Processing 1.2.0.201408121131 (org.knime.knip.feature.feature.group 1.2.0.201408121131)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:26:01.923
+!MESSAGE To: org.knime.knip.scijava [2.29.0.201408111216]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:26:01.923
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:26:01.923
+!MESSAGE From: KNIME Image Processing - ImageJ Integration (Beta) 0.9.0.201408141233 (org.knime.knip.imagej.feature.feature.group 0.9.0.201408141233)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:26:01.923
+!MESSAGE To: org.knime.knip.scijava [2.29.0.201408141233]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2014-08-21 10:26:01.927
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:26:01.927
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:26:01.927
+!MESSAGE Software being installed: KNIME Image Processing - ImageJ Integration (Beta) 0.9.0.201408141233 (org.knime.knip.imagej.feature.feature.group 0.9.0.201408141233)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:26:01.927
+!MESSAGE Software currently installed: KNIME Image Processing 1.2.0.201408121131 (org.knime.knip.feature.feature.group 1.2.0.201408121131)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:26:01.927
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:26:01.927
+!MESSAGE SciJava Wrapper for KNIP 2.24.0.201406270743 (org.knime.knip.scijava 2.24.0.201406270743)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:26:01.927
+!MESSAGE SciJava Wrapper for KNIP 2.29.0.201408141233 (org.knime.knip.scijava 2.29.0.201408141233)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:26:01.927
+!MESSAGE SciJava Wrapper for KNIP 2.29.0.201408111216 (org.knime.knip.scijava 2.29.0.201408111216)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:26:01.927
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:26:01.927
+!MESSAGE From: KNIME Image Processing 1.2.0.201408121131 (org.knime.knip.feature.feature.group 1.2.0.201408121131)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:26:01.927
+!MESSAGE To: org.knime.knip.scijava [2.29.0.201408111216]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2014-08-21 10:26:01.927
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:26:01.927
+!MESSAGE From: KNIME Image Processing - ImageJ Integration (Beta) 0.9.0.201408141233 (org.knime.knip.imagej.feature.feature.group 0.9.0.201408141233)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2014-08-21 10:26:01.927
+!MESSAGE To: org.knime.knip.scijava [2.29.0.201408141233]
+!SESSION 2014-08-21 15:46:29.011 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.7.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2014-08-21 15:46:30.477
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.fail(AbstractRepositoryManager.java:393)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:675)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.loadMetadataRepository(Activator.java:99)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.getMetadataRepository(DropinsRepositoryListener.java:233)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.addRepository(DropinsRepositoryListener.java:122)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.added(DropinsRepositoryListener.java:96)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.processFile(DirectoryWatcher.java:197)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.scanDirectories(DirectoryWatcher.java:160)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.poll(DirectoryWatcher.java:108)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.watchDropins(Activator.java:535)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.start(Activator.java:172)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(BundleContextImpl.java:711)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(BundleContextImpl.java:702)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(BundleContextImpl.java:683)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:381)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(AbstractBundle.java:389)
+	at org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Framework.java:1131)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:559)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:544)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(StartLevelManager.java:457)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:243)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:438)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+!SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1000 2014-08-21 15:46:30.478
+!MESSAGE No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2014-08-21 15:46:30.572
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.fail(AbstractRepositoryManager.java:393)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:675)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:100)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.loadArtifactRepository(Activator.java:142)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.getArtifactRepository(DropinsRepositoryListener.java:260)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.addRepository(DropinsRepositoryListener.java:123)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.added(DropinsRepositoryListener.java:96)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.processFile(DirectoryWatcher.java:197)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.scanDirectories(DirectoryWatcher.java:160)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.poll(DirectoryWatcher.java:108)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.watchDropins(Activator.java:535)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.start(Activator.java:172)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(BundleContextImpl.java:711)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(BundleContextImpl.java:702)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(BundleContextImpl.java:683)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:381)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(AbstractBundle.java:389)
+	at org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Framework.java:1131)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:559)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:544)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(StartLevelManager.java:457)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:243)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:438)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 1000 2014-08-21 15:46:30.572
+!MESSAGE No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.
+!SESSION 2014-08-21 15:53:26.297 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.7.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2014-08-21 15:53:27.782
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.fail(AbstractRepositoryManager.java:393)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:675)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.loadMetadataRepository(Activator.java:99)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.getMetadataRepository(DropinsRepositoryListener.java:233)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.addRepository(DropinsRepositoryListener.java:122)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.added(DropinsRepositoryListener.java:96)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.processFile(DirectoryWatcher.java:197)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.scanDirectories(DirectoryWatcher.java:160)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.poll(DirectoryWatcher.java:108)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.watchDropins(Activator.java:535)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.start(Activator.java:172)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(BundleContextImpl.java:711)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(BundleContextImpl.java:702)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(BundleContextImpl.java:683)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:381)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(AbstractBundle.java:389)
+	at org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Framework.java:1131)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:559)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:544)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(StartLevelManager.java:457)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:243)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:438)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+!SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1000 2014-08-21 15:53:27.783
+!MESSAGE No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2014-08-21 15:53:27.876
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.fail(AbstractRepositoryManager.java:393)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:675)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:100)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.loadArtifactRepository(Activator.java:142)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.getArtifactRepository(DropinsRepositoryListener.java:260)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.addRepository(DropinsRepositoryListener.java:123)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.added(DropinsRepositoryListener.java:96)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.processFile(DirectoryWatcher.java:197)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.scanDirectories(DirectoryWatcher.java:160)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.poll(DirectoryWatcher.java:108)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.watchDropins(Activator.java:535)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.start(Activator.java:172)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(BundleContextImpl.java:711)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(BundleContextImpl.java:702)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(BundleContextImpl.java:683)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:381)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(AbstractBundle.java:389)
+	at org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Framework.java:1131)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:559)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:544)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(StartLevelManager.java:457)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:243)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:438)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 1000 2014-08-21 15:53:27.876
+!MESSAGE No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.
+!SESSION 2014-08-22 12:03:30.689 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.7.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2014-08-22 12:03:32.822
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.fail(AbstractRepositoryManager.java:393)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:675)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.loadMetadataRepository(Activator.java:99)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.getMetadataRepository(DropinsRepositoryListener.java:233)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.addRepository(DropinsRepositoryListener.java:122)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.added(DropinsRepositoryListener.java:96)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.processFile(DirectoryWatcher.java:197)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.scanDirectories(DirectoryWatcher.java:160)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.poll(DirectoryWatcher.java:108)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.watchDropins(Activator.java:535)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.start(Activator.java:172)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(BundleContextImpl.java:711)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(BundleContextImpl.java:702)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(BundleContextImpl.java:683)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:381)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(AbstractBundle.java:389)
+	at org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Framework.java:1131)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:559)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:544)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(StartLevelManager.java:457)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:243)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:438)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+!SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1000 2014-08-22 12:03:32.822
+!MESSAGE No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2014-08-22 12:03:32.922
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.fail(AbstractRepositoryManager.java:393)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:675)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:100)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.loadArtifactRepository(Activator.java:142)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.getArtifactRepository(DropinsRepositoryListener.java:260)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.addRepository(DropinsRepositoryListener.java:123)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.added(DropinsRepositoryListener.java:96)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.processFile(DirectoryWatcher.java:197)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.scanDirectories(DirectoryWatcher.java:160)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.poll(DirectoryWatcher.java:108)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.watchDropins(Activator.java:535)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.start(Activator.java:172)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(BundleContextImpl.java:711)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(BundleContextImpl.java:702)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(BundleContextImpl.java:683)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:381)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(AbstractBundle.java:389)
+	at org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Framework.java:1131)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:559)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:544)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(StartLevelManager.java:457)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:243)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:438)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 1000 2014-08-22 12:03:32.922
+!MESSAGE No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.
+!SESSION 2014-08-22 13:32:27.313 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.7.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2014-08-22 13:32:30.724
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.fail(AbstractRepositoryManager.java:393)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:675)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.loadMetadataRepository(Activator.java:99)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.getMetadataRepository(DropinsRepositoryListener.java:233)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.addRepository(DropinsRepositoryListener.java:122)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.added(DropinsRepositoryListener.java:96)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.processFile(DirectoryWatcher.java:197)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.scanDirectories(DirectoryWatcher.java:160)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.poll(DirectoryWatcher.java:108)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.watchDropins(Activator.java:535)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.start(Activator.java:172)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(BundleContextImpl.java:711)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(BundleContextImpl.java:702)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(BundleContextImpl.java:683)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:381)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(AbstractBundle.java:389)
+	at org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Framework.java:1131)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:559)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:544)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(StartLevelManager.java:457)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:243)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:438)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+!SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1000 2014-08-22 13:32:30.725
+!MESSAGE No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2014-08-22 13:32:30.822
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.fail(AbstractRepositoryManager.java:393)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:675)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:100)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.loadArtifactRepository(Activator.java:142)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.getArtifactRepository(DropinsRepositoryListener.java:260)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.addRepository(DropinsRepositoryListener.java:123)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.added(DropinsRepositoryListener.java:96)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.processFile(DirectoryWatcher.java:197)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.scanDirectories(DirectoryWatcher.java:160)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.poll(DirectoryWatcher.java:108)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.watchDropins(Activator.java:535)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.start(Activator.java:172)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(BundleContextImpl.java:711)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(BundleContextImpl.java:702)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(BundleContextImpl.java:683)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:381)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(AbstractBundle.java:389)
+	at org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Framework.java:1131)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:559)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:544)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(StartLevelManager.java:457)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:243)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:438)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 1000 2014-08-22 13:32:30.822
+!MESSAGE No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.
+!SESSION 2014-08-22 13:34:13.684 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.7.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2014-08-22 13:34:15.099
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.fail(AbstractRepositoryManager.java:393)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:675)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.loadMetadataRepository(Activator.java:99)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.getMetadataRepository(DropinsRepositoryListener.java:233)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.addRepository(DropinsRepositoryListener.java:122)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.added(DropinsRepositoryListener.java:96)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.processFile(DirectoryWatcher.java:197)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.scanDirectories(DirectoryWatcher.java:160)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.poll(DirectoryWatcher.java:108)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.watchDropins(Activator.java:535)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.start(Activator.java:172)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(BundleContextImpl.java:711)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(BundleContextImpl.java:702)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(BundleContextImpl.java:683)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:381)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(AbstractBundle.java:389)
+	at org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Framework.java:1131)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:559)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:544)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(StartLevelManager.java:457)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:243)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:438)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+!SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1000 2014-08-22 13:34:15.100
+!MESSAGE No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2014-08-22 13:34:15.191
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.fail(AbstractRepositoryManager.java:393)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:675)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:100)
+	at org.eclipse.equinox.internal.p2.artifact.repository.ArtifactRepositoryManager.loadRepository(ArtifactRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.loadArtifactRepository(Activator.java:142)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.getArtifactRepository(DropinsRepositoryListener.java:260)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.addRepository(DropinsRepositoryListener.java:123)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.DropinsRepositoryListener.added(DropinsRepositoryListener.java:96)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.processFile(DirectoryWatcher.java:197)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.scanDirectories(DirectoryWatcher.java:160)
+	at org.eclipse.equinox.internal.provisional.p2.directorywatcher.DirectoryWatcher.poll(DirectoryWatcher.java:108)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.watchDropins(Activator.java:535)
+	at org.eclipse.equinox.internal.p2.reconciler.dropins.Activator.start(Activator.java:172)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(BundleContextImpl.java:711)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(BundleContextImpl.java:702)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(BundleContextImpl.java:683)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:381)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(AbstractBundle.java:389)
+	at org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Framework.java:1131)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:559)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:544)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(StartLevelManager.java:457)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:243)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:438)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 1000 2014-08-22 13:34:15.192
+!MESSAGE No repository found at jar:file:/C:/Program%20Files/KNIME_2.10.1/dropins/smplthrsld.jar!/.

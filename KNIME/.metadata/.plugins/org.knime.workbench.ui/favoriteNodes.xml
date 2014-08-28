@@ -3,33 +3,43 @@
 <personals/>
 <frequents>
 <favorite frequency="1" nodeid="org.knime.knip.base.nodes.features.FeatureNodeSetFactory_org.knime.knip.base.nodes.features.ImgFeatureSetNodeFactory"/>
-<favorite frequency="1" nodeid="org.knime.knip.base.nodes.proc.ProcNodeSetFactory_org.knime.knip.base.nodes.proc.ImgNormalizerNodeFactory"/>
+<favorite frequency="3" nodeid="org.knime.knip.base.nodes.proc.ProcNodeSetFactory_org.knime.knip.base.nodes.proc.ImgNormalizerNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.base.node.switches.endcase.EndcaseNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.quickform.nodes.in.dbl.DoubleInputQuickFormInNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.neuro.movie.concatenatemovies.ConcatenateMoviesNodeFactory"/>
 <favorite frequency="2" nodeid="org.knime.r.RToTableNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.ext.sun.nodes.script.JavaScriptingNodeFactory"/>
-<favorite frequency="4" nodeid="org.knime.core.node.workflow.virtual.parallelchunkstart.ParallelChunkStartNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.knip.base.nodes.filter.FilterNodeSetFactory_org.knime.knip.base.nodes.filter.GaussNativeTypeNodeFactory"/>
+<favorite frequency="5" nodeid="org.knime.core.node.workflow.virtual.parallelchunkstart.ParallelChunkStartNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.core.node.workflow.virtual.parallelchunkend.ParallelChunkEndMultiPortNodeFactory"/>
 <favorite frequency="2" nodeid="org.knime.knip.io.nodes.IONodeSetFactory_org.knime.knip.io.nodes.imgwriter.ImgWriterNodeFactory"/>
-<favorite frequency="1" nodeid="org.knime.distmatrix.calculate.measure.MatrixDistanceNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.knip.base.nodes.filter.FilterNodeSetFactory_org.knime.knip.base.nodes.filter.nonlinear.MaxFilterNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.knip.base.nodes.filter.FilterNodeSetFactory_org.knime.knip.base.nodes.filter.SobelNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.knip.imagej.core.node.IJNodeSetFactory_net.imagej.plugins.commands.imglib.CropImage"/>
 <favorite frequency="1" nodeid="org.knime.ext.sun.nodes.script.node.editvar.JavaEditVariableNodeFactory"/>
+<favorite frequency="2" nodeid="org.knime.neuro.preprocessing.histogramnormalisation.HistogramNormalisationNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.base.node.preproc.columnheaderextract.ColumnHeaderExtractorNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.base.node.util.cache.CacheNodeFactory"/>
-<favorite frequency="1" nodeid="org.knime.neuro.preprocessing.tabletoimage"/>
 <favorite frequency="1" nodeid="org.knime.knip.base.nodes.features.FeatureNodeSetFactory_org.knime.knip.base.nodes.features.ImgLabFeatureSetNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.neuro.preprocessing.tabletoimage"/>
 <favorite frequency="1" nodeid="org.knime.base.node.flowcontrol.trycatch.inverter.ActiveBranchInverterNodeFactory"/>
-<favorite frequency="1" nodeid="org.knime.base.node.preproc.groupby.GroupByNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.knip.imagej.core.node.IJNodeSetFactory_net.imagej.plugins.commands.app.EasterEgg"/>
 <favorite frequency="2" nodeid="org.knime.base.node.switches.manualif.ManualIfNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.base.node.preproc.groupby.GroupByNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.knip.base.nodes.knimeimagebridge.ConversionNodeSetFactory_org.knime.knip.base.nodes.knimeimagebridge.ImgPlusCellToPNGValueNodeFactory"/>
-<favorite frequency="2" nodeid="org.knime.ext.jep.node"/>
-<favorite frequency="1" nodeid="org.knime.knip.base.nodes.proc.ProcNodeSetFactory_org.knime.knip.base.nodes.proc.ThresholderNodeFactory3"/>
-<favorite frequency="1" nodeid="org.knime.ext.sun.nodes.script.node.ifswitch.JavaIfSwitchNodeFactory"/>
+<favorite frequency="4" nodeid="org.knime.ext.jep.node"/>
+<favorite frequency="2" nodeid="org.knime.knip.base.nodes.proc.ProcNodeSetFactory_org.knime.knip.base.nodes.proc.ThresholderNodeFactory3"/>
+<favorite frequency="3" nodeid="org.knime.knip.base.nodes.proc.ProcNodeSetFactory_org.knime.knip.base.nodes.proc.AutoCropNodeFactory"/>
 <favorite frequency="4" nodeid="org.knime.base.node.preproc.rename.RenameNodeFactory"/>
-<favorite frequency="2" nodeid="org.knime.knip.base.nodes.proc.ProcNodeSetFactory_org.knime.knip.base.nodes.proc.AutoCropNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.ext.sun.nodes.script.node.ifswitch.JavaIfSwitchNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.base.node.viz.histogram.node.FixedColumnHistogramNodeFactory"/>
 <favorite frequency="2" nodeid="org.knime.base.node.util.mergevariables.MergeVariablesNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.knip.imagej.core.node.IJNodeSetFactory_net.imagej.plugins.commands.assign.AndDataValuesWith"/>
 <favorite frequency="1" nodeid="org.knime.base.node.preproc.stringreplacer.StringReplacerNodeFactory"/>
 <favorite frequency="3" nodeid="de.mpicbg.tds.knime.scripting.r.RSnippetNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.knip.base.nodes.proc.ProcNodeSetFactory_org.knime.knip.base.nodes.seg.local.LocalThresholderNodeFactory2"/>
 <favorite frequency="1" nodeid="org.knime.base.node.preproc.filter.column.DataColumnSpecFilterNodeFactory"/>
-<favorite frequency="4" nodeid="org.knime.r.RSnippetNodeFactory"/>
+<favorite frequency="6" nodeid="org.knime.r.RSnippetNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.knip.base.nodes.io.IONodeSetFactory_org.knime.knip.base.nodes.io.kernel.ConvolutionKernelNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.neuro.preprocessing.imageextractor.ImageExtractorNodeFactory"/>
 <favorite frequency="2" nodeid="org.knime.r.TableToRNodeFactory"/>
@@ -38,52 +48,60 @@
 <favorite frequency="1" nodeid="org.knime.base.node.io.tablecreator.TableCreator2NodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.base.node.io.database.DBQueryNodeFactory2"/>
 <favorite frequency="5" nodeid="org.knime.base.node.preproc.joiner.Joiner2NodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.knip.base.nodes.filter.FilterNodeSetFactory_org.knime.knip.base.nodes.filter.anisotropicdiffusion.AnisotropicDiffusionNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.base.node.io.database.DBReaderNodeFactory"/>
 <favorite frequency="2" nodeid="org.knime.base.node.preproc.crossjoin.CrossJoinerNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.base.node.flowvariable.extractvariables.ExtractVariablesNodeFactory"/>
-<favorite frequency="2" nodeid="org.knime.knip.base.nodes.features.FeatureNodeSetFactory_org.knime.knip.base.nodes.misc.imgproperties.ImgPropertiesNodeFactory"/>
 <favorite frequency="1" nodeid="de.mpicbg.tds.knime.scripting.r.RSnippetNodeFactory21"/>
+<favorite frequency="2" nodeid="org.knime.knip.base.nodes.features.FeatureNodeSetFactory_org.knime.knip.base.nodes.misc.imgproperties.ImgPropertiesNodeFactory"/>
 <favorite frequency="2" nodeid="org.knime.r.AddTableToRNodeFactory"/>
 <favorite frequency="2" nodeid="de.mpicbg.tds.knime.scripting.r.genericr.GenericRSnippetFactory"/>
 <favorite frequency="4" nodeid="org.knime.quickform.nodes.out.variable.VariableOutputQuickFormOutNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.base.node.io.table.write.WriteTableNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.knip.imagej.core.node.IJNodeSetFactory_net.imagej.plugins.commands.imglib.RotateImageXY"/>
 <favorite frequency="2" nodeid="org.knime.r.RToRNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.knip.base.nodes.proc.ProcNodeSetFactory_org.knime.knip.base.nodes.proc.maxfinder.MaximumFinderNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.base.node.io.csvwriter.CSVWriterNodeFactory"/>
-<favorite frequency="1" nodeid="org.knime.base.node.flowvariable.tablerowtovariable.TableToVariableNodeFactory"/>
-<favorite frequency="2" nodeid="org.knime.knip.base.nodes.view.ViewsNodeSetFactory_org.knime.knip.base.nodes.view.TableCellViewNodeFactory"/>
+<favorite frequency="2" nodeid="org.knime.base.node.flowvariable.tablerowtovariable.TableToVariableNodeFactory"/>
+<favorite frequency="6" nodeid="org.knime.knip.base.nodes.view.ViewsNodeSetFactory_org.knime.knip.base.nodes.view.TableCellViewNodeFactory"/>
+<favorite frequency="4" nodeid="org.knime.knip.io.nodes.IONodeSetFactory_org.knime.knip.io.nodes.imgreader.ImgReaderNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.knip.base.nodes.features.FeatureNodeSetFactory_org.knime.knip.base.nodes.features.LabFeatureSetNodeFactory"/>
-<favorite frequency="3" nodeid="org.knime.knip.io.nodes.IONodeSetFactory_org.knime.knip.io.nodes.imgreader.ImgReaderNodeFactory"/>
-<favorite frequency="1" nodeid="org.knime.quickform.nodes.in.string.StringInputQuickFormInNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.knip.imagej1.ImageJ1NodeSetFactory_org.knime.knip.imagej1.io.IJImageReaderNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.base.node.io.database.DBReaderConnectionNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.quickform.nodes.in.string.StringInputQuickFormInNodeFactory"/>
+<favorite frequency="2" nodeid="org.knime.knip.base.nodes.proc.ProcNodeSetFactory_org.knime.knip.base.nodes.proc.ImgCropperNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.knip.base.nodes.proc.ProcNodeSetFactory_org.knime.knip.base.nodes.misc.splitter.SplitterNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.knip.base.nodes.proc.ProcNodeSetFactory_org.knime.knip.base.nodes.proc.Rotation2DNodeFactory"/>
+<favorite frequency="6" nodeid="org.knime.knip.base.nodes.proc.ProcNodeSetFactory_org.knime.knip.base.nodes.misc.merger.MergerNodeFactory"/>
 <favorite frequency="2" nodeid="org.knime.base.node.jsnippet.JavaSnippetNodeFactory"/>
-<favorite frequency="4" nodeid="org.knime.knip.base.nodes.proc.ProcNodeSetFactory_org.knime.knip.base.nodes.misc.merger.MergerNodeFactory"/>
-<favorite frequency="1" nodeid="org.knime.quickform.nodes.in.dummy.DummyInputQuickFormInNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.base.node.jsnippet.JavaEditVarNodeFactory"/>
-<favorite frequency="1" nodeid="org.knime.knip.base.nodes.proc.ProcNodeSetFactory_org.knime.knip.base.nodes.proc.ConvertImgNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.quickform.nodes.in.dummy.DummyInputQuickFormInNodeFactory"/>
+<favorite frequency="2" nodeid="org.knime.knip.base.nodes.proc.ProcNodeSetFactory_org.knime.knip.base.nodes.proc.ConvertImgNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.base.node.switches.startcase.StartcaseNodeFactory"/>
 <favorite frequency="3" nodeid="org.knime.base.node.preproc.filter.row.RowFilterNodeFactory"/>
-<favorite frequency="3" nodeid="org.knime.core.node.workflow.virtual.parallelchunkend.ParallelChunkEndNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.base.node.flowvariable.injectvariables.InjectVariablesNodeFactory"/>
+<favorite frequency="4" nodeid="org.knime.core.node.workflow.virtual.parallelchunkend.ParallelChunkEndNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.knip.base.nodes.filter.FilterNodeSetFactory_org.knime.knip.base.nodes.filter.maxhomogenity.MaxHomogenityNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.knip.base.nodes.io.IONodeSetFactory_org.knime.knip.base.nodes.io.imggenerator.ImgGeneratorNodeFactory"/>
-<favorite frequency="1" nodeid="org.knime.neuro.misc.imagetotable.ImageToTableNodeFactory"/>
+<favorite frequency="4" nodeid="org.knime.knip.base.nodes.proc.ProcNodeSetFactory_org.knime.knip.base.nodes.proc.InverterNodeFactory2"/>
 <favorite frequency="1" nodeid="org.knime.base.node.preproc.createtablestructure.CreateTableStructureNodeFactory"/>
-<favorite frequency="1" nodeid="de.mpicbg.tds.knime.scripting.python.PythonSnippetNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.neuro.misc.imagetotable.ImageToTableNodeFactory"/>
+<favorite frequency="8" nodeid="uk.ac.sanger.mig.aligner.AlignerNodeFactory"/>
 <favorite frequency="1" nodeid="org.knime.base.node.io.database.JDBCConnectorNodeFactory"/>
-<favorite frequency="1" nodeid="org.knime.knip.io.nodes.IONodeSetFactory_org.knime.knip.io.nodes.imgimporter.ImgImporterNodeFactory"/>
 <favorite frequency="2" nodeid="org.knime.quickform.nodes.in.integer.IntInputQuickFormInNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.knip.io.nodes.IONodeSetFactory_org.knime.knip.io.nodes.imgimporter.ImgImporterNodeFactory"/>
+<favorite frequency="1" nodeid="org.knime.knip.base.nodes.seg.LabNodeSetFactory_org.knime.knip.base.nodes.seg.ImgToLabelingNodeFactory"/>
 </frequents>
 <lastused>
-<favorite nodeid="org.knime.base.node.preproc.rename.RenameNodeFactory"/>
-<favorite nodeid="org.knime.base.node.preproc.joiner.Joiner2NodeFactory"/>
-<favorite nodeid="org.knime.base.node.preproc.crossjoin.CrossJoinerNodeFactory"/>
-<favorite nodeid="org.knime.base.node.jsnippet.JavaSnippetNodeFactory"/>
-<favorite nodeid="org.knime.base.node.switches.manualif.ManualIfNodeFactory"/>
-<favorite nodeid="org.knime.ext.sun.nodes.script.node.ifswitch.JavaIfSwitchNodeFactory"/>
-<favorite nodeid="org.knime.base.node.flowcontrol.trycatch.inverter.ActiveBranchInverterNodeFactory"/>
-<favorite nodeid="org.knime.quickform.nodes.out.variable.VariableOutputQuickFormOutNodeFactory"/>
-<favorite nodeid="org.knime.base.node.util.mergevariables.MergeVariablesNodeFactory"/>
+<favorite nodeid="org.knime.knip.imagej1.ImageJ1NodeSetFactory_org.knime.knip.imagej1.io.IJImageReaderNodeFactory"/>
+<favorite nodeid="org.knime.neuro.preprocessing.histogramnormalisation.HistogramNormalisationNodeFactory"/>
+<favorite nodeid="org.knime.knip.io.nodes.IONodeSetFactory_org.knime.knip.io.nodes.imgreader.ImgReaderNodeFactory"/>
 <favorite nodeid="org.knime.knip.base.nodes.view.ViewsNodeSetFactory_org.knime.knip.base.nodes.view.TableCellViewNodeFactory"/>
+<favorite nodeid="org.knime.knip.base.nodes.proc.ProcNodeSetFactory_org.knime.knip.base.nodes.proc.ImgNormalizerNodeFactory"/>
+<favorite nodeid="org.knime.knip.base.nodes.proc.ProcNodeSetFactory_org.knime.knip.base.nodes.proc.ImgCropperNodeFactory"/>
+<favorite nodeid="org.knime.knip.imagej.core.node.IJNodeSetFactory_net.imagej.plugins.commands.assign.AndDataValuesWith"/>
+<favorite nodeid="org.knime.knip.base.nodes.proc.ProcNodeSetFactory_org.knime.knip.base.nodes.proc.InverterNodeFactory2"/>
+<favorite nodeid="org.knime.knip.base.nodes.seg.LabNodeSetFactory_org.knime.knip.base.nodes.seg.ImgToLabelingNodeFactory"/>
+<favorite nodeid="uk.ac.sanger.mig.aligner.AlignerNodeFactory"/>
 </lastused>
 </favoritenodes>

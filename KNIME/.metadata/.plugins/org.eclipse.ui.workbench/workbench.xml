@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><workbench progressCount="12" version="2.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<workbench progressCount="12" version="2.0">
 <workbenchAdvisor/>
-<window height="768" maximized="true" width="1024" x="75" y="75">
+<window height="768" maximized="true" width="700" x="925" y="-19">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar/>
 <coolbarLayout>
@@ -8,30 +9,24 @@
 <coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="53" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
 <coolItem id="org.knime.workbench.editor.WorkflowEditor" itemType="typeToolBarContribution" x="611" y="22"/>
-<coolItem id="org.eclipse.ui.browser.editor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.ui.browser.editor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
 <page focus="true" label="&lt;Unknown Label&gt; - KNIME">
 <editors>
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"><part id="1"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
-<part id="2"/>
-<part id="3"/>
-<part id="4"/>
-<part id="5"/>
-<part id="6"/>
-<part id="7"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-
-<editor id="org.knime.workbench.editor.WorkflowEditor" name="workflow.knime" partName="0: dicom-test" title="0: dicom-test" tooltip="0: dicom-test" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.knime.workbench.editor.WorkflowEditor" name="workflow.knime" partName="0: dicom-test" title="0: dicom-test" tooltip="0: dicom-test" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" uri="knime://LOCAL/dicom-test/workflow.knime"/>
-</editor><editor activePart="true" focus="true" id="org.eclipse.ui.browser.editor" name="KNIME Intro" partName="KNIME Intro" title="Welcome to KNIME" tooltip="Welcome to KNIME" workbook="DefaultEditorWorkbook"><input factoryID="org.eclipse.ui.browser.elementFactory" id="org.knime.intro.page" url="file:/C:/Users/pi1/AppData/Local/Temp/intro7995844780407467423.html"/></editor></editors>
+</editor>
+</editors>
 <views>
 <view id="org.eclipse.ui.console.ConsoleView" partName="Console">
 <viewState/>
@@ -39,13 +34,13 @@
 <view id="org.knime.workbench.helpview" partName="Node Description">
 <viewState/>
 </view>
-<view id="org.knime.workbench.repository.view.RepositoryView" partName="Node Repository">
-<viewState/>
-</view>
 <view id="org.knime.workbench.explorer.view" partName="KNIME Explorer">
 <viewState>
 <content/>
 </viewState>
+</view>
+<view id="org.knime.workbench.repository.view.RepositoryView" partName="Node Repository">
+<viewState/>
 </view>
 <view id="org.knime.workbench.nodemonitorview.nodemonitorview" partName="Node Monitor">
 <viewState/>
@@ -83,8 +78,8 @@
 <perspective_action id="org.eclipse.pde.ui.PDEPerspective"/>
 <perspective_action id="org.knime.workbench.ui.ModellerPerspective"/>
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
-<view id="org.knime.workbench.explorer.view"/>
 <view id="org.knime.workbench.repository.view.RepositoryView"/>
+<view id="org.knime.workbench.explorer.view"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <view id="org.knime.workbench.helpview"/>
@@ -110,7 +105,7 @@
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.3" ratioLeft="300" ratioRight="700" relationship="2" relative="org.eclipse.ui.internal.ViewStack@25085ad"/>
+<info part="org.eclipse.ui.editorss" ratio="0.15339349" ratioLeft="391" ratioRight="2158" relationship="2" relative="org.eclipse.ui.internal.ViewStack@25085ad"/>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@47cb3a02" ratio="0.6987768" ratioLeft="457" ratioRight="197" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
@@ -122,12 +117,13 @@
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@7b02fa42" ratio="0.3" ratioLeft="210" ratioRight="490" relationship="2" relative="org.eclipse.ui.internal.ViewStack@47cb3a02">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="org.eclipse.ui.console.ConsoleView:Console View #1" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@6f4d7e20" ratio="0.7279608" ratioLeft="1635" ratioRight="611" relationship="2" relative="org.eclipse.ui.editorss">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@6f4d7e20" ratio="0.5878929" ratioLeft="505" ratioRight="354" relationship="2" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.knime.workbench.helpview" appearance="2" expanded="2">
 <page content="org.knime.workbench.helpview" label="Node Description"/>
 <page content="org.knime.workbench.nodemonitorview.nodemonitorview" label="Node Monitor"/>
@@ -161,32 +157,7 @@
 <navigationHistory>
 <editors>
 <editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.knime.workbench.editor.WorkflowEditor" uri="knime://LOCAL/dicom-test/workflow.knime"/>
-<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.knime.workbench.editor.WorkflowEditor" uri="knime://LOCAL/Example%20Workflow/workflow.knime"/>
-<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.knime.workbench.editor.WorkflowEditor" uri="knime://LOCAL/Example_HCS/workflow.knime"/>
-<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.knime.workbench.editor.WorkflowEditor" uri="knime://LOCAL/R-Matrix%20Multiplication/workflow.knime"/>
 </editors>
-<item historyLabel="0: dicom-test" index="0"/>
-<item historyLabel="2: Example Workflow" index="1"/>
-<item historyLabel="3: Example_HCS" index="2"/>
-<item historyLabel="4: R-Matrix Multiplication" index="3"/>
-<item historyLabel="3: Example_HCS" index="2"/>
-<item historyLabel="0: dicom-test" index="0"/>
-<item historyLabel="4: R-Matrix Multiplication" index="3"/>
-<item historyLabel="0: dicom-test" index="0"/>
-<item historyLabel="0: dicom-test" index="0"/>
-<item historyLabel="4: R-Matrix Multiplication" index="3"/>
-<item historyLabel="0: dicom-test" index="0"/>
-<item historyLabel="0: dicom-test" index="0"/>
-<item historyLabel="0: dicom-test" index="0"/>
-<item historyLabel="0: dicom-test" index="0"/>
-<item historyLabel="0: dicom-test" index="0"/>
-<item historyLabel="0: dicom-test" index="0"/>
-<item historyLabel="0: dicom-test" index="0"/>
-<item historyLabel="0: dicom-test" index="0"/>
-<item historyLabel="0: dicom-test" index="0"/>
-<item historyLabel="0: dicom-test" index="0"/>
-<item historyLabel="0: dicom-test" index="0"/>
-<item historyLabel="0: dicom-test" index="0"/>
 <item historyLabel="0: dicom-test" index="0"/>
 <item historyLabel="0: dicom-test" index="0"/>
 <item historyLabel="0: dicom-test" index="0"/>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="settings.xml">
+<entry key="node_file" type="xstring" value="settings.xml"/>
+<config key="flow_stack"/>
+<config key="internal_node_subsettings">
+<entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
+</config>
+<config key="model">
+<config key="file_list_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_stringarray"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<config key="file_list">
+<entry key="array-size" type="xint" value="1"/>
+<entry key="0" type="xstring" value="C:\Projects\image-analysis-research\dicom-ejml-op\xray.dcm"/>
+</config>
+</config>
+<config key="nodeAnnotation">
+<entry key="text" type="xstring" value=""/>
+<entry key="bgcolor" type="xint" value="16777215"/>
+<entry key="x-coordinate" type="xint" value="-53"/>
+<entry key="y-coordinate" type="xint" value="280"/>
+<entry key="width" type="xint" value="106"/>
+<entry key="height" type="xint" value="15"/>
+<entry key="alignment" type="xstring" value="CENTER"/>
+<config key="styles"/>
+</config>
+<entry key="customDescription" type="xstring" isnull="true" value=""/>
+<entry key="state" type="xstring" value="EXECUTED"/>
+<entry key="factory" type="xstring" value="org.knime.knip.imagej1.io.IJImageReaderNodeFactory"/>
+<entry key="node-name" type="xstring" value="IJ Image Reader (2D) - experimental"/>
+<entry key="node-bundle-name" type="xstring" value="KNIME ImageJ Core Plugin"/>
+<entry key="node-bundle-symbolic-name" type="xstring" value="org.knime.knip.imagej2.core"/>
+<entry key="node-bundle-vendor" type="xstring" value="University of Konstanz"/>
+<entry key="node-bundle-version" type="xstring" value="0.9.0.201407141430"/>
+<config key="factory_settings"/>
+<entry key="name" type="xstring" value="IJ Image Reader (2D) - experimental"/>
+<entry key="hasContent" type="xboolean" value="true"/>
+<entry key="isInactive" type="xboolean" value="false"/>
+<config key="ports">
+<config key="port_1">
+<entry key="index" type="xint" value="1"/>
+<entry key="port_spec_class" type="xstring" value="org.knime.core.data.DataTableSpec"/>
+<entry key="port_object_class" type="xstring" value="org.knime.core.node.BufferedDataTable"/>
+<entry key="port_object_summary" type="xstring" value="Rows: 1, Cols: 1"/>
+<entry key="port_dir_location" type="xstring" value="port_1"/>
+</config>
+</config>
+<config key="filestores">
+<entry key="file_store_location" type="xstring" value="filestore"/>
+<entry key="file_store_id" type="xstring" value="e4421aa0-350f-449f-aad1-d2622e87471f"/>
+</config>
+</config>

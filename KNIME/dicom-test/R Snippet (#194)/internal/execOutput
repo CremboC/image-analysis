@@ -1,0 +1,48 @@
+#############################################
+#
+# Content of .Rout file: 
+#
+#############################################
+ 
+
+R version 3.0.3 (2014-03-06) -- "Warm Puppy"
+Copyright (C) 2014 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> setwd("C:/Users/pi1/AppData/Local/Temp/knime_dicom_test76651");
+> load("C:/Users/pi1/AppData/Local/Temp/knime_dicom_test76651/R-workspace2995433485750278518.RData");
+> a <- knime.in$"a"
+> b <- knime.in$"b"
+> c <- knime.in$"c"
+> 
+> denom <- knime.in$"denom"
+> 
+> sin2thetamin <- b / sqrt(denom)
+> sin2thetamax <- -sin2thetamin
+> cos2thetamin <- (a - c) / sqrt(denom)
+> cos2thetamax <- -cos2thetamin
+> 
+> thetamin <- atan2(sin2thetamin, cos2thetamin) / 2
+> 
+> thetamin <- (pi + (pi / 2)) + thetamin
+> 
+> knime.out <- data.frame(thetamin)
+> 
+> knime.loaded.libraries <- (.packages());
+> save.image("C:/Users/pi1/AppData/Local/Temp/knime_dicom_test76651/R-workspace2995433485750278518.RData");
+> 
+> proc.time()
+   user  system elapsed 
+   0.34    0.00    0.34 

@@ -21,7 +21,6 @@ import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.ExecutionContext;
 import org.knime.core.node.ExecutionMonitor;
 import org.knime.core.node.InvalidSettingsException;
-import org.knime.core.node.NodeLogger;
 import org.knime.core.node.NodeModel;
 import org.knime.core.node.NodeSettingsRO;
 import org.knime.core.node.NodeSettingsWO;
@@ -40,10 +39,6 @@ import uk.ac.sanger.mig.aligner.helpers.MatrixHelper;
  */
 public class AlignerNodeModel extends NodeModel {
 
-	// the logger instance
-	private static final NodeLogger logger = NodeLogger
-			.getLogger(AlignerNodeModel.class);
-
 	/**
 	 * the settings key which is used to retrieve and store the settings (from
 	 * the dialog or from a settings file) (package visibility to be usable from
@@ -57,12 +52,15 @@ public class AlignerNodeModel extends NodeModel {
 	// and used in the models execution method. The default components of the
 	// dialog work with "SettingsModels".
 
-	static final SettingsModelString m_column = new SettingsModelString(
+	/** Column name which stores the image */
+	static final SettingsModelString m_image_column = new SettingsModelString(
 			CFGKEY_COLUMN, "Image");
 
+	/** Column name which stores the x coord of the centroid */
 	static final SettingsModelString m_centroidx_name = new SettingsModelString(
 			CFGKEY_CENTROID_X, "WeightedCentroid Dim 1");
 
+	/** Column name which stores the y coord of the centroid */
 	static final SettingsModelString m_centroidy_name = new SettingsModelString(
 			CFGKEY_CENTROID_Y, "WeightedCentroid Dim 2");
 
@@ -89,7 +87,7 @@ public class AlignerNodeModel extends NodeModel {
 		int imageIndex = -1, centroidXIndex = -1, centroidYIndex = -1;
 		String[] as = inData[0].getDataTableSpec().getColumnNames();
 		for (int i = 0; i < as.length; i++) {
-			if (as[i].equals(m_column.getStringValue())) {
+			if (as[i].equals(m_image_column.getStringValue())) {
 				imageIndex = i;
 			}
 				
@@ -213,7 +211,7 @@ public class AlignerNodeModel extends NodeModel {
 
 		m_centroidx_name.saveSettingsTo(settings);
 		m_centroidy_name.saveSettingsTo(settings);
-		m_column.saveSettingsTo(settings);
+		m_image_column.saveSettingsTo(settings);
 	}
 
 	/**
@@ -229,7 +227,7 @@ public class AlignerNodeModel extends NodeModel {
 
 		m_centroidx_name.loadSettingsFrom(settings);
 		m_centroidy_name.loadSettingsFrom(settings);
-		m_column.loadSettingsFrom(settings);
+		m_image_column.loadSettingsFrom(settings);
 	}
 
 	/**
@@ -246,7 +244,7 @@ public class AlignerNodeModel extends NodeModel {
 
 		m_centroidx_name.validateSettings(settings);
 		m_centroidy_name.validateSettings(settings);
-		m_column.validateSettings(settings);
+		m_image_column.validateSettings(settings);
 	}
 
 	/**

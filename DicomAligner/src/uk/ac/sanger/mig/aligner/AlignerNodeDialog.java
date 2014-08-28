@@ -32,7 +32,7 @@ public class AlignerNodeDialog extends DefaultNodeSettingsPane {
 				AlignerNodeModel.CFGKEY_CENTROID_Y));
 		
 		addDialogComponent(new DialogComponentString(
-				AlignerNodeModel.m_column,
+				AlignerNodeModel.m_image_column,
 				AlignerNodeModel.CFGKEY_COLUMN));
 
 	}

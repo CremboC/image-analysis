@@ -5,7 +5,6 @@ import net.imglib2.meta.ImgPlus;
 import net.imglib2.type.logic.BitType;
 
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
-import org.knime.knip.core.util.Triple;
 
 /**
  * Wrapper class for the main logic for finding and calculating the Bounding
@@ -23,22 +22,24 @@ public class BoundingBox {
 			BOTTOMRIGHT = 3;
 
 	private ImgPlus<BitType> image;
-	private final int centroidX, centroidY;
+	private final int centroidX, centroidY;	
 	
-	public ImgPlus<BitType> image() {
-		return image;
-	}
+	private final int[] rowTs, colTs;
 
 	/**
 	 * 
 	 * @param ip
 	 *            BitType image of which bounding box will be calculated
+	 * @param is 
 	 */
-	public BoundingBox(ImgPlus<BitType> ip, int centroidX, int centroidY,
-			int rowThreshold, int columnThreshold) {
+	public BoundingBox(ImgPlus<BitType> ip, int centroidX, int centroidY, int[] rowTs, int[] colTs) {
 		this.image = ip.copy();
+		
 		this.centroidX = centroidX;
 		this.centroidY = centroidY;
+		
+		this.rowTs = rowTs;
+		this.colTs = colTs;
 	}
 
 	/**
@@ -47,10 +48,8 @@ public class BoundingBox {
 	 * @return a Triple whose <b>first</b> is the top-left coordinate,
 	 *         <b>second</b> is width and <b>third</b> is height
 	 */
-	public Triple<Vector2D, Integer, Integer> find() {
-		Vector2D[] coords;
-		Vector2D topleft = new Vector2D(0, 0);
-		int width = 0, height = 0;
+	public Vector2D[] find() {
+		Vector2D[] coords = new Vector2D[4];
 
 		int cols = (int) image.dimension(COL);
 		int rows = (int) image.dimension(ROW);
@@ -81,11 +80,11 @@ public class BoundingBox {
 		int topRow = 0, bottomRow = 0;
 		for (int i = 0; i < rowValues.length; i++) {
 			if (i < centroidY) {
-				if (rowValues[i] >= 496 && topRow == 0) {
+				if (rowValues[i] >= rowTs[0] && topRow == 0) {
 					topRow = i;
 				}
 			} else {
-				if (rowValues[i] <= 200) {
+				if (rowValues[i] <= rowTs[1]) {
 					bottomRow = i;
 					break;
 				}
@@ -94,32 +93,38 @@ public class BoundingBox {
 		
 		int leftCol = 0, rightCol = 0;
 		for (int i = centroidX; i < colValues.length; i++) {
-			if (colValues[i] <= 591) {
-				rightCol = i;
+			if (colValues[i] <= colTs[0]) {
+				rightCol = i;	
 				break;
 			}
 		}
 		
 		for (int i = centroidX; i < colValues.length; i--) {
-			if (colValues[i] <= 591) {
+			if (colValues[i] <= colTs[1]) {
 				leftCol = i;
 				break;
 			}
 		}
 		
-//		leftCol = rightCol - centroidX;
+//		drawLines(topRow, bottomRow, leftCol, rightCol, cols, rows);
 		
-		drawLines(topRow, bottomRow, leftCol, rightCol, cols, rows);
-		
-		System.out.println(topRow + ".." + bottomRow);
-		
-		
-		
-//		coords[TOPLEFT]
+		coords[TOPLEFT] = new Vector2D(topRow, leftCol);
+		coords[TOPRIGHT] = new Vector2D(topRow, rightCol);
+		coords[BOTTOMLEFT] = new Vector2D(bottomRow, leftCol);
+		coords[BOTTOMRIGHT] = new Vector2D(bottomRow, rightCol);
 
-		return new Triple<Vector2D, Integer, Integer>(topleft, width, height);
+		return coords;
 	}
 	
+	/**
+	 * Draws lines to show the bounding box
+	 * @param topRow
+	 * @param bottomRow
+	 * @param leftCol
+	 * @param rightCol
+	 * @param cols
+	 * @param rows
+	 */
 	private void drawLines(int topRow, int bottomRow, int leftCol, int rightCol, int cols, int rows) {
 		final RandomAccess<BitType> ra = image.randomAccess();
 		
@@ -166,5 +171,9 @@ public class BoundingBox {
 			}
 			ra.fwd(ROW);
 		}
+	}
+	
+	public ImgPlus<BitType> image() {
+		return image;
 	}
 }

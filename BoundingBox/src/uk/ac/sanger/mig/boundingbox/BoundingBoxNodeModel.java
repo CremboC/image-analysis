@@ -12,6 +12,8 @@ import net.imglib2.type.logic.BitType;
 
 import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
+import org.knime.core.data.DataType;
+import org.knime.core.data.def.IntCell;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.ExecutionContext;
@@ -22,7 +24,7 @@ import org.knime.core.node.NodeSettingsRO;
 import org.knime.core.node.NodeSettingsWO;
 import org.knime.core.node.defaultnodesettings.SettingsModel;
 import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
-import org.knime.core.node.defaultnodesettings.SettingsModelInteger;
+import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
 import uk.ac.sanger.mig.boundingbox.utils.BoundingBox;
 import uk.ac.sanger.mig.boundingbox.utils.OutputHelper;
@@ -35,6 +37,18 @@ import uk.ac.sanger.mig.boundingbox.utils.Utils;
  * @author Wellcome Trust Sanger Institute
  */
 public class BoundingBoxNodeModel extends NodeModel {
+
+	/** Columns in the schema */
+	private final static String[] COLUMNS = {
+			// "Image"
+			"Top Left", "Top Right", "Bottom Left", "Bottom Right" };
+
+	/** Column types */
+	private final static DataType[] COLUMN_TYPES = {
+			// ImgPlusCell.TYPE
+			IntCell.TYPE, IntCell.TYPE, IntCell.TYPE, IntCell.TYPE
+
+	};
 
 	static final String CENTROID_COL_X = "WeightedCentroid Dim 1";
 	static final String CENTROID_COL_Y = "WeightedCentroid Dim 2";
@@ -59,11 +73,11 @@ public class BoundingBoxNodeModel extends NodeModel {
 		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
 				CFGKEY_IMAGE_COL, "Image"));
 
-		settingsModels.put(CFGKEY_ROW_THRESHOLD, new SettingsModelInteger(
-				CFGKEY_ROW_THRESHOLD, 0));
+		settingsModels.put(CFGKEY_ROW_THRESHOLD, new SettingsModelString(
+				CFGKEY_ROW_THRESHOLD, ""));
 
-		settingsModels.put(CFGKEY_COL_THRESHOLD, new SettingsModelInteger(
-				CFGKEY_COL_THRESHOLD, 0));
+		settingsModels.put(CFGKEY_COL_THRESHOLD, new SettingsModelString(
+				CFGKEY_COL_THRESHOLD, ""));
 	}
 
 	/**
@@ -80,15 +94,15 @@ public class BoundingBoxNodeModel extends NodeModel {
 	protected BufferedDataTable[] execute(final BufferedDataTable[] inData,
 			final ExecutionContext exec) throws Exception {
 
-		int rowThreshold = ((SettingsModelInteger) settingsModels
-				.get(CFGKEY_ROW_THRESHOLD)).getIntValue();
-		int colThreshold = ((SettingsModelInteger) settingsModels
-				.get(CFGKEY_COL_THRESHOLD)).getIntValue();
+		String rowThresholds = ((SettingsModelString) settingsModels
+				.get(CFGKEY_ROW_THRESHOLD)).getStringValue();
+		String colThresholds = ((SettingsModelString) settingsModels
+				.get(CFGKEY_COL_THRESHOLD)).getStringValue();
 
 		Map<String, Integer> indices = Utils.indices(inData[0]
 				.getDataTableSpec());
 
-		OutputHelper out = new OutputHelper(exec);
+		OutputHelper out = new OutputHelper(COLUMNS, COLUMN_TYPES, exec);
 
 		Iterator<DataRow> iter = inData[0].iterator();
 		while (iter.hasNext()) {
@@ -103,15 +117,11 @@ public class BoundingBoxNodeModel extends NodeModel {
 					indices.get(CENTROID_COL_Y));
 
 			BoundingBox box = new BoundingBox(ip, centroidX, centroidY,
-					rowThreshold, colThreshold);
-			
-			box.find();
-			
-			out.openRow(row.getKey());
-			out.addToRow(box.image());
-			out.closeRow();
-			
-//			output.addToTable(box.find());
+					Utils.split(rowThresholds), Utils.split(colThresholds));
+
+			out.open(row.getKey());
+			out.add(box.find());
+			out.close();
 		}
 
 		return new BufferedDataTable[] { out.getOutputTable() };

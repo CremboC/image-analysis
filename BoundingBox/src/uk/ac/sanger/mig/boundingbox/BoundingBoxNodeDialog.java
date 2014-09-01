@@ -3,8 +3,7 @@ package uk.ac.sanger.mig.boundingbox;
 import org.knime.core.data.DataColumnSpec;
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
 import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
-import org.knime.core.node.defaultnodesettings.DialogComponentNumber;
-import org.knime.core.node.defaultnodesettings.SettingsModelInteger;
+import org.knime.core.node.defaultnodesettings.DialogComponentString;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 import org.knime.core.node.util.ColumnFilter;
 import org.knime.knip.base.data.img.ImgPlusCell;
@@ -46,15 +45,15 @@ public class BoundingBoxNodeDialog extends DefaultNodeSettingsPane {
 					}
 				}));
 
-		addDialogComponent(new DialogComponentNumber(
-				(SettingsModelInteger) BoundingBoxNodeModel.settingsModels
+		addDialogComponent(new DialogComponentString(
+				(SettingsModelString) BoundingBoxNodeModel.settingsModels
 						.get(BoundingBoxNodeModel.CFGKEY_COL_THRESHOLD),
-				BoundingBoxNodeModel.CFGKEY_COL_THRESHOLD, 10));
+				BoundingBoxNodeModel.CFGKEY_COL_THRESHOLD));
 		
-		addDialogComponent(new DialogComponentNumber(
-				(SettingsModelInteger) BoundingBoxNodeModel.settingsModels
+		addDialogComponent(new DialogComponentString(
+				(SettingsModelString) BoundingBoxNodeModel.settingsModels
 						.get(BoundingBoxNodeModel.CFGKEY_ROW_THRESHOLD),
-				BoundingBoxNodeModel.CFGKEY_ROW_THRESHOLD, 10));
+				BoundingBoxNodeModel.CFGKEY_ROW_THRESHOLD));
 
 	}
 }

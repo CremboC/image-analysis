@@ -2,11 +2,16 @@ package uk.ac.sanger.mig.bitmaskcropper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import net.imglib2.meta.ImgPlus;
 import net.imglib2.type.logic.BitType;
 import net.imglib2.type.numeric.integer.UnsignedByteType;
 
+import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.CanceledExecutionException;
@@ -17,7 +22,8 @@ import org.knime.core.node.NodeLogger;
 import org.knime.core.node.NodeModel;
 import org.knime.core.node.NodeSettingsRO;
 import org.knime.core.node.NodeSettingsWO;
-import org.knime.core.node.defaultnodesettings.SettingsModelIntegerBounded;
+import org.knime.core.node.defaultnodesettings.SettingsModel;
+import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 
 import uk.ac.sanger.mig.bitmaskcropper.utils.Cropper;
 import uk.ac.sanger.mig.bitmaskcropper.utils.OutputHelper;
@@ -40,26 +46,30 @@ public class BitmaskCropperNodeModel extends NodeModel {
 	 * the dialog or from a settings file) (package visibility to be usable from
 	 * the dialog).
 	 */
-	static final String CFGKEY_COUNT = "Count";
-
-	/** initial default count value. */
-	static final int DEFAULT_COUNT = 100;
+	static final String CFGKEY_IMAGE_COL = "Image Column";
+	static final String CFGKEY_BITMASK_COL = "Bitmask Column";
 
 	// example value: the models count variable filled from the dialog
 	// and used in the models execution method. The default components of the
 	// dialog work with "SettingsModels".
-	private final SettingsModelIntegerBounded m_count = new SettingsModelIntegerBounded(
-			BitmaskCropperNodeModel.CFGKEY_COUNT,
-			BitmaskCropperNodeModel.DEFAULT_COUNT, Integer.MIN_VALUE,
-			Integer.MAX_VALUE);
+	
+	static final Map<String, SettingsModel> settingsModels;
+	static {
+		settingsModels = new HashMap<String, SettingsModel>();
+		
+		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
+				CFGKEY_IMAGE_COL, "Image"));
+		
+		settingsModels.put(CFGKEY_BITMASK_COL, new SettingsModelColumnName(
+				CFGKEY_BITMASK_COL, "Bitmask"));
+	}
 
 	/**
 	 * Constructor for the node model.
 	 */
 	protected BitmaskCropperNodeModel() {
-
 		// TODO one incoming port and one outgoing port is assumed
-		super(2, 1);
+		super(1, 1);
 	}
 
 	/**
@@ -68,16 +78,21 @@ public class BitmaskCropperNodeModel extends NodeModel {
 	@Override
 	protected BufferedDataTable[] execute(final BufferedDataTable[] inData,
 			final ExecutionContext exec) throws Exception {
-
-		// original image
-		ImgPlus<UnsignedByteType> ip = Utils.findImageInInput(inData[0]);
-
-		// bitmask
-		ImgPlus<BitType> mask = Utils.findImageInInput(inData[1]);
-
+		
+		Map<String, Integer> indices = Utils.findIndices(inData[0].getDataTableSpec(), settingsModels);
+		
 		OutputHelper output = new OutputHelper(exec);
-		Cropper cropper = new Cropper(ip, mask, output);
-		cropper.crop();
+		
+		Iterator<DataRow> iter = inData[0].iterator();
+		while (iter.hasNext()) {
+			DataRow row = iter.next();
+
+			ImgPlus<UnsignedByteType> ip = Utils.imageByIndex(row, indices.get(CFGKEY_IMAGE_COL));
+			ImgPlus<BitType> mask = Utils.imageByIndex(row, indices.get(CFGKEY_BITMASK_COL));
+			
+			Cropper cropper = new Cropper(ip, mask, output);
+			cropper.crop();
+		}
 
 		return new BufferedDataTable[] { output.getOutputTable() };
 	}
@@ -99,6 +114,8 @@ public class BitmaskCropperNodeModel extends NodeModel {
 	protected DataTableSpec[] configure(final DataTableSpec[] inSpecs)
 			throws InvalidSettingsException {
 
+		inSpecs[0].containsName("");
+
 		// TODO: check if user settings are available, fit to the incoming
 		// table structure, and the incoming types are feasible for the node
 		// to execute. If the node can execute in its current state return
@@ -114,10 +131,9 @@ public class BitmaskCropperNodeModel extends NodeModel {
 	@Override
 	protected void saveSettingsTo(final NodeSettingsWO settings) {
 
-		// TODO save user settings to the config object.
-
-		m_count.saveSettingsTo(settings);
-
+		for (Entry<String, SettingsModel> e : settingsModels.entrySet()) {
+			e.getValue().saveSettingsTo(settings);
+		}
 	}
 
 	/**
@@ -130,9 +146,10 @@ public class BitmaskCropperNodeModel extends NodeModel {
 		// TODO load (valid) settings from the config object.
 		// It can be safely assumed that the settings are valided by the
 		// method below.
-
-		m_count.loadSettingsFrom(settings);
-
+		
+		for (Entry<String, SettingsModel> e : settingsModels.entrySet()) {
+			e.getValue().loadSettingsFrom(settings);
+		}
 	}
 
 	/**
@@ -146,9 +163,10 @@ public class BitmaskCropperNodeModel extends NodeModel {
 		// e.g. if the count is in a certain range (which is ensured by the
 		// SettingsModel).
 		// Do not actually set any values of any member variables.
-
-		m_count.validateSettings(settings);
-
+		
+		for (Entry<String, SettingsModel> e : settingsModels.entrySet()) {
+			e.getValue().validateSettings(settings);
+		}
 	}
 
 	/**

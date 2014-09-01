@@ -18,8 +18,8 @@
          point="org.knime.workbench.repository.nodes">
       <node
             category-path="/wtsixray/"
-            factory-class="uk.ac.sanger.mig.bitmaskcropper.BitmaskCropperNodeFactory"
-            id="uk.ac.sanger.mig.bitmaskcropper.BitmaskCropperNodeFactory"/>
+            factory-class="uk.ac.sanger.mig.boundingbox.BoundingBoxNodeFactory"
+            id="uk.ac.sanger.mig.boundingbox.BoundingBoxNodeFactory"/>
    </extension>
    
 </plugin>

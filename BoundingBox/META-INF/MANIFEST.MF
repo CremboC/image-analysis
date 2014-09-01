@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: BoundingBox-Node extension for KNIME Workbench
+Bundle-SymbolicName: uk.ac.sanger.mig.boundingbox; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-ClassPath: boundingbox.jar
+Bundle-Activator: uk.ac.sanger.mig.boundingbox.BoundingBoxNodePlugin
+Bundle-Vendor: Wellcome Trust Sanger Institute
+Require-Bundle: org.eclipse.core.runtime,
+ org.knime.workbench.core,
+ org.knime.workbench.repository,
+ org.knime.base,
+ org.knime.knip.base;bundle-version="1.2.0",
+ org.knime.knip.core;bundle-version="1.2.0"
+Bundle-ActivationPolicy: lazy
+Export-Package: uk.ac.sanger.mig.boundingbox
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+

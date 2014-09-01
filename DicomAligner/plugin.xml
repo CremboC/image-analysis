@@ -7,7 +7,7 @@
          point="org.knime.workbench.repository.categories">
          
       <category
-            description="Category containing my nodes"
+            description=""
             icon="icons/default.png"
             level-id="wtsixray"
             name="WTSI Mouse X-Ray Analysis"

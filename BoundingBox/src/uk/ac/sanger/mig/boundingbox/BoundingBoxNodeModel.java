@@ -25,6 +25,7 @@ import org.knime.core.node.NodeSettingsWO;
 import org.knime.core.node.defaultnodesettings.SettingsModel;
 import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
+import org.knime.knip.base.data.img.ImgPlusCell;
 
 import uk.ac.sanger.mig.boundingbox.utils.BoundingBox;
 import uk.ac.sanger.mig.boundingbox.utils.OutputHelper;
@@ -39,11 +40,11 @@ import uk.ac.sanger.mig.boundingbox.utils.Utils;
 public class BoundingBoxNodeModel extends NodeModel {
 
 	/** Columns in the schema */
-	private final static String[] COLUMNS = { /* "Image", */"Upper Boundary",
-			"Right Boundary", "Lower Boundary", "Left Boundary" };
+	private final static String[] COLUMNS = {  "Image", "Upper Boundary",
+			"Lower Boundary", "Left Boundary", "Right Boundary" };
 
 	/** Column types */
-	private final static DataType[] COLUMN_TYPES = { /* ImgPlusCell.TYPE, */
+	private final static DataType[] COLUMN_TYPES = { ImgPlusCell.TYPE,
 	IntCell.TYPE, IntCell.TYPE, IntCell.TYPE, IntCell.TYPE };
 
 	static final String CENTROID_COL_X = "WeightedCentroid Dim 1";
@@ -116,9 +117,10 @@ public class BoundingBoxNodeModel extends NodeModel {
 					Utils.split(rowThresholds), Utils.split(colThresholds));
 
 			int[] boundaries = box.find();
+
 			out.open(row.getKey());
 
-			// out.add(box.image());
+			out.add(box.image());
 			out.add(boundaries);
 
 			out.close();

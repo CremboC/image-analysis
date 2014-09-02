@@ -16,19 +16,21 @@ public class BoundingBox {
 	private final static int COL = 0;
 	private final static int ROW = 1;
 
-	private final static int TOP = 0, RIGHT = 1, BOTTOM = 2,
-			LEFT = 3;
+	private final static int UPPER = 0, LOWER = 1, LEFT = 2, RIGHT = 3;
 
 	private ImgPlus<BitType> image;
 	private final int centroidX, centroidY;
 
 	private final int[] rowTs, colTs;
 
+
 	/**
 	 * 
-	 * @param ip
-	 *            BitType image of which bounding box will be calculated
-	 * @param is
+	 * @param ip BitType image of which bounding box will be calculated
+	 * @param centroidX
+	 * @param centroidY
+	 * @param rowTs row (upper/lower) thresholds
+	 * @param colTs column (left/right) thresholds
 	 */
 	public BoundingBox(ImgPlus<BitType> ip, int centroidX, int centroidY,
 			int[] rowTs, int[] colTs) {
@@ -44,7 +46,7 @@ public class BoundingBox {
 	/**
 	 * Finds the bounding box
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public int[] find() {
 		int[] boundaries = new int[4];
@@ -62,8 +64,11 @@ public class BoundingBox {
 		ra.setPosition(0, ROW);
 
 		while (ra.getIntPosition(COL) != cols) {
+
 			ra.setPosition(0, ROW);
+
 			while (ra.getIntPosition(ROW) != rows) {
+
 				int val = ra.get().getInteger();
 
 				colValues[ra.getIntPosition(COL)] += val;
@@ -71,50 +76,61 @@ public class BoundingBox {
 
 				ra.fwd(ROW);
 			}
+
 			ra.fwd(COL);
 		}
 
-		// find top and bottom row according to threshold
-		int topRow = 0, bottomRow = 0;
-		for (int i = 0; i < rowValues.length; i++) {
-			if (i < centroidY) {
-				if (rowValues[i] >= rowTs[0] && topRow == 0) {
-					topRow = i;
-				}
-			} else {
-				if (rowValues[i] <= rowTs[1]) {
-					bottomRow = i;
-					break;
-				}
-			}
-		}
+		boundaries[UPPER] = findUpwards(centroidY, rowValues, rowTs[UPPER]);
+		boundaries[LOWER] = findDownwards(centroidY, rowValues, rowTs[LOWER]);
+		boundaries[LEFT] = findDownwards(centroidX, colValues, colTs[0]);
+		boundaries[RIGHT] = findUpwards(centroidX, colValues, colTs[1]);
 
-		// find the left column
-		int rightCol = 0;
-		for (int i = centroidX; i < colValues.length; i++) {
-			if (colValues[i] <= colTs[0]) {
-				rightCol = i;
-				break;
-			}
-		}
-
-		// find the left column
-		int leftCol = 0;
-		for (int i = centroidX; i < colValues.length; i--) {
-			if (colValues[i] <= colTs[1]) {
-				leftCol = i;
-				break;
-			}
-		}
-
-		drawLines(topRow, bottomRow, leftCol, rightCol, cols, rows);
-
-		boundaries[TOP] = topRow;
-		boundaries[RIGHT] = rightCol;
-		boundaries[BOTTOM] = bottomRow;
-		boundaries[LEFT] = leftCol;
+		drawLines(boundaries[UPPER], boundaries[LOWER], boundaries[LEFT],
+				boundaries[RIGHT], cols, rows);
 
 		return boundaries;
+	}
+
+	/**
+	 * Helper to find the boundary given the start coordinate, values array and
+	 * the threshold at which to stop. Goes upwards (or to the right).
+	 * 
+	 * @param start
+	 * @param values
+	 * @param threshold
+	 * @return
+	 */
+	private int findUpwards(int start, int[] values, int threshold) {
+		int boundary = 0;
+		for (int i = start; i < values.length; i++) {
+			if (values[i] <= threshold) {
+				boundary = i;
+				break;
+			}
+		}
+
+		return boundary;
+	}
+
+	/**
+	 * Helper to find the boundary given the start coordinate, values array and
+	 * the threshold at which to stop. Goes downwards (or to the left).
+	 * 
+	 * @param start
+	 * @param values
+	 * @param threshold
+	 * @return
+	 */
+	private int findDownwards(int start, int[] values, int threshold) {
+		int boundary = 0;
+		for (int i = start; i < values.length; i--) {
+			if (values[i] <= threshold) {
+				boundary = i;
+				break;
+			}
+		}
+
+		return boundary;
 	}
 
 	/**

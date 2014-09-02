@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.imglib2.meta.ImgPlus;
+import net.imglib2.type.NativeType;
 import net.imglib2.type.numeric.RealType;
 
 import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
 import org.knime.core.data.def.DoubleCell;
+import org.knime.core.data.def.IntCell;
 import org.knime.core.node.defaultnodesettings.SettingsModel;
 import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 import org.knime.knip.base.data.img.ImgPlusCell;
@@ -43,7 +45,7 @@ public class Utils {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static <T extends RealType<T>> ImgPlus<T> imageByIndex(DataRow row,
+	public static <T extends RealType<T> & NativeType<T>> ImgPlus<T> imageByIndex(DataRow row,
 			Integer index) {
 		ImgPlusCell<T> ipcell = (ImgPlusCell<T>) row.getCell(index);
 		return ipcell.getImgPlus();
@@ -52,6 +54,11 @@ public class Utils {
 	public static double doubleByIndex(DataRow row, Integer index) {
 		DoubleCell c = (DoubleCell) row.getCell(index);
 		return c.getDoubleValue();
+	}
+	
+	public static int intByIndex(DataRow row, Integer index) {
+		IntCell c = (IntCell) row.getCell(index);
+		return c.getIntValue();
 	}
 
 	public static String stringFromSetting(SettingsModel setting) {

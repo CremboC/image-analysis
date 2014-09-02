@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.imglib2.meta.ImgPlus;
-import net.imglib2.type.logic.BitType;
+import net.imglib2.type.NativeType;
+import net.imglib2.type.numeric.RealType;
 
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 import org.knime.core.data.DataCell;
@@ -83,15 +84,18 @@ public class OutputHelper {
 	/**
 	 * Adds an ImgPlus to the current open row
 	 * 
-	 * @param img
+	 * @param <T>
+	 * 
+	 * @param imgPlus
 	 * @throws IOException
 	 */
-	public void add(ImgPlus<BitType> img) throws IOException {
+	public <T extends RealType<T> & NativeType<T>> void add(ImgPlus<T> imgPlus)
+			throws IOException {
 		check();
 
 		ImgPlusCellFactory imgFactory = new ImgPlusCellFactory(exec);
 
-		cellsToAdd.add(imgFactory.createCell(img));
+		cellsToAdd.add(imgFactory.createCell(imgPlus));
 	}
 
 	/**

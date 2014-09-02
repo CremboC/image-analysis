@@ -8,7 +8,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import net.imglib2.meta.ImgPlus;
-import net.imglib2.type.logic.BitType;
+import net.imglib2.type.NativeType;
+import net.imglib2.type.numeric.RealType;
 
 import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
@@ -26,6 +27,7 @@ import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 import org.knime.knip.base.data.img.ImgPlusCell;
 
 import uk.ac.sanger.mig.regioncropper.utils.OutputHelper;
+import uk.ac.sanger.mig.regioncropper.utils.RegionCropper;
 import uk.ac.sanger.mig.regioncropper.utils.Utils;
 
 /**
@@ -35,7 +37,8 @@ import uk.ac.sanger.mig.regioncropper.utils.Utils;
  * 
  * @author Wellcome Trust Sanger Institute
  */
-public class RegionCropperNodeModel extends NodeModel {
+public class RegionCropperNodeModel<T extends RealType<T> & NativeType<T>>
+		extends NodeModel {
 
 	/** Columns in the schema */
 	private final static String[] COLUMNS = { "Image" };
@@ -64,19 +67,21 @@ public class RegionCropperNodeModel extends NodeModel {
 
 		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
 				CFGKEY_IMAGE_COL, "Image"));
-		
+
 		settingsModels.put(CFGKEY_UPBOUND_COL, new SettingsModelColumnName(
 				CFGKEY_UPBOUND_COL, "Upper Boundary"));
-		
+
 		settingsModels.put(CFGKEY_RIGHTBOUND_COL, new SettingsModelColumnName(
 				CFGKEY_RIGHTBOUND_COL, "Right Boundary"));
-		
+
 		settingsModels.put(CFGKEY_LOWBOUND_COL, new SettingsModelColumnName(
 				CFGKEY_LOWBOUND_COL, "Lower Boundary"));
-		
+
 		settingsModels.put(CFGKEY_LEFTBOUND_COL, new SettingsModelColumnName(
 				CFGKEY_LEFTBOUND_COL, "Left Boundary"));
 	}
+	
+	private Map<String, Integer> indices;
 
 	/**
 	 * Constructor for the node model.
@@ -91,13 +96,8 @@ public class RegionCropperNodeModel extends NodeModel {
 	@Override
 	protected BufferedDataTable[] execute(final BufferedDataTable[] inData,
 			final ExecutionContext exec) throws Exception {
-
-//		String rowThresholds = ((SettingsModelString) settingsModels
-//				.get(CFGKEY_ROW_THRESHOLD)).getStringValue();
-//		String colThresholds = ((SettingsModelString) settingsModels
-//				.get(CFGKEY_COL_THRESHOLD)).getStringValue();
-
-		Map<String, Integer> indices = Utils.indices(inData[0]
+		
+		indices = Utils.indices(inData[0]
 				.getDataTableSpec());
 
 		OutputHelper out = new OutputHelper(COLUMNS, COLUMN_TYPES, exec);
@@ -106,18 +106,38 @@ public class RegionCropperNodeModel extends NodeModel {
 		while (iter.hasNext()) {
 			DataRow row = iter.next();
 
-			ImgPlus<BitType> ip = Utils.imageByIndex(row, indices.get(Utils
+			// get the image according to the setting
+			ImgPlus<T> ip = Utils.imageByIndex(row, indices.get(Utils
 					.stringFromSetting(settingsModels.get(CFGKEY_IMAGE_COL))));
+			
+			// get the boundaries according to the setting
+			int[] boundaries = { 
+					Utils.intByIndex(row, indexByColumnName(CFGKEY_UPBOUND_COL)),
+					Utils.intByIndex(row, indexByColumnName(CFGKEY_LOWBOUND_COL)),
+					Utils.intByIndex(row, indexByColumnName(CFGKEY_LEFTBOUND_COL)),
+					Utils.intByIndex(row, indexByColumnName(CFGKEY_RIGHTBOUND_COL))
+				};
+
+			RegionCropper<T> cropper = new RegionCropper<T>(boundaries);
 
 			out.open(row.getKey());
 
-			// out.add(box.image());
-			// out.add(boundaries);
+			// crop out the required part
+			out.add(cropper.crop(ip));
 
 			out.close();
 		}
 
 		return new BufferedDataTable[] { out.getOutputTable() };
+	}
+	
+	/**
+	 * Helper method to get the index
+	 * @param name
+	 * @return
+	 */
+	private int indexByColumnName(String name) {
+		return indices.get(Utils.stringFromSetting(settingsModels.get(name)));
 	}
 
 	/**

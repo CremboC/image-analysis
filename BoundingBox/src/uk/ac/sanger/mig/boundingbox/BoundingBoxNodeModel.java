@@ -39,8 +39,8 @@ import uk.ac.sanger.mig.boundingbox.utils.Utils;
 public class BoundingBoxNodeModel extends NodeModel {
 
 	/** Columns in the schema */
-	private final static String[] COLUMNS = { /* "Image", */"Top Boundary",
-			"Right Boundary", "Bottom Boundary", "Left Boundary" };
+	private final static String[] COLUMNS = { /* "Image", */"Upper Boundary",
+			"Right Boundary", "Lower Boundary", "Left Boundary" };
 
 	/** Column types */
 	private final static DataType[] COLUMN_TYPES = { /* ImgPlusCell.TYPE, */
@@ -70,10 +70,10 @@ public class BoundingBoxNodeModel extends NodeModel {
 				CFGKEY_IMAGE_COL, "Image"));
 
 		settingsModels.put(CFGKEY_ROW_THRESHOLD, new SettingsModelString(
-				CFGKEY_ROW_THRESHOLD, ""));
+				CFGKEY_ROW_THRESHOLD, "0,0"));
 
 		settingsModels.put(CFGKEY_COL_THRESHOLD, new SettingsModelString(
-				CFGKEY_COL_THRESHOLD, ""));
+				CFGKEY_COL_THRESHOLD, "0,0"));
 	}
 
 	/**
@@ -151,7 +151,6 @@ public class BoundingBoxNodeModel extends NodeModel {
 		for (Entry<String, SettingsModel> e : settingsModels.entrySet()) {
 			e.getValue().saveSettingsTo(settings);
 		}
-
 	}
 
 	/**
@@ -163,7 +162,6 @@ public class BoundingBoxNodeModel extends NodeModel {
 		for (Entry<String, SettingsModel> e : settingsModels.entrySet()) {
 			e.getValue().loadSettingsFrom(settings);
 		}
-
 	}
 
 	/**
@@ -175,7 +173,6 @@ public class BoundingBoxNodeModel extends NodeModel {
 		for (Entry<String, SettingsModel> e : settingsModels.entrySet()) {
 			e.getValue().validateSettings(settings);
 		}
-
 	}
 
 	/**

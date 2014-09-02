@@ -1,34 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<knimeNode icon="icons/default.png" type="Manipulator" xmlns="http://knime.org/node/v2.8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://knime.org/node/v2.10 http://knime.org/node/v2.10.xsd">
-    <name>Bounding Box</name>
-    
-    <shortDescription>
-        Calculated a bounding box according to a threshold of pixels in a row/column
-    </shortDescription>
-    
-    <fullDescription>
-        <intro>Insert long description here...</intro>
-        
-        
-        <option name="short name of first option (like in the dialog)">description of first option</option>
-        <option name="short name of second option (like in the dialog)">description of second option</option>
-        <!-- possibly more options that can also be grouped by tabs -->
-        <!--
-        <tab name="Standard Options">
-            <option name="short name of first option (like in the dialog)">description of first option</option>
-            <option name="short name of second option (like in the dialog)">description of second option</option>
-        </tab>
-        <tab name="Advanced Options">
-            <option name="short name of first advanced option (like in the dialog)">description of first advanced option</option>
-        </tab>
-        -->
-    </fullDescription>
-    
-    <ports>
-        <inPort index="0" name="In-Port name">Description of first input port...</inPort>
-        <!-- possibly more input ports here-->
-        <outPort index="0" name="Out-Port name">Description of first output port...</outPort>
-        <!-- possibly more output ports here-->
-    </ports>    
+<knimeNode icon="icons/default.png" type="Manipulator"
+	xmlns="http://knime.org/node/v2.8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://knime.org/node/v2.10 http://knime.org/node/v2.10.xsd">
+	<name>Bounding Box</name>
+
+	<shortDescription>
+		Calculated a bounding box according to a threshold of pixels in a row/column,
+		uses the centroid to simplify the calculation.
+		The centroid can be calculated using the Image Features node provided in
+		the KNIP (Image Processing) package.
+	</shortDescription>
+
+	<fullDescription>
+		<intro>
+			Calculated a bounding box according to a threshold of pixels in a row/column,
+			uses the centroid to simplify the calculation.
+			The centroid can be calculated using the Image Features node provided in
+			the KNIP (Image Processing) package.
+		</intro>
+
+
+		<option name="Row Threshold">
+			Number of pixels in a row which will be considered to be the boundary. Can
+			either provide a single number, e.g. '150'
+			which will be used for both upper and lower bound, or two separate
+			numbers, e.g. '460,560' meaning '460' will be used
+			for the upper boundary and '560' for the lower one.
+		</option>
+		<option name="Column Threshold">
+			Number of pixels in a column which will be considered to be the boundary.
+			Same as row threshold, can provide a single
+			or two thresholds.
+		</option>
+		<!-- possibly more options that can also be grouped by tabs -->
+		<!-- <tab name="Standard Options"> <option name="short name of first option 
+			(like in the dialog)">description of first option</option> <option name="short 
+			name of second option (like in the dialog)">description of second option</option> 
+			</tab> <tab name="Advanced Options"> <option name="short name of first advanced 
+			option (like in the dialog)">description of first advanced option</option> 
+			</tab> -->
+	</fullDescription>
+
+	<ports>
+		<inPort index="0" name="In-Port name">
+			Images (input must include the centroid)
+		</inPort>
+		<!-- possibly more input ports here -->
+		<outPort index="0" name="Out-Port name">
+			Boundaries in 4 separate columns
+		</outPort>
+		<!-- possibly more output ports here -->
+	</ports>
 
 </knimeNode>

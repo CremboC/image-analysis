@@ -2,23 +2,24 @@ package uk.ac.sanger.mig.boundingbox.utils;
 
 import net.imglib2.RandomAccess;
 import net.imglib2.meta.ImgPlus;
-import net.imglib2.type.logic.BitType;
+import net.imglib2.type.numeric.RealType;
 
 /**
  * Wrapper class for the main logic for finding and calculating the Bounding
  * Box.
  * 
  * @author Paulius pi1@sanger.ac.uk
+ * @param <T>
  * 
  */
-public class BoundingBox {
+public class BoundingBox<T extends RealType<T>> {
 
 	private final static int COL = 0;
 	private final static int ROW = 1;
 
 	private final static int UPPER = 0, LOWER = 1, LEFT = 2, RIGHT = 3;
 
-	private ImgPlus<BitType> image;
+	private ImgPlus<T> image;
 	private final int centroidX, centroidY;
 
 	private final int[] rowTs, colTs;
@@ -32,7 +33,7 @@ public class BoundingBox {
 	 * @param rowTs row (upper/lower) thresholds
 	 * @param colTs column (left/right) thresholds
 	 */
-	public BoundingBox(ImgPlus<BitType> ip, int centroidX, int centroidY,
+	public BoundingBox(ImgPlus<T> ip, int centroidX, int centroidY,
 			int[] rowTs, int[] colTs) {
 		this.image = ip.copy();
 
@@ -57,7 +58,7 @@ public class BoundingBox {
 		int[] colValues = new int[cols];
 		int[] rowValues = new int[rows];
 
-		final RandomAccess<BitType> ra = image.randomAccess();
+		final RandomAccess<T> ra = image.randomAccess();
 
 		// move cursor to central column and top row
 		ra.setPosition(0, COL);
@@ -69,7 +70,7 @@ public class BoundingBox {
 
 			while (ra.getIntPosition(ROW) != rows) {
 
-				int val = ra.get().getInteger();
+				int val = (int) ra.get().getRealDouble();
 
 				colValues[ra.getIntPosition(COL)] += val;
 				rowValues[ra.getIntPosition(ROW)] += val;
@@ -80,10 +81,10 @@ public class BoundingBox {
 			ra.fwd(COL);
 		}
 
-		boundaries[UPPER] = findUpwards(centroidY, rowValues, rowTs[UPPER]);
-		boundaries[LOWER] = findDownwards(centroidY, rowValues, rowTs[LOWER]);
-		boundaries[LEFT] = findDownwards(centroidX, colValues, colTs[0]);
-		boundaries[RIGHT] = findUpwards(centroidX, colValues, colTs[1]);
+		boundaries[UPPER] = findDecrementing(centroidY, rowValues, rowTs[UPPER]);
+		boundaries[LOWER] = findIncreamenting(centroidY, rowValues, rowTs[LOWER]);
+		boundaries[LEFT] = findDecrementing(centroidX, colValues, colTs[0]);
+		boundaries[RIGHT] = findIncreamenting(centroidX, colValues, colTs[1]);
 
 		drawLines(boundaries[UPPER], boundaries[LOWER], boundaries[LEFT],
 				boundaries[RIGHT], cols, rows);
@@ -93,14 +94,14 @@ public class BoundingBox {
 
 	/**
 	 * Helper to find the boundary given the start coordinate, values array and
-	 * the threshold at which to stop. Goes upwards (or to the right).
+	 * the threshold at which to stop. Goes downwards (or to the right).
 	 * 
 	 * @param start
 	 * @param values
 	 * @param threshold
 	 * @return
 	 */
-	private int findUpwards(int start, int[] values, int threshold) {
+	private int findIncreamenting(int start, int[] values, int threshold) {
 		int boundary = 0;
 		for (int i = start; i < values.length; i++) {
 			if (values[i] <= threshold) {
@@ -114,16 +115,16 @@ public class BoundingBox {
 
 	/**
 	 * Helper to find the boundary given the start coordinate, values array and
-	 * the threshold at which to stop. Goes downwards (or to the left).
+	 * the threshold at which to stop. Goes upwards (or to the left).
 	 * 
 	 * @param start
 	 * @param values
 	 * @param threshold
 	 * @return
 	 */
-	private int findDownwards(int start, int[] values, int threshold) {
+	private int findDecrementing(int start, int[] values, int threshold) {
 		int boundary = 0;
-		for (int i = start; i < values.length; i--) {
+		for (int i = start; i > 0; i--) {
 			if (values[i] <= threshold) {
 				boundary = i;
 				break;
@@ -145,15 +146,15 @@ public class BoundingBox {
 	 */
 	private void drawLines(int topRow, int bottomRow, int leftCol,
 			int rightCol, int cols, int rows) {
-		final RandomAccess<BitType> ra = image.randomAccess();
+		final RandomAccess<T> ra = image.randomAccess();
 
 		ra.setPosition(0, COL);
 		ra.setPosition(topRow, ROW);
 		while (ra.getIntPosition(COL) != cols) {
-			if (ra.get().getInteger() == 0) {
-				ra.get().set(true);
+			if (ra.get().getRealDouble() > 128) {
+				ra.get().setReal(0);
 			} else {
-				ra.get().set(false);
+				ra.get().setReal(255);
 			}
 			ra.fwd(COL);
 		}
@@ -161,10 +162,10 @@ public class BoundingBox {
 		ra.setPosition(0, COL);
 		ra.setPosition(bottomRow, ROW);
 		while (ra.getIntPosition(COL) != cols) {
-			if (ra.get().getInteger() == 0) {
-				ra.get().set(true);
+			if (ra.get().getRealDouble() > 128) {
+				ra.get().setReal(0);
 			} else {
-				ra.get().set(false);
+				ra.get().setReal(255);
 			}
 			ra.fwd(COL);
 		}
@@ -172,10 +173,10 @@ public class BoundingBox {
 		ra.setPosition(leftCol, COL);
 		ra.setPosition(0, ROW);
 		while (ra.getIntPosition(ROW) != rows) {
-			if (ra.get().getInteger() == 0) {
-				ra.get().set(true);
+			if (ra.get().getRealDouble() > 128) {
+				ra.get().setReal(0);
 			} else {
-				ra.get().set(false);
+				ra.get().setReal(255);
 			}
 			ra.fwd(ROW);
 		}
@@ -183,16 +184,16 @@ public class BoundingBox {
 		ra.setPosition(rightCol, COL);
 		ra.setPosition(0, ROW);
 		while (ra.getIntPosition(ROW) != rows) {
-			if (ra.get().getInteger() == 0) {
-				ra.get().set(true);
+			if (ra.get().getRealDouble() > 128) {
+				ra.get().setReal(0);
 			} else {
-				ra.get().set(false);
+				ra.get().setReal(255);
 			}
 			ra.fwd(ROW);
 		}
 	}
 
-	public ImgPlus<BitType> image() {
+	public ImgPlus<T> image() {
 		return image;
 	}
 }

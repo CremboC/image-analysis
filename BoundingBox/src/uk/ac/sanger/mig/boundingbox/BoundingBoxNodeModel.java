@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import net.imglib2.meta.ImgPlus;
-import net.imglib2.type.logic.BitType;
+import net.imglib2.type.numeric.RealType;
 
 import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
@@ -36,8 +36,9 @@ import uk.ac.sanger.mig.boundingbox.utils.Utils;
  * according to a threshold of pixels in a row/column
  * 
  * @author Wellcome Trust Sanger Institute
+ * @param <T>
  */
-public class BoundingBoxNodeModel extends NodeModel {
+public class BoundingBoxNodeModel<T extends RealType<T>> extends NodeModel {
 
 	/** Columns in the schema */
 	private final static String[] COLUMNS = {  "Image", "Upper Boundary",
@@ -105,7 +106,7 @@ public class BoundingBoxNodeModel extends NodeModel {
 		while (iter.hasNext()) {
 			DataRow row = iter.next();
 
-			ImgPlus<BitType> ip = Utils.imageByIndex(row, indices.get(Utils
+			ImgPlus<T> ip = Utils.imageByIndex(row, indices.get(Utils
 					.stringFromSetting(settingsModels.get(CFGKEY_IMAGE_COL))));
 
 			int centroidX = (int) Utils.doubleByIndex(row,
@@ -113,7 +114,7 @@ public class BoundingBoxNodeModel extends NodeModel {
 			int centroidY = (int) Utils.doubleByIndex(row,
 					indices.get(CENTROID_COL_Y));
 
-			BoundingBox box = new BoundingBox(ip, centroidX, centroidY,
+			BoundingBox<T> box = new BoundingBox<T>(ip, centroidX, centroidY,
 					Utils.split(rowThresholds), Utils.split(colThresholds));
 
 			int[] boundaries = box.find();

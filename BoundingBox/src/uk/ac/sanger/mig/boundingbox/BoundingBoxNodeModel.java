@@ -39,16 +39,12 @@ import uk.ac.sanger.mig.boundingbox.utils.Utils;
 public class BoundingBoxNodeModel extends NodeModel {
 
 	/** Columns in the schema */
-	private final static String[] COLUMNS = {
-			// "Image"
-			"Top Left", "Top Right", "Bottom Left", "Bottom Right" };
+	private final static String[] COLUMNS = { /* "Image", */"Top Boundary",
+			"Right Boundary", "Bottom Boundary", "Left Boundary" };
 
 	/** Column types */
-	private final static DataType[] COLUMN_TYPES = {
-			// ImgPlusCell.TYPE
-			IntCell.TYPE, IntCell.TYPE, IntCell.TYPE, IntCell.TYPE
-
-	};
+	private final static DataType[] COLUMN_TYPES = { /* ImgPlusCell.TYPE, */
+	IntCell.TYPE, IntCell.TYPE, IntCell.TYPE, IntCell.TYPE };
 
 	static final String CENTROID_COL_X = "WeightedCentroid Dim 1";
 	static final String CENTROID_COL_Y = "WeightedCentroid Dim 2";
@@ -119,13 +115,16 @@ public class BoundingBoxNodeModel extends NodeModel {
 			BoundingBox box = new BoundingBox(ip, centroidX, centroidY,
 					Utils.split(rowThresholds), Utils.split(colThresholds));
 
+			int[] boundaries = box.find();
 			out.open(row.getKey());
-			out.add(box.find());
+
+			// out.add(box.image());
+			out.add(boundaries);
+
 			out.close();
 		}
 
 		return new BufferedDataTable[] { out.getOutputTable() };
-
 	}
 
 	/**

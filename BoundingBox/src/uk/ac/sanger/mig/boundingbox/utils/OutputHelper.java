@@ -15,6 +15,8 @@ import org.knime.core.data.DataTableSpec;
 import org.knime.core.data.DataType;
 import org.knime.core.data.RowKey;
 import org.knime.core.data.def.DefaultRow;
+import org.knime.core.data.def.IntCell;
+import org.knime.core.data.def.StringCell;
 import org.knime.core.node.BufferedDataContainer;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.ExecutionContext;
@@ -80,9 +82,7 @@ public class OutputHelper {
 	 * @throws IOException 
 	 */
 	public void add(ImgPlus<BitType> img) throws IOException {
-		if (cellsToAdd == null || currentKey == null) {
-			throw new IllegalStateException("Must open row before adding to it.");
-		}
+		check();
 		
 		ImgPlusCellFactory imgFactory = new ImgPlusCellFactory(exec);
 		
@@ -93,8 +93,41 @@ public class OutputHelper {
 	 * 
 	 * @param find
 	 */
-	public void add(Vector2D[] find) {
+	public void add(Vector2D[] vec2ds) {
+		check();
 		
+		for (int i = 0; i < vec2ds.length; i++) {
+			cellsToAdd.add(new StringCell(vec2ds[i].getX() + ";" + vec2ds[i].getY()));
+		}
+	}
+	
+	/**
+	 * Add an int array to the row
+	 * @param array
+	 */
+	public void add(int[] array) {
+		check();
+		
+		for (int i = 0; i < array.length; i++) {
+			add(array[i]);
+		}
+	}
+	
+	/**
+	 * Add a single int to the row
+	 * @param val
+	 */
+	public void add(int val) {
+		check();
+		
+		cellsToAdd.add(new IntCell(val));
+	}
+	
+	/** Checks if the the row has been opened */
+	private void check() {
+		if (cellsToAdd == null || currentKey == null) {
+			throw new IllegalStateException("Must open row before adding to it.");
+		}
 	}
 	
 	/**
@@ -115,4 +148,5 @@ public class OutputHelper {
 
 		return outputBuffer.getTable();
 	}
+
 }

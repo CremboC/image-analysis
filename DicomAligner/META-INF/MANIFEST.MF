@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Aligner-Node extension for KNIME Workbench
+Bundle-Name: Aligner of the WTSI Mouse X-Ray Analysis package
 Bundle-SymbolicName: uk.ac.sanger.mig.aligner; singleton:=true
 Bundle-Version: 1.0.1
 Bundle-ClassPath: aligner.jar

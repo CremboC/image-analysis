@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: BoundingBox-Node extension for KNIME Workbench
+Bundle-Name: Bounding Box of the WTSI Mouse X-Ray Analysis package
 Bundle-SymbolicName: uk.ac.sanger.mig.boundingbox; singleton:=true
 Bundle-Version: 1.0.0
 Bundle-ClassPath: boundingbox.jar

@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 import net.imglib2.meta.ImgPlus;
 import net.imglib2.type.numeric.RealType;
 
+import org.knime.core.data.DataColumnSpec;
 import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
 import org.knime.core.data.DataType;
@@ -36,9 +37,12 @@ import uk.ac.sanger.mig.boundingbox.utils.Utils;
  * according to a threshold of pixels in a row/column
  * 
  * @author Wellcome Trust Sanger Institute
+ * @author Paulius pi1@sanger.ac.uk
  * @param <T>
  */
 public class BoundingBoxNodeModel<T extends RealType<T>> extends NodeModel {
+	
+	private final static int INPORT_0 = 0;
 
 	/** Columns in the schema */
 	private final static String[] COLUMNS = {  "Image", "Upper Boundary",
@@ -48,8 +52,8 @@ public class BoundingBoxNodeModel<T extends RealType<T>> extends NodeModel {
 	private final static DataType[] COLUMN_TYPES = { ImgPlusCell.TYPE,
 	IntCell.TYPE, IntCell.TYPE, IntCell.TYPE, IntCell.TYPE };
 
-	static final String CENTROID_COL_X = "WeightedCentroid Dim 1";
-	static final String CENTROID_COL_Y = "WeightedCentroid Dim 2";
+	private static final String CENTROID_COL_X = "WeightedCentroid Dim 1";
+	private static final String CENTROID_COL_Y = "WeightedCentroid Dim 2";
 
 	/**
 	 * the settings key which is used to retrieve and store the settings (from
@@ -59,6 +63,8 @@ public class BoundingBoxNodeModel<T extends RealType<T>> extends NodeModel {
 	static final String CFGKEY_IMAGE_COL = "Image Column";
 	static final String CFGKEY_ROW_THRESHOLD = "Row Threshold";
 	static final String CFGKEY_COL_THRESHOLD = "Column Threshold";
+	
+	private static final String DEFAULT_IMAGE_COL = "Image";
 
 	// example value: the models count variable filled from the dialog
 	// and used in the models execution method. The default components of the
@@ -69,7 +75,7 @@ public class BoundingBoxNodeModel<T extends RealType<T>> extends NodeModel {
 		settingsModels = new HashMap<String, SettingsModel>();
 
 		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
-				CFGKEY_IMAGE_COL, "Image"));
+				CFGKEY_IMAGE_COL, DEFAULT_IMAGE_COL));
 
 		settingsModels.put(CFGKEY_ROW_THRESHOLD, new SettingsModelString(
 				CFGKEY_ROW_THRESHOLD, "0,0"));
@@ -97,12 +103,12 @@ public class BoundingBoxNodeModel<T extends RealType<T>> extends NodeModel {
 		String colThresholds = ((SettingsModelString) settingsModels
 				.get(CFGKEY_COL_THRESHOLD)).getStringValue();
 
-		Map<String, Integer> indices = Utils.indices(inData[0]
+		Map<String, Integer> indices = Utils.indices(inData[INPORT_0]
 				.getDataTableSpec());
 
 		OutputHelper out = new OutputHelper(COLUMNS, COLUMN_TYPES, exec);
 
-		Iterator<DataRow> iter = inData[0].iterator();
+		Iterator<DataRow> iter = inData[INPORT_0].iterator();
 		while (iter.hasNext()) {
 			DataRow row = iter.next();
 
@@ -143,6 +149,19 @@ public class BoundingBoxNodeModel<T extends RealType<T>> extends NodeModel {
 	@Override
 	protected DataTableSpec[] configure(final DataTableSpec[] inSpecs)
 			throws InvalidSettingsException {
+		
+		for (int i = 0; i < inSpecs[INPORT_0].getNumColumns(); i++) {
+			DataColumnSpec spec = inSpecs[INPORT_0].getColumnSpec(i);
+			
+			if (spec.getType() == ImgPlusCell.TYPE) {
+				
+				SettingsModel sm = settingsModels.get(CFGKEY_IMAGE_COL);
+				((SettingsModelColumnName) sm).setStringValue(spec.getName());
+				
+				break;
+			}
+		}
+
 		return new DataTableSpec[] { null };
 	}
 

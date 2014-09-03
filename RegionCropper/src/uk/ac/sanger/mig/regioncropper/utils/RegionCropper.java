@@ -53,6 +53,7 @@ public class RegionCropper<T extends RealType<T> & NativeType<T>> {
 		final RandomAccess<T> ra = image.randomAccess();
 		final RandomAccess<T> croppedRa = cropped.randomAccess();
 		
+		// move to the start of the cropping area on the original picture
 		ra.setPosition(boundaries[LEFT], COL);
 		ra.setPosition(boundaries[UPPER], ROW);
 		

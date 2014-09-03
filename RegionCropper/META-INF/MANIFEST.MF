@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: RegionCropper-Node extension for KNIME Workbench
-Bundle-SymbolicName: uk.ac.sanger.mig.regioncropper; singleton:=true
+Bundle-Name: Region Cropper of the WTSI Mouse X-Ray Analysis package
+Bundle-SymbolicName: uk.ac.sanger.mig.regioncropper;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-ClassPath: regioncropper.jar
 Bundle-Activator: uk.ac.sanger.mig.regioncropper.RegionCropperNodePlugin

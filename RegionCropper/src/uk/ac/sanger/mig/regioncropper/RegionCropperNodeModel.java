@@ -11,6 +11,7 @@ import net.imglib2.meta.ImgPlus;
 import net.imglib2.type.NativeType;
 import net.imglib2.type.numeric.RealType;
 
+import org.knime.core.data.DataColumnSpec;
 import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
 import org.knime.core.data.DataType;
@@ -36,9 +37,12 @@ import uk.ac.sanger.mig.regioncropper.utils.Utils;
  * boundaries is deleted.
  * 
  * @author Wellcome Trust Sanger Institute
+ * @author Paulius pi1@sanger.ac.uk
  */
 public class RegionCropperNodeModel<T extends RealType<T> & NativeType<T>>
 		extends NodeModel {
+	
+	private final static int INPORT_0 = 0;
 
 	/** Columns in the schema */
 	private final static String[] COLUMNS = { "Image" };
@@ -97,12 +101,12 @@ public class RegionCropperNodeModel<T extends RealType<T> & NativeType<T>>
 	protected BufferedDataTable[] execute(final BufferedDataTable[] inData,
 			final ExecutionContext exec) throws Exception {
 		
-		indices = Utils.indices(inData[0]
+		indices = Utils.indices(inData[INPORT_0]
 				.getDataTableSpec());
 
 		OutputHelper out = new OutputHelper(COLUMNS, COLUMN_TYPES, exec);
 
-		Iterator<DataRow> iter = inData[0].iterator();
+		Iterator<DataRow> iter = inData[INPORT_0].iterator();
 		while (iter.hasNext()) {
 			DataRow row = iter.next();
 
@@ -122,12 +126,13 @@ public class RegionCropperNodeModel<T extends RealType<T> & NativeType<T>>
 
 			out.open(row.getKey());
 
-			// crop out the required part
+			// crop out the required part and add it to the output table
 			out.add(cropper.crop(ip));
 
 			out.close();
 		}
 
+		// return the output table on the first (0th) outport
 		return new BufferedDataTable[] { out.getOutputTable() };
 	}
 	
@@ -153,6 +158,18 @@ public class RegionCropperNodeModel<T extends RealType<T> & NativeType<T>>
 	@Override
 	protected DataTableSpec[] configure(final DataTableSpec[] inSpecs)
 			throws InvalidSettingsException {
+		
+		for (int i = 0; i < inSpecs[INPORT_0].getNumColumns(); i++) {
+			DataColumnSpec spec = inSpecs[INPORT_0].getColumnSpec(i);
+			
+			if (spec.getType() == ImgPlusCell.TYPE) {
+				
+				SettingsModel sm = settingsModels.get(CFGKEY_IMAGE_COL);
+				((SettingsModelColumnName) sm).setStringValue(spec.getName());
+				
+				break;
+			}
+		}
 
 		return new DataTableSpec[] { null };
 	}

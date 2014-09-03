@@ -1,13 +1,11 @@
 package uk.ac.sanger.mig.boundingbox;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import net.imglib2.meta.ImgPlus;
+import net.imglib2.type.NativeType;
 import net.imglib2.type.numeric.RealType;
 
 import org.knime.core.data.DataColumnSpec;
@@ -16,21 +14,17 @@ import org.knime.core.data.DataTableSpec;
 import org.knime.core.data.DataType;
 import org.knime.core.data.def.IntCell;
 import org.knime.core.node.BufferedDataTable;
-import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.ExecutionContext;
-import org.knime.core.node.ExecutionMonitor;
 import org.knime.core.node.InvalidSettingsException;
-import org.knime.core.node.NodeModel;
-import org.knime.core.node.NodeSettingsRO;
-import org.knime.core.node.NodeSettingsWO;
 import org.knime.core.node.defaultnodesettings.SettingsModel;
 import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 import org.knime.knip.base.data.img.ImgPlusCell;
 
+import uk.ac.sanger.mig.analysis.GenericNodeModel;
+import uk.ac.sanger.mig.analysis.nodetools.OutputHelper;
+import uk.ac.sanger.mig.analysis.nodetools.Utils;
 import uk.ac.sanger.mig.boundingbox.utils.BoundingBox;
-import uk.ac.sanger.mig.boundingbox.utils.OutputHelper;
-import uk.ac.sanger.mig.boundingbox.utils.Utils;
 
 /**
  * This is the model implementation of BoundingBox. Calculated a bounding box
@@ -40,9 +34,7 @@ import uk.ac.sanger.mig.boundingbox.utils.Utils;
  * @author Paulius pi1@sanger.ac.uk
  * @param <T>
  */
-public class BoundingBoxNodeModel<T extends RealType<T>> extends NodeModel {
-	
-	private final static int INPORT_0 = 0;
+public class BoundingBoxNodeModel<T extends RealType<T> & NativeType<T>> extends GenericNodeModel {
 
 	/** Columns in the schema */
 	private final static String[] COLUMNS = {  "Image", "Upper Boundary",
@@ -65,11 +57,7 @@ public class BoundingBoxNodeModel<T extends RealType<T>> extends NodeModel {
 	static final String CFGKEY_COL_THRESHOLD = "Column Threshold";
 	
 	private static final String DEFAULT_IMAGE_COL = "Image";
-
-	// example value: the models count variable filled from the dialog
-	// and used in the models execution method. The default components of the
-	// dialog work with "SettingsModels".
-
+	
 	static final Map<String, SettingsModel> settingsModels;
 	static {
 		settingsModels = new HashMap<String, SettingsModel>();
@@ -88,7 +76,7 @@ public class BoundingBoxNodeModel<T extends RealType<T>> extends NodeModel {
 	 * Constructor for the node model.
 	 */
 	protected BoundingBoxNodeModel() {
-		super(1, 1);
+		super(1, 1, settingsModels);
 	}
 
 	/**
@@ -140,13 +128,6 @@ public class BoundingBoxNodeModel<T extends RealType<T>> extends NodeModel {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void reset() {
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	protected DataTableSpec[] configure(final DataTableSpec[] inSpecs)
 			throws InvalidSettingsException {
 		
@@ -164,57 +145,4 @@ public class BoundingBoxNodeModel<T extends RealType<T>> extends NodeModel {
 
 		return new DataTableSpec[] { null };
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void saveSettingsTo(final NodeSettingsWO settings) {
-		for (Entry<String, SettingsModel> e : settingsModels.entrySet()) {
-			e.getValue().saveSettingsTo(settings);
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void loadValidatedSettingsFrom(final NodeSettingsRO settings)
-			throws InvalidSettingsException {
-		for (Entry<String, SettingsModel> e : settingsModels.entrySet()) {
-			e.getValue().loadSettingsFrom(settings);
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void validateSettings(final NodeSettingsRO settings)
-			throws InvalidSettingsException {
-		for (Entry<String, SettingsModel> e : settingsModels.entrySet()) {
-			e.getValue().validateSettings(settings);
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void loadInternals(final File internDir,
-			final ExecutionMonitor exec) throws IOException,
-			CanceledExecutionException {
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void saveInternals(final File internDir,
-			final ExecutionMonitor exec) throws IOException,
-			CanceledExecutionException {
-
-	}
-
 }

@@ -1,5 +1,8 @@
 package uk.ac.sanger.mig.boundingbox;
 
+import net.imglib2.type.NativeType;
+import net.imglib2.type.numeric.RealType;
+
 import org.knime.core.node.NodeDialogPane;
 import org.knime.core.node.NodeFactory;
 import org.knime.core.node.NodeView;
@@ -10,15 +13,15 @@ import org.knime.core.node.NodeView;
  *
  * @author Wellcome Trust Sanger Institute
  */
-public class BoundingBoxNodeFactory 
-        extends NodeFactory<BoundingBoxNodeModel> {
+public class BoundingBoxNodeFactory<T extends RealType<T> & NativeType<T>> 
+        extends NodeFactory<BoundingBoxNodeModel<T>> {
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public BoundingBoxNodeModel createNodeModel() {
-        return new BoundingBoxNodeModel();
+    public BoundingBoxNodeModel<T> createNodeModel() {
+        return new BoundingBoxNodeModel<T>();
     }
 
     /**
@@ -33,9 +36,9 @@ public class BoundingBoxNodeFactory
      * {@inheritDoc}
      */
     @Override
-    public NodeView<BoundingBoxNodeModel> createNodeView(final int viewIndex,
-            final BoundingBoxNodeModel nodeModel) {
-        return new BoundingBoxNodeView(nodeModel);
+    public NodeView<BoundingBoxNodeModel<T>> createNodeView(final int viewIndex,
+            final BoundingBoxNodeModel<T> nodeModel) {
+        return new BoundingBoxNodeView<T>(nodeModel);
     }
 
     /**

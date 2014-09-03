@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: WTSI X-Ray Image Analysis Node Toolset
+Bundle-Version: 1.0.0
+Bundle-ClassPath: analysis-tools.jar
+Bundle-SymbolicName: uk.ac.sanger.mig.analysis
+Require-Bundle: org.knime.base,
+ org.knime.knip.core;bundle-version="1.2.0",
+ org.knime.knip.base;bundle-version="1.2.0"
+Bundle-Vendor: Wellcome Trust Sanger Institute
+Export-Package: uk.ac.sanger.mig.analysis,
+ uk.ac.sanger.mig.analysis.nodetools,
+ uk.ac.sanger.mig.analysis.nodetools.filters

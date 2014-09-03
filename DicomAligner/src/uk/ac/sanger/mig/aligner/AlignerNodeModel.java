@@ -34,8 +34,9 @@ import uk.ac.sanger.mig.aligner.helpers.MatrixHelper;
 /**
  * This is the model implementation of Aligner.
  * 
+ * @author Wellcome Trust Sanger Institute
+ * @author Paulius pi1@sanger.ac.uk
  * 
- * @author pi1
  */
 public class AlignerNodeModel extends NodeModel {
 
@@ -90,18 +91,19 @@ public class AlignerNodeModel extends NodeModel {
 			if (as[i].equals(m_image_column.getStringValue())) {
 				imageIndex = i;
 			}
-				
+
 			if (as[i].equals(m_centroidx_name.getStringValue())) {
 				centroidXIndex = i;
 			}
-			
+
 			if (as[i].equals(m_centroidy_name.getStringValue())) {
 				centroidYIndex = i;
 			}
 		}
-		
+
 		if (imageIndex == -1 || centroidXIndex == -1 || centroidYIndex == -1) {
-			throw new IllegalArgumentException("Input table is incorrectly formatted: missing columns");
+			throw new IllegalArgumentException(
+					"Input table is incorrectly formatted: missing columns");
 		}
 
 		exec.setProgress(0.2);
@@ -130,7 +132,7 @@ public class AlignerNodeModel extends NodeModel {
 
 			double centroidX = ((DoubleCell) row.getCell(centroidXIndex))
 					.getDoubleValue();
-			
+
 			double centroidY = ((DoubleCell) row.getCell(centroidYIndex))
 					.getDoubleValue();
 

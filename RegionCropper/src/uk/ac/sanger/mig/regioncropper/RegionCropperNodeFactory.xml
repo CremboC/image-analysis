@@ -10,30 +10,29 @@
 	</shortDescription>
 
 	<fullDescription>
-		<intro>Insert long description here...</intro>
+		<intro>
+			Crops images according to the given the upper, right, lower and left
+			bounds. Everything outside these boundaries is deleted.
+		</intro>
 
 
-		<option name="short name of first option (like in the dialog)">description of first option</option>
-		<option name="short name of second option (like in the dialog)">description of second option</option>
-		<!-- possibly more options that can also be grouped by tabs -->
-		<!-- <tab name="Standard Options"> <option name="short name of first option 
-			(like in the dialog)">description of first option</option> <option name="short 
-			name of second option (like in the dialog)">description of second option</option> 
-			</tab> <tab name="Advanced Options"> <option name="short name of first advanced 
-			option (like in the dialog)">description of first advanced option</option> 
-			</tab> -->
+		<option name="Image Column">Name of the image column</option>
+		<option name="Upper Boundary Column">Name of the upper boundary column</option>
+		<option name="Lower Boundary Column">Name of the lower boundary column</option>
+		<option name="Right Boundary Column">Name of the right boundary column</option>
+		<option name="Left Boundary Column">Name of the left boundary column</option>
+
 	</fullDescription>
 
 	<ports>
-		<inPort index="0" name="In-Port name">Description of first input port...
+		<inPort index="0" name="Image">
+			The image including the boundaries with column names as defined in the settings
 		</inPort>
 		<!-- possibly more input ports here -->
-		<outPort index="0" name="Out-Port name">Description of first output port...
+		<outPort index="0" name="Cropped Image">
+			Cropped image according to the boundaries
 		</outPort>
 		<!-- possibly more output ports here -->
 	</ports>
-	<views>
-		<view index="0" name="name of first view">Description of first view...</view>
-		<!--view index="1" name="name of second view">Description of second view...</view -->
-	</views>
+
 </knimeNode>

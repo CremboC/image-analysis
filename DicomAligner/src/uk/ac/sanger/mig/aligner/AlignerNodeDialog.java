@@ -1,7 +1,11 @@
 package uk.ac.sanger.mig.aligner;
 
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
-import org.knime.core.node.defaultnodesettings.DialogComponentString;
+import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
+import org.knime.core.node.defaultnodesettings.SettingsModelString;
+
+import uk.ac.sanger.mig.analysis.nodetools.filters.ImgPlusColumnFilter;
+import uk.ac.sanger.mig.analysis.nodetools.filters.NumberColumnFilter;
 
 /**
  * <code>NodeDialog</code> for the "Aligner" Node.
@@ -22,18 +26,21 @@ public class AlignerNodeDialog extends DefaultNodeSettingsPane {
 	 */
 	protected AlignerNodeDialog() {
 		super();
-
-		addDialogComponent(new DialogComponentString(
-				AlignerNodeModel.m_centroidx_name,
-				AlignerNodeModel.CFGKEY_CENTROID_X));
 		
-		addDialogComponent(new DialogComponentString(
-				AlignerNodeModel.m_centroidy_name,
-				AlignerNodeModel.CFGKEY_CENTROID_Y));
+		addDialogComponent(new DialogComponentColumnNameSelection(
+				(SettingsModelString) AlignerNodeModel.settingsModels
+						.get(AlignerNodeModel.CFGKEY_IMAGE_COL),
+				AlignerNodeModel.CFGKEY_IMAGE_COL, 0, new ImgPlusColumnFilter()));
 		
-		addDialogComponent(new DialogComponentString(
-				AlignerNodeModel.m_image_column,
-				AlignerNodeModel.CFGKEY_COLUMN));
+		addDialogComponent(new DialogComponentColumnNameSelection(
+				(SettingsModelString) AlignerNodeModel.settingsModels
+						.get(AlignerNodeModel.CFGKEY_CENTROID_Y),
+				AlignerNodeModel.CFGKEY_CENTROID_Y, 0, new NumberColumnFilter()));
+		
+		addDialogComponent(new DialogComponentColumnNameSelection(
+				(SettingsModelString) AlignerNodeModel.settingsModels
+						.get(AlignerNodeModel.CFGKEY_CENTROID_X),
+				AlignerNodeModel.CFGKEY_CENTROID_X, 0, new NumberColumnFilter()));
 
 	}
 }

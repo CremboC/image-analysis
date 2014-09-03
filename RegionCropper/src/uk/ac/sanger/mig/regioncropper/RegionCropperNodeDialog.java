@@ -1,12 +1,11 @@
 package uk.ac.sanger.mig.regioncropper;
 
-import org.knime.core.data.DataColumnSpec;
-import org.knime.core.data.def.IntCell;
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
 import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
-import org.knime.core.node.util.ColumnFilter;
-import org.knime.knip.base.data.img.ImgPlusCell;
+
+import uk.ac.sanger.mig.analysis.nodetools.filters.ImgPlusColumnFilter;
+import uk.ac.sanger.mig.analysis.nodetools.filters.IntColumnFilter;
 
 /**
  * <code>NodeDialog</code> for the "RegionCropper" Node. Crops images according
@@ -32,19 +31,7 @@ public class RegionCropperNodeDialog extends DefaultNodeSettingsPane {
 		addDialogComponent(new DialogComponentColumnNameSelection(
 				(SettingsModelString) RegionCropperNodeModel.settingsModels
 						.get(RegionCropperNodeModel.CFGKEY_IMAGE_COL),
-				RegionCropperNodeModel.CFGKEY_IMAGE_COL, 0, new ColumnFilter() {
-
-					@Override
-					public boolean includeColumn(DataColumnSpec colSpec) {
-						return colSpec.getType() == ImgPlusCell.TYPE ? true
-								: false;
-					}
-
-					@Override
-					public String allFilteredMsg() {
-						return "Missing Image Column";
-					}
-				}));
+				RegionCropperNodeModel.CFGKEY_IMAGE_COL, 0, new ImgPlusColumnFilter()));
 		
 		addDialogComponent(new DialogComponentColumnNameSelection(
 				(SettingsModelString) RegionCropperNodeModel.settingsModels
@@ -65,24 +52,5 @@ public class RegionCropperNodeDialog extends DefaultNodeSettingsPane {
 				(SettingsModelString) RegionCropperNodeModel.settingsModels
 						.get(RegionCropperNodeModel.CFGKEY_LEFTBOUND_COL),
 				RegionCropperNodeModel.CFGKEY_LEFTBOUND_COL, 0, new IntColumnFilter()));
-	}
-	
-	/**
-	 * Column filter that only leaves integer columns
-	 * @author pi1
-	 *
-	 */
-	private class IntColumnFilter implements ColumnFilter {
-
-		@Override
-		public boolean includeColumn(DataColumnSpec colSpec) {
-			return colSpec.getType() == IntCell.TYPE ? true
-					: false;
-		}
-
-		@Override
-		public String allFilteredMsg() {
-			return "No Boundary Columns?";
-		}
 	}
 }

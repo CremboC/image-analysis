@@ -1,5 +1,8 @@
 package uk.ac.sanger.mig.regioncropper;
 
+import net.imglib2.type.NativeType;
+import net.imglib2.type.numeric.RealType;
+
 import org.knime.core.node.NodeDialogPane;
 import org.knime.core.node.NodeFactory;
 import org.knime.core.node.NodeView;
@@ -10,15 +13,15 @@ import org.knime.core.node.NodeView;
  *
  * @author Wellcome Trust Sanger Institute
  */
-public class RegionCropperNodeFactory 
-        extends NodeFactory<RegionCropperNodeModel> {
+public class RegionCropperNodeFactory<T extends RealType<T> & NativeType<T>> 
+        extends NodeFactory<RegionCropperNodeModel<T>> {
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public RegionCropperNodeModel createNodeModel() {
-        return new RegionCropperNodeModel();
+    public RegionCropperNodeModel<T> createNodeModel() {
+        return new RegionCropperNodeModel<T>();
     }
 
     /**
@@ -33,9 +36,9 @@ public class RegionCropperNodeFactory
      * {@inheritDoc}
      */
     @Override
-    public NodeView<RegionCropperNodeModel> createNodeView(final int viewIndex,
-            final RegionCropperNodeModel nodeModel) {
-        return new RegionCropperNodeView(nodeModel);
+    public NodeView<RegionCropperNodeModel<T>> createNodeView(final int viewIndex,
+            final RegionCropperNodeModel<T> nodeModel) {
+        return new RegionCropperNodeView<T>(nodeModel);
     }
 
     /**

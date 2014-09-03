@@ -1,11 +1,8 @@
 package uk.ac.sanger.mig.regioncropper;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import net.imglib2.meta.ImgPlus;
 import net.imglib2.type.NativeType;
@@ -16,20 +13,16 @@ import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
 import org.knime.core.data.DataType;
 import org.knime.core.node.BufferedDataTable;
-import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.ExecutionContext;
-import org.knime.core.node.ExecutionMonitor;
 import org.knime.core.node.InvalidSettingsException;
-import org.knime.core.node.NodeModel;
-import org.knime.core.node.NodeSettingsRO;
-import org.knime.core.node.NodeSettingsWO;
 import org.knime.core.node.defaultnodesettings.SettingsModel;
 import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 import org.knime.knip.base.data.img.ImgPlusCell;
 
-import uk.ac.sanger.mig.regioncropper.utils.OutputHelper;
+import uk.ac.sanger.mig.analysis.GenericNodeModel;
+import uk.ac.sanger.mig.analysis.nodetools.OutputHelper;
+import uk.ac.sanger.mig.analysis.nodetools.Utils;
 import uk.ac.sanger.mig.regioncropper.utils.RegionCropper;
-import uk.ac.sanger.mig.regioncropper.utils.Utils;
 
 /**
  * This is the model implementation of RegionCropper. Crops images according to
@@ -40,9 +33,7 @@ import uk.ac.sanger.mig.regioncropper.utils.Utils;
  * @author Paulius pi1@sanger.ac.uk
  */
 public class RegionCropperNodeModel<T extends RealType<T> & NativeType<T>>
-		extends NodeModel {
-	
-	private final static int INPORT_0 = 0;
+		extends GenericNodeModel {
 
 	/** Columns in the schema */
 	private final static String[] COLUMNS = { "Image" };
@@ -84,14 +75,12 @@ public class RegionCropperNodeModel<T extends RealType<T> & NativeType<T>>
 		settingsModels.put(CFGKEY_LEFTBOUND_COL, new SettingsModelColumnName(
 				CFGKEY_LEFTBOUND_COL, "Left Boundary"));
 	}
-	
-	private Map<String, Integer> indices;
 
 	/**
 	 * Constructor for the node model.
 	 */
 	protected RegionCropperNodeModel() {
-		super(1, 1);
+		super(1, 1, settingsModels);
 	}
 
 	/**
@@ -135,23 +124,6 @@ public class RegionCropperNodeModel<T extends RealType<T> & NativeType<T>>
 		// return the output table on the first (0th) outport
 		return new BufferedDataTable[] { out.getOutputTable() };
 	}
-	
-	/**
-	 * Helper method to get the index
-	 * @param name
-	 * @return
-	 */
-	private int indexByColumnName(String name) {
-		return indices.get(Utils.stringFromSetting(settingsModels.get(name)));
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void reset() {
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -173,55 +145,4 @@ public class RegionCropperNodeModel<T extends RealType<T> & NativeType<T>>
 
 		return new DataTableSpec[] { null };
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void saveSettingsTo(final NodeSettingsWO settings) {
-		for (Entry<String, SettingsModel> e : settingsModels.entrySet()) {
-			e.getValue().saveSettingsTo(settings);
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void loadValidatedSettingsFrom(final NodeSettingsRO settings)
-			throws InvalidSettingsException {
-		for (Entry<String, SettingsModel> e : settingsModels.entrySet()) {
-			e.getValue().loadSettingsFrom(settings);
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void validateSettings(final NodeSettingsRO settings)
-			throws InvalidSettingsException {
-		for (Entry<String, SettingsModel> e : settingsModels.entrySet()) {
-			e.getValue().validateSettings(settings);
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void loadInternals(final File internDir,
-			final ExecutionMonitor exec) throws IOException,
-			CanceledExecutionException {
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void saveInternals(final File internDir,
-			final ExecutionMonitor exec) throws IOException,
-			CanceledExecutionException {
-	}
-
 }

@@ -39,6 +39,11 @@ Given specific boundaries (upper, lower, left, right) crops out the region insid
 ## Fixes:
 
 2014-09-04
+- add copying over settings models to manual and explain what does it do, explain different settings types
+- add copying over column name and types and explain what they do
+- add copying over adding components to dialog and explain them
+- add comments to Utils
+- change COLUMNS to COLUMN_NAMES
 
 2014-09-03
 - ~~Rename tailless mouse image file~~

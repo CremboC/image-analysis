@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   
+      <extension
+         point="org.knime.workbench.repository.categories">
+       <category
+            description=""
+            icon="icons/default.png"
+            level-id="wtsixray"
+            name="WTSI Mouse X-Ray Analysis"
+            path="/"/>
+   </extension>
+
+   
+   <extension
+         point="org.knime.workbench.repository.nodes">
+      <node
+            category-path="/wtsixray/"
+            factory-class="uk.ac.sanger.mig.intervalthreshold.IntervalThresholdNodeFactory"
+            id="uk.ac.sanger.mig.intervalthreshold.IntervalThresholdNodeFactory"/>
+   </extension>
+   
+</plugin>

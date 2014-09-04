@@ -21,6 +21,7 @@ import uk.ac.sanger.mig.aligner.helpers.Aligner;
 import uk.ac.sanger.mig.aligner.helpers.Denominator;
 import uk.ac.sanger.mig.aligner.helpers.MatrixHelper;
 import uk.ac.sanger.mig.analysis.GenericNodeModel;
+import uk.ac.sanger.mig.analysis.nodetools.Image;
 import uk.ac.sanger.mig.analysis.nodetools.OutputHelper;
 import uk.ac.sanger.mig.analysis.nodetools.Utils;
 
@@ -45,8 +46,8 @@ public class AlignerNodeModel extends GenericNodeModel {
 	private static final String DEFAULT_CENTROIDX_COL = "WeightedCentroid Dim 1";
 	private static final String DEFAULT_CENTROIDY_COL = "WeightedCentroid Dim 2";
 
-	protected static int IN_PORTS = 1;
-	protected static int OUT_PORTS = 1;
+	protected static final int IN_PORTS = 1;
+	protected static final int OUT_PORTS = 1;
 
 	static final Map<String, SettingsModel> settingsModels;
 	static {
@@ -98,10 +99,10 @@ public class AlignerNodeModel extends GenericNodeModel {
 			ImgPlus<BitType> ip = Utils.imageByIndex(row,
 					indexByColumnName(CFGKEY_IMAGE_COL));
 
-			int[] x = MatrixHelper.x((int) ip.dimension(0),
-					(int) ip.dimension(1));
-			int[] y = MatrixHelper.y((int) ip.dimension(0),
-					(int) ip.dimension(1));
+			int[] x = MatrixHelper.x((int) ip.dimension(Image.COL),
+					(int) ip.dimension(Image.ROW));
+			int[] y = MatrixHelper.y((int) ip.dimension(Image.COL),
+					(int) ip.dimension(Image.ROW));
 
 			x = MatrixHelper.deductFromEach(x, centroidX);
 			y = MatrixHelper.deductFromEach(y, centroidY);

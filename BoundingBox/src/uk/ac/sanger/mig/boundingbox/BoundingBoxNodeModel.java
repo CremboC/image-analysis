@@ -32,17 +32,20 @@ import uk.ac.sanger.mig.boundingbox.utils.BoundingBox;
  * 
  * @author Wellcome Trust Sanger Institute
  * @author Paulius pi1@sanger.ac.uk
+ * @author MIG Team team110dev@sanger.ac.uk
+ * 
  * @param <T>
  */
-public class BoundingBoxNodeModel<T extends RealType<T> & NativeType<T>> extends GenericNodeModel {
+public class BoundingBoxNodeModel<T extends RealType<T> & NativeType<T>>
+		extends GenericNodeModel {
 
 	/** Columns in the schema */
-	private final static String[] COLUMNS = {  "Image", "Upper Boundary",
+	private final static String[] COLUMNS = { "Image", "Upper Boundary",
 			"Lower Boundary", "Left Boundary", "Right Boundary" };
 
 	/** Column types */
 	private final static DataType[] COLUMN_TYPES = { ImgPlusCell.TYPE,
-	IntCell.TYPE, IntCell.TYPE, IntCell.TYPE, IntCell.TYPE };
+			IntCell.TYPE, IntCell.TYPE, IntCell.TYPE, IntCell.TYPE };
 
 	private static final String CENTROID_COL_X = "WeightedCentroid Dim 1";
 	private static final String CENTROID_COL_Y = "WeightedCentroid Dim 2";
@@ -55,9 +58,9 @@ public class BoundingBoxNodeModel<T extends RealType<T> & NativeType<T>> extends
 	static final String CFGKEY_IMAGE_COL = "Image Column";
 	static final String CFGKEY_ROW_THRESHOLD = "Row Threshold";
 	static final String CFGKEY_COL_THRESHOLD = "Column Threshold";
-	
+
 	private static final String DEFAULT_IMAGE_COL = "Image";
-	
+
 	static final Map<String, SettingsModel> settingsModels;
 	static {
 		settingsModels = new HashMap<String, SettingsModel>();
@@ -130,15 +133,15 @@ public class BoundingBoxNodeModel<T extends RealType<T> & NativeType<T>> extends
 	@Override
 	protected DataTableSpec[] configure(final DataTableSpec[] inSpecs)
 			throws InvalidSettingsException {
-		
+
 		for (int i = 0; i < inSpecs[INPORT_0].getNumColumns(); i++) {
 			DataColumnSpec spec = inSpecs[INPORT_0].getColumnSpec(i);
-			
+
 			if (spec.getType() == ImgPlusCell.TYPE) {
-				
+
 				SettingsModel sm = settingsModels.get(CFGKEY_IMAGE_COL);
 				((SettingsModelColumnName) sm).setStringValue(spec.getName());
-				
+
 				break;
 			}
 		}

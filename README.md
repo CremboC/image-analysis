@@ -21,6 +21,9 @@ Not a node, rather a toolset used throughout all of the provided nodes in this p
 ### Region Cropper
 Given specific boundaries (upper, lower, left, right) crops out the region inside these boundaries.
 
+### Interval Thresholder
+Thresholds an image using a given interval. All pixels outside the interval are assigned a given "background pixel value".
+
 ## Manual: Creating new nodes in this package
 
 1. Get KNIME SDK (http://www.knime.org/downloads/overview)

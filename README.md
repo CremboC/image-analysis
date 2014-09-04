@@ -31,20 +31,7 @@ Given specific boundaries (upper, lower, left, right) crops out the region insid
 6. Now you will need to do a few things to prepare this node and make it consistent with the other nodes in this package:
   1. Open plugin.xml. Go to dependencies tab and add "uk.ac.sanger.mig.analysis", this is the Node Toolset package, it contains utilities and other helpers.
   2. (*optional*) Mostly likely you will manipulate image pixels, in this case add "org.knime.knip.base" and "org.knime.knip.core"
-  3. To add this node to the WTSI X-Ray Image Analysis package go to the actual plugin.xml XML editor, delete the commented XML and change it with the following:
-```xml
-   <extension
-         point="org.knime.workbench.repository.categories">
-         
-      <category
-            description=""
-            icon="icons/default.png"
-            level-id="wtsixray"
-            name="WTSI Mouse X-Ray Analysis"
-            path="/"/>
-            
-   </extension>
-```
+  3. To add this node to the WTSI X-Ray Image Analysis package go to the actual plugin.xml XML editor, delete the commented XML and change it with the labled as "org.knime.workbench.repository.categories" in one of the other nodes in this package.
   4. In the same file, change the category-path from "/" to "/wtsixray/"
   5. Go to <NodeName>NodeModel which was created for you by the wizard and change the "extends NodeModel" to "extends GenericNodeModel". Now you can remove the methods *reset*, *saveSettingsTo*, *loadValidatedSettingsFrom*, *validateSettings*, *loadInternals* and *saveInternals*. The methods *execute* and *configure* must be implemented by you (even though configure can be empty).
   6. At this point it is much easier to look at an existing node to see finalise the preparations, the steps are essentially add settings to *settingsModels* and modify the <NodeName>Dialog class accordingly.

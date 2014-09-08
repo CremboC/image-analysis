@@ -28,7 +28,7 @@ import uk.ac.sanger.mig.analysis.nodetools.Utils;
 public class AlignerNodeModel extends GenericNodeModel {
 
 	/** Columns in the schema */
-	private final static String[] COLUMNS = { "thetamin" };
+	private final static String[] COLUMN_NAMES = { "thetamin" };
 
 	/** Column types */
 	private final static DataType[] COLUMN_TYPES = { DoubleCell.TYPE };
@@ -74,13 +74,14 @@ public class AlignerNodeModel extends GenericNodeModel {
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	protected BufferedDataTable[] execute(final BufferedDataTable[] inData,
 			final ExecutionContext exec) throws Exception {
 
 		indices = Utils.indices(inData[INPORT_0].getDataTableSpec());
 
-		OutputHelper out = new OutputHelper(COLUMNS, COLUMN_TYPES, exec);
+		OutputHelper out = new OutputHelper(COLUMN_NAMES, COLUMN_TYPES, exec);
 
 		// get data from the first port
 		Iterator<DataRow> iter = inData[INPORT_0].iterator();
@@ -91,14 +92,10 @@ public class AlignerNodeModel extends GenericNodeModel {
 		while (iter.hasNext()) {
 			DataRow row = iter.next();
 
-			double centroidX = Utils.doubleByIndex(row,
-					indexByColumnName(CFGKEY_CENTROID_X));
+			double centroidX = doubleBySetting(row, CFGKEY_CENTROID_X);
+			double centroidY = doubleBySetting(row, CFGKEY_CENTROID_Y);
 
-			double centroidY = Utils.doubleByIndex(row,
-					indexByColumnName(CFGKEY_CENTROID_Y));
-
-			ImgPlus<BitType> ip = Utils.imageByIndex(row,
-					indexByColumnName(CFGKEY_IMAGE_COL));
+			ImgPlus<BitType> ip = (ImgPlus<BitType>) imageBySetting(row, CFGKEY_IMAGE_COL);
 
 			int[] x = MatrixHelper.x((int) ip.dimension(Image.COL),
 					(int) ip.dimension(Image.ROW));

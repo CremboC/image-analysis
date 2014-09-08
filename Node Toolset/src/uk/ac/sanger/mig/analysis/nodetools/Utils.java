@@ -12,7 +12,8 @@ import org.knime.core.data.DataTableSpec;
 import org.knime.core.data.def.DoubleCell;
 import org.knime.core.data.def.IntCell;
 import org.knime.core.node.defaultnodesettings.SettingsModel;
-import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
+import org.knime.core.node.defaultnodesettings.SettingsModelInteger;
+import org.knime.core.node.defaultnodesettings.SettingsModelString;
 import org.knime.knip.base.data.img.ImgPlusCell;
 
 /**
@@ -25,10 +26,8 @@ import org.knime.knip.base.data.img.ImgPlusCell;
 public class Utils {
 
 	/**
-	 * 
-	 * @param dataTableSpec
-	 * @param columns
-	 * @return
+	 * Gets all indices of the columns and maps column_name -> index
+	 * @param dataTableSpec input table
 	 */
 	public static Map<String, Integer> indices(DataTableSpec dataTableSpec) {
 
@@ -44,6 +43,13 @@ public class Utils {
 		return indices;
 	}
 
+	/**
+	 * Gets an image from the provided row by column index.
+	 * Column must be ImgPlusCell.
+	 * 
+	 * @param row get data from here
+	 * @param index column index
+	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends RealType<T> & NativeType<T>> ImgPlus<T> imageByIndex(DataRow row,
 			Integer index) {
@@ -51,18 +57,51 @@ public class Utils {
 		return ipcell.getImgPlus();
 	}
 
+	/**
+	 * Gets a double from the provided row by column index. 
+	 * Works only if the cell is a DoubleCell
+	 * 
+	 * @param row get data from this row
+	 * @param index column index
+	 */
 	public static double doubleByIndex(DataRow row, Integer index) {
 		DoubleCell c = (DoubleCell) row.getCell(index);
 		return c.getDoubleValue();
 	}
 	
+	/**
+	 * Gets a int from the provided row by column index. 
+	 * Works only if the cell is an IntCell
+	 * 
+	 * @param row get data from this row
+	 * @param index column index
+	 */
 	public static int intByIndex(DataRow row, Integer index) {
 		IntCell c = (IntCell) row.getCell(index);
 		return c.getIntValue();
 	}
 
+	/**
+	 * Casts a settings model into a String one and gets its value
+	 * @param setting
+	 * @return
+	 */
 	public static String stringFromSetting(SettingsModel setting) {
-		return ((SettingsModelColumnName) setting).getStringValue();
+		return ((SettingsModelString) setting).getStringValue();
+	}
+	
+	/**
+	 * Casts a settings model into a Integer one and gets its value
+	 * 
+	 * @param setting
+	 */
+	public static int intFromSetting(SettingsModel setting) {
+		return ((SettingsModelInteger) setting).getIntValue();
+	}
+	
+	public static double doubleFromSetting(SettingsModel setting) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	public static int[] split(String threshold) {
@@ -85,4 +124,6 @@ public class Utils {
 		
 		return ret;
 	}
+
+
 }

@@ -85,17 +85,15 @@ public class BoundingBoxNodeModel<T extends RealType<T> & NativeType<T>>
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	protected BufferedDataTable[] execute(final BufferedDataTable[] inData,
 			final ExecutionContext exec) throws Exception {
 
-		String rowThresholds = ((SettingsModelString) settingsModels
-				.get(CFGKEY_ROW_THRESHOLD)).getStringValue();
-		String colThresholds = ((SettingsModelString) settingsModels
-				.get(CFGKEY_COL_THRESHOLD)).getStringValue();
+		indices = Utils.indices(inData[INPORT_0].getDataTableSpec());
 
-		Map<String, Integer> indices = Utils.indices(inData[INPORT_0]
-				.getDataTableSpec());
+		String rowThresholds = stringFromSetting(CFGKEY_ROW_THRESHOLD);
+		String colThresholds = stringFromSetting(CFGKEY_COL_THRESHOLD);
 
 		OutputHelper out = new OutputHelper(COLUMNS, COLUMN_TYPES, exec);
 
@@ -103,8 +101,7 @@ public class BoundingBoxNodeModel<T extends RealType<T> & NativeType<T>>
 		while (iter.hasNext()) {
 			DataRow row = iter.next();
 
-			ImgPlus<T> ip = Utils.imageByIndex(row, indices.get(Utils
-					.stringFromSetting(settingsModels.get(CFGKEY_IMAGE_COL))));
+			ImgPlus<T> ip = (ImgPlus<T>) imageBySetting(row, CFGKEY_IMAGE_COL);
 
 			int centroidX = (int) Utils.doubleByIndex(row,
 					indices.get(CENTROID_COL_X));

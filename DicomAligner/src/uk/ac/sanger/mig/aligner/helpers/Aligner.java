@@ -14,7 +14,7 @@ public class Aligner {
 			return thetamin;
 		
 		double sin2thetamin = denom.b() / Math.sqrt(denom.denom()),
-				cos2thetamin = (denom.a() - denom.c()) / Math.sqrt(denom.denom()),
+				cos2thetamin = (denom.a() - denom.c()) / Math.sqrt(denom.denom());
 		
 		thetamin = Math.atan2(sin2thetamin, cos2thetamin) / 2;
 		

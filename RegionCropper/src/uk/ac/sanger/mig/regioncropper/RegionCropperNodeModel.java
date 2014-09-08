@@ -36,7 +36,7 @@ public class RegionCropperNodeModel<T extends RealType<T> & NativeType<T>>
 		extends GenericNodeModel {
 
 	/** Columns in the schema */
-	private final static String[] COLUMNS = { "Image" };
+	private final static String[] COLUMN_NAMES = { "Image" };
 
 	/** Column types of the schema */
 	private final static DataType[] COLUMN_TYPES = { ImgPlusCell.TYPE };
@@ -86,6 +86,7 @@ public class RegionCropperNodeModel<T extends RealType<T> & NativeType<T>>
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	protected BufferedDataTable[] execute(final BufferedDataTable[] inData,
 			final ExecutionContext exec) throws Exception {
@@ -93,22 +94,21 @@ public class RegionCropperNodeModel<T extends RealType<T> & NativeType<T>>
 		indices = Utils.indices(inData[INPORT_0]
 				.getDataTableSpec());
 
-		OutputHelper out = new OutputHelper(COLUMNS, COLUMN_TYPES, exec);
+		OutputHelper out = new OutputHelper(COLUMN_NAMES, COLUMN_TYPES, exec);
 
 		Iterator<DataRow> iter = inData[INPORT_0].iterator();
 		while (iter.hasNext()) {
 			DataRow row = iter.next();
 
 			// get the image according to the setting
-			ImgPlus<T> ip = Utils.imageByIndex(row, indices.get(Utils
-					.stringFromSetting(settingsModels.get(CFGKEY_IMAGE_COL))));
+			ImgPlus<T> ip = (ImgPlus<T>) imageBySetting(row, CFGKEY_IMAGE_COL);
 			
 			// get the boundaries according to the setting
 			int[] boundaries = { 
-					Utils.intByIndex(row, indexByColumnName(CFGKEY_UPBOUND_COL)),
-					Utils.intByIndex(row, indexByColumnName(CFGKEY_LOWBOUND_COL)),
-					Utils.intByIndex(row, indexByColumnName(CFGKEY_LEFTBOUND_COL)),
-					Utils.intByIndex(row, indexByColumnName(CFGKEY_RIGHTBOUND_COL))
+					intBySetting(row, CFGKEY_UPBOUND_COL),
+					intBySetting(row, CFGKEY_LOWBOUND_COL),
+					intBySetting(row, CFGKEY_LEFTBOUND_COL),
+					intBySetting(row, CFGKEY_RIGHTBOUND_COL)
 				};
 
 			RegionCropper<T> cropper = new RegionCropper<T>(boundaries);

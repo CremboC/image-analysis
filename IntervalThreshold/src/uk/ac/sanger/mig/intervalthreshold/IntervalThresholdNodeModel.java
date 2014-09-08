@@ -25,13 +25,14 @@ import uk.ac.sanger.mig.analysis.nodetools.Utils;
 import uk.ac.sanger.mig.intervalthreshold.utils.IntervalThreshold;
 
 /**
- * This is the model implementation of IntervalThreshold.
- * Select a range of pixel values, between an upper and lower bound setting all other pixels to the background value.
- *
+ * This is the model implementation of IntervalThreshold. Select a range of
+ * pixel values, between an upper and lower bound setting all other pixels to
+ * the background value.
+ * 
  * @author Wellcome Trust Sanger Institute
  */
-public class IntervalThresholdNodeModel<T extends RealType<T> & NativeType<T>> extends GenericNodeModel {
-    
+public class IntervalThresholdNodeModel<T extends RealType<T> & NativeType<T>>
+		extends GenericNodeModel {
 
 	/** Columns in the schema */
 	private final static String[] COLUMNS = { "Image" };
@@ -48,7 +49,6 @@ public class IntervalThresholdNodeModel<T extends RealType<T> & NativeType<T>> e
 	static final String CFGKEY_UPP_THRESH = "Upper Threshold";
 	static final String CFGKEY_LOW_THRESH = "Lower Threshold";
 	static final String CFGKEY_BACKGROUND_VAL = "Background Pixel Value";
-	
 
 	// example value: the models count variable filled from the dialog
 	// and used in the models execution method. The default components of the
@@ -57,7 +57,7 @@ public class IntervalThresholdNodeModel<T extends RealType<T> & NativeType<T>> e
 	static final Map<String, SettingsModel> settingsModels;
 	static {
 		settingsModels = new HashMap<String, SettingsModel>();
-		
+
 		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
 				CFGKEY_IMAGE_COL, "Image"));
 
@@ -70,68 +70,63 @@ public class IntervalThresholdNodeModel<T extends RealType<T> & NativeType<T>> e
 		settingsModels.put(CFGKEY_BACKGROUND_VAL, new SettingsModelInteger(
 				CFGKEY_BACKGROUND_VAL, 0));
 	}
-    /**
-     * Constructor for the node model.
-     */
-    protected IntervalThresholdNodeModel() {
-    
-        // TODO: Specify the amount of input and output ports needed.
-        super(1, 1, settingsModels);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected BufferedDataTable[] execute(final BufferedDataTable[] inData,
-            final ExecutionContext exec) throws Exception {
+	/**
+	 * Constructor for the node model.
+	 */
+	protected IntervalThresholdNodeModel() {
 
-		indices = Utils.indices(inData[INPORT_0]
-				.getDataTableSpec());
+		// TODO: Specify the amount of input and output ports needed.
+		super(1, 1, settingsModels);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	protected BufferedDataTable[] execute(final BufferedDataTable[] inData,
+			final ExecutionContext exec) throws Exception {
+
+		indices = Utils.indices(inData[INPORT_0].getDataTableSpec());
 
 		OutputHelper out = new OutputHelper(COLUMNS, COLUMN_TYPES, exec);
 
 		Iterator<DataRow> iter = inData[INPORT_0].iterator();
-		
-		int upperThreshold = ((SettingsModelInteger) settingsModels
-				.get(CFGKEY_UPP_THRESH)).getIntValue();
-		
-		int lowerThreshold = ((SettingsModelInteger) settingsModels
-				.get(CFGKEY_LOW_THRESH)).getIntValue();
-		
-		int backgroundPixelValue = ((SettingsModelInteger) settingsModels
-				.get(CFGKEY_BACKGROUND_VAL)).getIntValue();
-		
+
+		int upperThreshold = intFromSetting(CFGKEY_UPP_THRESH);
+		int lowerThreshold = intFromSetting(CFGKEY_LOW_THRESH);
+		int backgroundPixelValue = intFromSetting(CFGKEY_BACKGROUND_VAL);
+
 		while (iter.hasNext()) {
 			DataRow row = iter.next();
 
 			// get the image according to the setting
-			ImgPlus<T> ip = Utils.imageByIndex(row, indices.get(Utils
-					.stringFromSetting(settingsModels.get(CFGKEY_IMAGE_COL))));
-			
-			IntervalThreshold<T> thresholder = new IntervalThreshold<T>(lowerThreshold, upperThreshold, backgroundPixelValue);
-			
+			ImgPlus<T> ip = (ImgPlus<T>) imageBySetting(row, CFGKEY_IMAGE_COL);
+
+			IntervalThreshold<T> thresholder = new IntervalThreshold<T>(
+					lowerThreshold, upperThreshold, backgroundPixelValue);
+
 			out.open(row.getKey());
 
 			out.add(thresholder.process(ip));
-			
+
 			out.close();
 		}
 
 		// return the output table on the first (0th) outport
 		return new BufferedDataTable[] { out.getOutputTable() };
-    }
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected DataTableSpec[] configure(final DataTableSpec[] inSpecs)
-            throws InvalidSettingsException {
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected DataTableSpec[] configure(final DataTableSpec[] inSpecs)
+			throws InvalidSettingsException {
 
-        // TODO: generated method stub
-        return new DataTableSpec[]{null};
-    }
+		// TODO: generated method stub
+		return new DataTableSpec[] { null };
+	}
 
 }
-

@@ -1,5 +1,8 @@
 package uk.ac.sanger.mig.intervalthreshold;
 
+import net.imglib2.type.NativeType;
+import net.imglib2.type.numeric.RealType;
+
 import org.knime.core.node.NodeDialogPane;
 import org.knime.core.node.NodeFactory;
 import org.knime.core.node.NodeView;
@@ -10,15 +13,15 @@ import org.knime.core.node.NodeView;
  *
  * @author Wellcome Trust Sanger Institute
  */
-public class IntervalThresholdNodeFactory 
-        extends NodeFactory<IntervalThresholdNodeModel> {
+public class IntervalThresholdNodeFactory<T extends RealType<T> & NativeType<T>>
+        extends NodeFactory<IntervalThresholdNodeModel<T>> {
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public IntervalThresholdNodeModel createNodeModel() {
-        return new IntervalThresholdNodeModel();
+    public IntervalThresholdNodeModel<T> createNodeModel() {
+        return new IntervalThresholdNodeModel<T>();
     }
 
     /**
@@ -33,9 +36,9 @@ public class IntervalThresholdNodeFactory
      * {@inheritDoc}
      */
     @Override
-    public NodeView<IntervalThresholdNodeModel> createNodeView(final int viewIndex,
-            final IntervalThresholdNodeModel nodeModel) {
-        return new IntervalThresholdNodeView(nodeModel);
+    public NodeView<IntervalThresholdNodeModel<T>> createNodeView(final int viewIndex,
+            final IntervalThresholdNodeModel<T> nodeModel) {
+        return new IntervalThresholdNodeView<T>(nodeModel);
     }
 
     /**

@@ -52,18 +52,19 @@ public class AlignerNodeModel extends GenericNodeModel {
 	static final Map<String, SettingsModel> settingsModels;
 	static {
 		settingsModels = new HashMap<String, SettingsModel>();
+		
+		// Column name which stores the image
+		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
+				CFGKEY_IMAGE_COL, DEFAULT_IMAGE_COL));
 
 		// Column name which stores the x coord of the centroid
 		settingsModels.put(CFGKEY_CENTROID_X, new SettingsModelColumnName(
-				CFGKEY_CENTROID_X, DEFAULT_IMAGE_COL));
+				CFGKEY_CENTROID_X, DEFAULT_CENTROIDX_COL));
 
 		// Column name which stores the y coord of the centroid
 		settingsModels.put(CFGKEY_CENTROID_Y, new SettingsModelColumnName(
-				CFGKEY_CENTROID_Y, DEFAULT_CENTROIDX_COL));
+				CFGKEY_CENTROID_Y, DEFAULT_CENTROIDY_COL));
 
-		// Column name which stores the image
-		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
-				CFGKEY_IMAGE_COL, DEFAULT_CENTROIDY_COL));
 	}
 
 	protected AlignerNodeModel() {

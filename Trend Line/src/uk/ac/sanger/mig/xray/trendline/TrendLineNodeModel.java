@@ -32,11 +32,10 @@ import uk.ac.sanger.mig.xray.trendline.utils.Fitting;
  * 
  * @author Wellcome Trust Sanger Institute
  */
-public class TrendLineNodeModel extends
-		GenericNodeModel {
+public class TrendLineNodeModel extends GenericNodeModel {
 
 	/** Columns in the schema */
-	private final static String[] COLUMNS = { "Image" };
+	private final static String[] COLUMN_NAMES = { "Image" };
 
 	/** Column types of the schema */
 	private final static DataType[] COLUMN_TYPES = { ImgPlusCell.TYPE };
@@ -48,8 +47,7 @@ public class TrendLineNodeModel extends
 	 */
 	static final String CFGKEY_IMAGE_COL = "Image Column";
 	static final String CFGKEY_FIT_TYPE = "Fitting Type";
-	static final String CFGKEY_POWER_DEG = "Power Degree";
-	
+	static final String CFGKEY_POLY_DEG = "Poly Degree";
 
 	static final String[] FITTING_TYPES = Fitting.names();
 
@@ -63,9 +61,9 @@ public class TrendLineNodeModel extends
 
 		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
 				CFGKEY_IMAGE_COL, "Image"));
-		
-		settingsModels.put(CFGKEY_POWER_DEG, new SettingsModelInteger(
-				CFGKEY_POWER_DEG, 0));
+
+		settingsModels.put(CFGKEY_POLY_DEG, new SettingsModelInteger(
+				CFGKEY_POLY_DEG, 0));
 
 		settingsModels.put(CFGKEY_FIT_TYPE, new SettingsModelString(
 				CFGKEY_FIT_TYPE, Fitting.EXP.toString()));
@@ -87,28 +85,27 @@ public class TrendLineNodeModel extends
 			final ExecutionContext exec) throws Exception {
 		indices = Utils.indices(inData[INPORT_0].getDataTableSpec());
 
-		OutputHelper out = new OutputHelper(COLUMNS, COLUMN_TYPES, exec);
+		OutputHelper out = new OutputHelper(COLUMN_NAMES, COLUMN_TYPES, exec);
 
 		Iterator<DataRow> iter = inData[INPORT_0].iterator();
 
-		Fitting fitting = Fitting
-				.whereName(stringFromSetting(CFGKEY_FIT_TYPE));
-		
-		int degree = intFromSetting(CFGKEY_POWER_DEG);
+		Fitting fitting = Fitting.whereName(stringFromSetting(CFGKEY_FIT_TYPE));
+
+		int degree = intFromSetting(CFGKEY_POLY_DEG);
+		Fitter fitter = new Fitter(fitting, degree);
 
 		while (iter.hasNext()) {
 			DataRow row = iter.next();
 
 			// get the image according to the setting
-			ImgPlus<BitType> ip = (ImgPlus<BitType>) imageBySetting(row, CFGKEY_IMAGE_COL);
-
-			Fitter fitter = new Fitter(fitting, degree);
+			ImgPlus<BitType> ip = (ImgPlus<BitType>) imageBySetting(row,
+					CFGKEY_IMAGE_COL);
 
 			out.open(row.getKey());
 
 			fitter.fit(ip);
 
-			// out.add();
+			out.add(fitter.image());
 
 			out.close();
 		}

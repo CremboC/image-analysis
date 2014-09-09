@@ -45,8 +45,8 @@ public class TrendLineNodeDialog extends DefaultNodeSettingsPane {
 		
 		addDialogComponent(new DialogComponentNumber(
 				(SettingsModelInteger) TrendLineNodeModel.settingsModels
-						.get(TrendLineNodeModel.CFGKEY_POWER_DEG),
-				TrendLineNodeModel.CFGKEY_POWER_DEG, 1, 5));
+						.get(TrendLineNodeModel.CFGKEY_POLY_DEG),
+				TrendLineNodeModel.CFGKEY_POLY_DEG, 1, 5));
 
 	}
 }

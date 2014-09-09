@@ -48,4 +48,8 @@ public abstract class OLSTrendLine implements TrendLine {
 
         return yhat;
     }
+    
+    public RealMatrix coef() {
+    	return coef;
+    }
 }

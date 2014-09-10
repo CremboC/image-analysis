@@ -3,8 +3,10 @@ package uk.ac.sanger.mig.analysis.nodetools.enums;
 import com.sun.istack.internal.Nullable;
 
 public enum ReturnType {
+	/** Return the original, unmodified image */
 	ORIG("Original"),
-	LINED("Lined");
+	/** Returns the modified image, depending on the node, usually used for debugging */
+	MODIFIED("Modified");
 	
 	private String name;
 	

@@ -118,7 +118,7 @@ public class Fitter {
 	private RealMatrix trend(OLSTrendLine trend, Pair<double[], double[]> points) {
 		trend.setValues(points.getFirst(), points.getSecond());
 
-		if (retType == ReturnType.LINED) {
+		if (retType == ReturnType.MODIFIED) {
 			this.image = image.copy();
 			new Debug(image.randomAccess(), trend).loopAndChange(Image.ROW,
 					(int) image.dimension(Image.ROW));

@@ -19,6 +19,12 @@
 		<option name="Image Column">
 			Which image column to use from the input
 		</option>
+		
+		<option name="Return Type">
+			Return either the original, input image and the calculated trend line and its type, or,
+			returns a modified image which contains the trend line. Usually this is used for debugging
+			purposes and should not be used as it is less efficient.
+		</option>
 
 		<option name="Fitting Type">
 			4 methods of fitting:

@@ -101,7 +101,7 @@ public class TrendLineNodeModel extends GenericNodeModel {
 		ReturnType retType = ReturnType.whereName(stringFromSetting(CFGKEY_RET_TYPE));
 
 		int degree = intFromSetting(CFGKEY_POLY_DEG);
-		Fitter fitter = new Fitter(fitting, degree);
+		Fitter fitter = new Fitter(fitting, degree, retType);
 
 		while (iter.hasNext()) {
 			DataRow row = iter.next();
@@ -136,7 +136,7 @@ public class TrendLineNodeModel extends GenericNodeModel {
 		return new DataTableSpec[] { null };
 	}
 	
-	private enum ReturnType {
+	public enum ReturnType {
 		ORIG("Original"),
 		LINED("Lined");
 		

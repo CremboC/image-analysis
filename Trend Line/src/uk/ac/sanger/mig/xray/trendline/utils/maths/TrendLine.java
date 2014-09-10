@@ -1,5 +1,10 @@
 package uk.ac.sanger.mig.xray.trendline.utils.maths;
 
+/**
+ * http://stackoverflow.com/questions/17592139/trend-lines-regression-curve-fitting-java-library
+ * @author 
+ *
+ */
 public interface TrendLine {
     public void setValues(double[] y, double[] x); // y ~ f(x)
 

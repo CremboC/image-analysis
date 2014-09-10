@@ -172,9 +172,6 @@ public class Fitter {
 				int pixelValue = ra.get().getInteger();
 
 				if (pixelValue == 1) {
-					long x = ra.getLongPosition(Image.COL);
-					long y = ra.getLongPosition(Image.ROW);
-
 					xs[i] = ra.getIntPosition(Image.COL);
 					ys[i] = ra.getIntPosition(Image.ROW);
 					++i;

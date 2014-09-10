@@ -4,6 +4,7 @@ import net.imglib2.RandomAccess;
 import net.imglib2.meta.ImgPlus;
 import net.imglib2.type.numeric.RealType;
 import uk.ac.sanger.mig.analysis.nodetools.Image;
+import uk.ac.sanger.mig.analysis.nodetools.enums.ReturnType;
 
 /**
  * Wrapper class for the main logic for finding and calculating the Bounding
@@ -18,9 +19,10 @@ public class BoundingBox<T extends RealType<T>> {
 	private final static int UPPER = 0, LOWER = 1, LEFT = 2, RIGHT = 3;
 
 	private ImgPlus<T> image;
-	private final int centroidX, centroidY;
 
 	private final int[] rowTs, colTs;
+	
+	private final ReturnType retType;
 
 	/**
 	 * 
@@ -33,23 +35,21 @@ public class BoundingBox<T extends RealType<T>> {
 	 * @param colTs
 	 *            column (left/right) thresholds
 	 */
-	public BoundingBox(ImgPlus<T> ip, int centroidX, int centroidY,
-			int[] rowTs, int[] colTs) {
-		this.image = ip.copy();
-
-		this.centroidX = centroidX;
-		this.centroidY = centroidY;
-
+	public BoundingBox(int[] rowTs, int[] colTs, ReturnType retType) {
 		this.rowTs = rowTs;
 		this.colTs = colTs;
+		
+		this.retType = retType;
 	}
 
 	/**
 	 * Finds the bounding box
+	 * @param centroidY
+	 * @param centroidX
 	 * 
 	 * @return
 	 */
-	public int[] find() {
+	public int[] find(ImgPlus<T> image, int centroidX, int centroidY) {
 		int[] boundaries = new int[4];
 
 		int cols = (int) image.dimension(Image.COL);
@@ -93,8 +93,11 @@ public class BoundingBox<T extends RealType<T>> {
 		boundaries[LEFT] = findDecrementing(centroidX, colValues, colTs[0]);
 		boundaries[RIGHT] = findIncreamenting(centroidX, colValues, colTs[1]);
 
-		drawLines(boundaries[UPPER], boundaries[LOWER], boundaries[LEFT],
-				boundaries[RIGHT], cols, rows);
+		if (retType == ReturnType.MODIFIED) {
+			drawLines(boundaries[UPPER], boundaries[LOWER], boundaries[LEFT],
+					boundaries[RIGHT], cols, rows, image.copy());
+		}
+
 
 		return boundaries;
 	}
@@ -152,7 +155,7 @@ public class BoundingBox<T extends RealType<T>> {
 	 * @param rows
 	 */
 	private void drawLines(int topRow, int bottomRow, int leftCol,
-			int rightCol, int cols, int rows) {
+			int rightCol, int cols, int rows, ImgPlus<T> image) {
 		final RandomAccess<T> ra = image.randomAccess();
 		final Debug debug = new Debug(ra, 128, 0, 255);
 
@@ -171,6 +174,8 @@ public class BoundingBox<T extends RealType<T>> {
 		ra.setPosition(rightCol, Image.COL);
 		ra.setPosition(0, Image.ROW);
 		debug.loopAndChange(Image.ROW, rows);
+		
+		this.image = image;
 	}
 
 	/**

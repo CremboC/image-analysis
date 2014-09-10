@@ -1,8 +1,12 @@
 package uk.ac.sanger.mig.boundingbox;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
 import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
 import org.knime.core.node.defaultnodesettings.DialogComponentString;
+import org.knime.core.node.defaultnodesettings.DialogComponentStringSelection;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
 import uk.ac.sanger.mig.analysis.nodetools.filters.ImgPlusColumnFilter;
@@ -31,6 +35,13 @@ public class BoundingBoxNodeDialog extends DefaultNodeSettingsPane {
 				(SettingsModelString) BoundingBoxNodeModel.settingsModels
 						.get(BoundingBoxNodeModel.CFGKEY_IMAGE_COL),
 				BoundingBoxNodeModel.CFGKEY_IMAGE_COL, 0, new ImgPlusColumnFilter()));
+		
+		Collection<String> rets = Arrays.asList(BoundingBoxNodeModel.RETURN_TYPES);
+
+		addDialogComponent(new DialogComponentStringSelection(
+				(SettingsModelString) BoundingBoxNodeModel.settingsModels
+						.get(BoundingBoxNodeModel.CFGKEY_RET_TYPE),
+				BoundingBoxNodeModel.CFGKEY_RET_TYPE, rets));
 
 		addDialogComponent(new DialogComponentString(
 				(SettingsModelString) BoundingBoxNodeModel.settingsModels

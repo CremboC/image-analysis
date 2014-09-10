@@ -24,6 +24,7 @@ import org.knime.knip.base.data.img.ImgPlusCell;
 import uk.ac.sanger.mig.analysis.GenericNodeModel;
 import uk.ac.sanger.mig.analysis.nodetools.OutputHelper;
 import uk.ac.sanger.mig.analysis.nodetools.Utils;
+import uk.ac.sanger.mig.analysis.nodetools.enums.ReturnType;
 import uk.ac.sanger.mig.boundingbox.utils.BoundingBox;
 
 /**
@@ -58,8 +59,11 @@ public class BoundingBoxNodeModel<T extends RealType<T> & NativeType<T>>
 	static final String CFGKEY_IMAGE_COL = "Image Column";
 	static final String CFGKEY_ROW_THRESHOLD = "Row Threshold";
 	static final String CFGKEY_COL_THRESHOLD = "Column Threshold";
+	static final String CFGKEY_RET_TYPE = "Return Type";
 
 	private static final String DEFAULT_IMAGE_COL = "Image";
+
+	static final String[] RETURN_TYPES = ReturnType.names();
 
 	static final Map<String, SettingsModel> settingsModels;
 	static {
@@ -67,6 +71,9 @@ public class BoundingBoxNodeModel<T extends RealType<T> & NativeType<T>>
 
 		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
 				CFGKEY_IMAGE_COL, DEFAULT_IMAGE_COL));
+
+		settingsModels.put(CFGKEY_RET_TYPE, new SettingsModelString(
+				CFGKEY_RET_TYPE, "Original"));
 
 		settingsModels.put(CFGKEY_ROW_THRESHOLD, new SettingsModelString(
 				CFGKEY_ROW_THRESHOLD, "0,0"));
@@ -95,7 +102,13 @@ public class BoundingBoxNodeModel<T extends RealType<T> & NativeType<T>>
 		String rowThresholds = stringFromSetting(CFGKEY_ROW_THRESHOLD);
 		String colThresholds = stringFromSetting(CFGKEY_COL_THRESHOLD);
 
+		ReturnType retType = ReturnType
+				.whereName(stringFromSetting(CFGKEY_RET_TYPE));
+
 		OutputHelper out = new OutputHelper(COLUMNS, COLUMN_TYPES, exec);
+
+		BoundingBox<T> box = new BoundingBox<T>(Utils.split(rowThresholds),
+				Utils.split(colThresholds), retType);
 
 		Iterator<DataRow> iter = inData[INPORT_0].iterator();
 		while (iter.hasNext()) {
@@ -108,14 +121,11 @@ public class BoundingBoxNodeModel<T extends RealType<T> & NativeType<T>>
 			int centroidY = (int) Utils.doubleByIndex(row,
 					indices.get(CENTROID_COL_Y));
 
-			BoundingBox<T> box = new BoundingBox<T>(ip, centroidX, centroidY,
-					Utils.split(rowThresholds), Utils.split(colThresholds));
-
-			int[] boundaries = box.find();
+			int[] boundaries = box.find(ip, centroidX, centroidY);
 
 			out.open(row.getKey());
 
-			out.add(box.image());
+			out.add((retType == ReturnType.ORIG) ? ip : box.image());
 			out.add(boundaries);
 
 			out.close();

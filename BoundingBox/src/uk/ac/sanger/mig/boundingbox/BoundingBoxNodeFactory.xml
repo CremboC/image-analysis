@@ -18,7 +18,13 @@
 			The centroid can be calculated using the Image Features node provided in
 			the KNIP (Image Processing) package.
 		</intro>
-
+		
+		<option name="Return Type">
+			Return either the original, input image and the calculated boundary box, or,
+			return a modified image which contains the lines which represent the boundary box.
+			Usually this is helpful when debugging. In general, the original return type should be 
+			used as its more efficient.
+		</option>
 
 		<option name="Row Threshold">
 			Number of pixels in a row which will be considered to be the boundary. Can
@@ -27,6 +33,7 @@
 			numbers, e.g. '460,560' meaning '460' will be used
 			for the upper boundary and '560' for the lower one.
 		</option>
+		
 		<option name="Column Threshold">
 			Number of pixels in a column which will be considered to be the boundary.
 			Same as row threshold, can provide a single

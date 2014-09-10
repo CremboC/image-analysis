@@ -115,8 +115,14 @@ public class TrendLineNodeModel extends GenericNodeModel {
 			
 			out.add((retType == ReturnType.ORIG) ? ip : fitter.image());
 			out.add(coefs);
-			out.add(fitting.toString());
-
+			
+			// special case for poly trend, need to store the degree
+			if (fitting == Fitting.POLY) {
+				out.add(fitting.toString() + ":" + degree);
+			} else {
+				out.add(fitting.toString());
+			}
+		
 			out.close();
 		}
 

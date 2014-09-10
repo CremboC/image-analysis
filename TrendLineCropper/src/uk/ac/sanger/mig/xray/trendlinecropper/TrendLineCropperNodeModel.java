@@ -50,12 +50,14 @@ public class TrendLineCropperNodeModel<T extends RealType<T> & NativeType<T>> ex
 	static final String CFGKEY_RIGHT_MARGIN = "Right Margin";
 	
 	static final String COEF_COL = "Coeficients";
+	static final String TREND_COL = "Trend Type";
 
 	// example value: the models count variable filled from the dialog
 	// and used in the models execution method. The default components of the
 	// dialog work with "SettingsModels".
 
 	static final Map<String, SettingsModel> settingsModels;
+
 	static {
 		settingsModels = new HashMap<String, SettingsModel>();
 
@@ -90,8 +92,7 @@ public class TrendLineCropperNodeModel<T extends RealType<T> & NativeType<T>> ex
     protected BufferedDataTable[] execute(final BufferedDataTable[] inData,
             final ExecutionContext exec) throws Exception {
     	
-		indices = Utils.indices(inData[INPORT_0]
-				.getDataTableSpec());
+		indices = Utils.indices(inData[INPORT_0].getDataTableSpec());
 
 		OutputHelper out = new OutputHelper(COLUMN_NAMES, COLUMN_TYPES, exec);
 		
@@ -109,14 +110,14 @@ public class TrendLineCropperNodeModel<T extends RealType<T> & NativeType<T>> ex
 
 			// get the image according to the setting
 			ImgPlus<T> ip = (ImgPlus<T>) imageBySetting(row, CFGKEY_IMAGE_COL);
-			String coefs = stringFromRow(row, COEF_COL); 
+			String coefs = stringFromRow(row, COEF_COL);
+			String trend = stringFromRow(row, TREND_COL);
 
 			out.open(row.getKey());
 
 			// crop out the required part and add it to the output table
-			out.add(cropper.process(ip, coefs));
+			out.add(cropper.process(ip, coefs, trend));
 			
-
 			out.close();
 		}
 

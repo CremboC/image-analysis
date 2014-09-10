@@ -15,7 +15,7 @@ import uk.ac.sanger.mig.analysis.maths.trendline.OLSTrendLine;
 import uk.ac.sanger.mig.analysis.maths.trendline.PolyTrendLine;
 import uk.ac.sanger.mig.analysis.maths.trendline.PowerTrendLine;
 import uk.ac.sanger.mig.analysis.nodetools.Image;
-import uk.ac.sanger.mig.xray.trendline.TrendLineNodeModel.ReturnType;
+import uk.ac.sanger.mig.analysis.nodetools.enums.ReturnType;
 
 /**
  * Contains all logic to calculate the trending line (actually a wrapper for an

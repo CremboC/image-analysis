@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: TrendLineCropper-Node extension for KNIME Workbench
+Bundle-SymbolicName: uk.ac.sanger.mig.xray.trendlinecropper; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-ClassPath: trendlinecropper.jar
+Bundle-Activator: uk.ac.sanger.mig.xray.trendlinecropper.TrendLineCropperNodePlugin
+Bundle-Vendor: Wellcome Trust Sanger Institute
+Require-Bundle: org.eclipse.core.runtime,
+ org.knime.workbench.core,
+ org.knime.workbench.repository,
+ org.knime.base,
+ org.knime.knip.base;bundle-version="1.2.1",
+ org.knime.knip.core;bundle-version="1.2.1",
+ uk.ac.sanger.mig.analysis;bundle-version="1.0.0",
+ org.apache.commons.math3;bundle-version="3.2.0"
+Bundle-ActivationPolicy: lazy
+Export-Package: uk.ac.sanger.mig.xray.trendlinecropper
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+

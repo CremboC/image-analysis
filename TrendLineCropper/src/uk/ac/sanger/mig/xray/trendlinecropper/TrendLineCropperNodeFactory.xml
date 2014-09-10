@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knimeNode icon="./default.png" type="Manipulator"
+	xmlns="http://knime.org/node/v2.8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://knime.org/node/v2.10 http://knime.org/node/v2.10.xsd">
+	<name>Trend Line Cropper</name>
+
+	<shortDescription>
+		Crops out a region following the trendling. Use the left and right margin
+		to specify how many pixels left and right of the trendline will be
+		removed. Due to the nature of trend lines, parameters for starting row
+		and ending row are also provided.
+	</shortDescription>
+
+	<fullDescription>
+		<intro>
+			Crops out a region following the trendling. Use the left and right margin
+			to specify how many pixels left and right of the trendline will be
+			removed. Due to the nature of trend lines, parameters for starting row
+			and ending row are also provided.
+		</intro>
+
+
+		<option name="short name of first option (like in the dialog)">description of first option</option>
+		<option name="short name of second option (like in the dialog)">description of second option</option>
+	</fullDescription>
+
+	<ports>
+		<inPort index="0" name="Images with coefs">
+			Description of first input port...
+		</inPort>
+
+		<outPort index="0" name="Images with cropped out regions">
+			Description of first output port...
+		</outPort>
+
+	</ports>
+</knimeNode>

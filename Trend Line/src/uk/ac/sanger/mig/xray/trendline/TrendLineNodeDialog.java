@@ -35,13 +35,20 @@ public class TrendLineNodeDialog extends DefaultNodeSettingsPane {
 						.get(TrendLineNodeModel.CFGKEY_IMAGE_COL),
 				TrendLineNodeModel.CFGKEY_IMAGE_COL, 0,
 				new ImgPlusColumnFilter()));
+		
+		Collection<String> rets = Arrays.asList(TrendLineNodeModel.RETURN_TYPES);
 
-		Collection<String> c = Arrays.asList(TrendLineNodeModel.FITTING_TYPES);
+		addDialogComponent(new DialogComponentStringSelection(
+				(SettingsModelString) TrendLineNodeModel.settingsModels
+						.get(TrendLineNodeModel.CFGKEY_RET_TYPE),
+				TrendLineNodeModel.CFGKEY_RET_TYPE, rets));
+
+		Collection<String> fits = Arrays.asList(TrendLineNodeModel.FITTING_TYPES);
 
 		addDialogComponent(new DialogComponentStringSelection(
 				(SettingsModelString) TrendLineNodeModel.settingsModels
 						.get(TrendLineNodeModel.CFGKEY_FIT_TYPE),
-				TrendLineNodeModel.CFGKEY_FIT_TYPE, c));
+				TrendLineNodeModel.CFGKEY_FIT_TYPE, fits));
 		
 		addDialogComponent(new DialogComponentNumber(
 				(SettingsModelInteger) TrendLineNodeModel.settingsModels

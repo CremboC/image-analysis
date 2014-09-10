@@ -26,6 +26,8 @@ import uk.ac.sanger.mig.analysis.nodetools.OutputHelper;
 import uk.ac.sanger.mig.analysis.nodetools.Utils;
 import uk.ac.sanger.mig.xray.trendline.utils.Fitter;
 
+import com.sun.istack.internal.Nullable;
+
 /**
  * This is the model implementation of TrendLine. Takes an image and using its
  * bright spots finds finds the trend line. nAccuracy may be adjusted using the
@@ -49,8 +51,10 @@ public class TrendLineNodeModel extends GenericNodeModel {
 	static final String CFGKEY_IMAGE_COL = "Image Column";
 	static final String CFGKEY_FIT_TYPE = "Fitting Type";
 	static final String CFGKEY_POLY_DEG = "Poly Degree";
+	static final String CFGKEY_RET_TYPE = "Return Type";	
 
 	static final String[] FITTING_TYPES = Fitting.names();
+	static final String[] RETURN_TYPES = ReturnType.names();
 
 	// example value: the models count variable filled from the dialog
 	// and used in the models execution method. The default components of the
@@ -68,6 +72,9 @@ public class TrendLineNodeModel extends GenericNodeModel {
 
 		settingsModels.put(CFGKEY_FIT_TYPE, new SettingsModelString(
 				CFGKEY_FIT_TYPE, Fitting.EXP.toString()));
+		
+		settingsModels.put(CFGKEY_RET_TYPE, new SettingsModelString(
+				CFGKEY_RET_TYPE, "Original"));
 	}
 
 	/**
@@ -91,6 +98,7 @@ public class TrendLineNodeModel extends GenericNodeModel {
 		Iterator<DataRow> iter = inData[INPORT_0].iterator();
 
 		Fitting fitting = Fitting.whereName(stringFromSetting(CFGKEY_FIT_TYPE));
+		ReturnType retType = ReturnType.whereName(stringFromSetting(CFGKEY_RET_TYPE));
 
 		int degree = intFromSetting(CFGKEY_POLY_DEG);
 		Fitter fitter = new Fitter(fitting, degree);
@@ -105,8 +113,8 @@ public class TrendLineNodeModel extends GenericNodeModel {
 			out.open(row.getKey());
 
 			String coefs = fitter.fit(ip);
-
-			out.add(fitter.image());
+			
+			out.add((retType == ReturnType.ORIG) ? ip : fitter.image());
 			out.add(coefs);
 			out.add(fitting.toString());
 
@@ -126,6 +134,51 @@ public class TrendLineNodeModel extends GenericNodeModel {
 
 		// TODO: generated method stub
 		return new DataTableSpec[] { null };
+	}
+	
+	private enum ReturnType {
+		ORIG("Original"),
+		LINED("Lined");
+		
+		private String name;
+		
+		private ReturnType(String name) {
+			this.name = name;
+		}
+		
+		@Override
+		public String toString() {
+			return name;
+		}
+		
+		/**
+		 * Finds enum which has names as provided
+		 * @param name name to look for, <b>null</b> if not found
+		 */
+		@Nullable
+		public static final ReturnType whereName(String name) {
+			
+			for (int i = 0; i < values().length; i++) {
+				if (values()[i].toString().equals(name)) {
+					return values()[i];
+				}
+			}
+			
+			return null;
+		}
+		
+		/**
+		 * Returns names of all enums
+		 */
+		public static final String[] names() {
+			String[] names = new String[values().length];
+			
+			for (int i = 0; i < values().length; i++) {
+				names[i] = values()[i].toString();
+			}
+			
+			return names;
+		}
 	}
 
 }

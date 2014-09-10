@@ -132,6 +132,12 @@ public abstract class GenericNodeModel extends NodeModel {
     	
     	return ((SettingsModelString) setting).getStringValue();
     }
+    
+    protected String stringFromRow(DataRow row, String columnName) {
+    	int index = indices.get(columnName);
+    	
+    	return Utils.stringByIndex(row, index);
+    }
 
 	/**
 	 * {@inheritDoc}

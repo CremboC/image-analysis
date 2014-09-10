@@ -1,4 +1,4 @@
-package uk.ac.sanger.mig.xray.trendline.utils;
+package uk.ac.sanger.mig.analysis.maths.trendline;
 
 import com.sun.istack.internal.Nullable;
 

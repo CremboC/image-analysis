@@ -1,4 +1,4 @@
-package uk.ac.sanger.mig.xray.trendline.utils.maths;
+package uk.ac.sanger.mig.analysis.maths.trendline;
 
 public class ExpTrendLine extends OLSTrendLine {
     @Override

@@ -11,6 +11,7 @@ import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
 import org.knime.core.data.def.DoubleCell;
 import org.knime.core.data.def.IntCell;
+import org.knime.core.data.def.StringCell;
 import org.knime.core.node.defaultnodesettings.SettingsModel;
 import org.knime.core.node.defaultnodesettings.SettingsModelInteger;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
@@ -79,6 +80,19 @@ public class Utils {
 	public static int intByIndex(DataRow row, Integer index) {
 		IntCell c = (IntCell) row.getCell(index);
 		return c.getIntValue();
+	}
+	
+	/**
+	 * Gets a string from the provided row by column index.
+	 * Works only if cell is a StringCell
+	 * 
+	 * @param row get data from this row
+	 * @param index column index
+	 * @return
+	 */
+	public static String stringByIndex(DataRow row, int index) {
+		StringCell c = (StringCell) row.getCell(index);
+		return c.getStringValue();
 	}
 
 	/**

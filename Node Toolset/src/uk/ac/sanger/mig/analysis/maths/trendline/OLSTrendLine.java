@@ -1,4 +1,4 @@
-package uk.ac.sanger.mig.xray.trendline.utils.maths;
+package uk.ac.sanger.mig.analysis.maths.trendline;
 
 import java.util.Arrays;
 
@@ -51,5 +51,9 @@ public abstract class OLSTrendLine implements TrendLine {
     
     public RealMatrix coef() {
     	return coef;
+    }
+    
+    public void setCoef(RealMatrix coef) {
+    	this.coef = coef;
     }
 }

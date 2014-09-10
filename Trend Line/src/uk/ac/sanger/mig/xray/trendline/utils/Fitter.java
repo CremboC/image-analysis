@@ -8,12 +8,13 @@ import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.util.Pair;
 
+import uk.ac.sanger.mig.analysis.maths.trendline.ExpTrendLine;
+import uk.ac.sanger.mig.analysis.maths.trendline.Fitting;
+import uk.ac.sanger.mig.analysis.maths.trendline.LogTrendLine;
+import uk.ac.sanger.mig.analysis.maths.trendline.OLSTrendLine;
+import uk.ac.sanger.mig.analysis.maths.trendline.PolyTrendLine;
+import uk.ac.sanger.mig.analysis.maths.trendline.PowerTrendLine;
 import uk.ac.sanger.mig.analysis.nodetools.Image;
-import uk.ac.sanger.mig.xray.trendline.utils.maths.ExpTrendLine;
-import uk.ac.sanger.mig.xray.trendline.utils.maths.LogTrendLine;
-import uk.ac.sanger.mig.xray.trendline.utils.maths.OLSTrendLine;
-import uk.ac.sanger.mig.xray.trendline.utils.maths.PolyTrendLine;
-import uk.ac.sanger.mig.xray.trendline.utils.maths.PowerTrendLine;
 
 /**
  * Contains all logic to calculate the trending line (actually a wrapper for an
@@ -51,31 +52,54 @@ public class Fitter {
 	 * 
 	 * @param image
 	 */
-	public RealMatrix fit(ImgPlus<BitType> image) {
+	public String fit(ImgPlus<BitType> image) {
 		this.image = image.copy();
 
 		Pair<double[], double[]> points = points();
 
 		firstBrightPixel = new Vector2D((int) points.getFirst()[0],
 				(int) points.getSecond()[0]);
+		
+		RealMatrix matrix = null;
 
 		switch (fitting) {
 		case EXP:
-			return exp(points);
+			matrix = exp(points);
+			break;
 
 		case LOG:
-			return log(points);
+			matrix = log(points);
+			break;
 
 		case POLY:
-			return poly(points, degree);
+			matrix = poly(points, degree);
+			break;
 
 		case POWER:
-			return power(points);
+			matrix = power(points);
+			break;
 
 		default:
 			throw new IllegalArgumentException(
 					"Fitting is not defined. Something went terribly wrong.");
 		}
+		
+		return matrixToString(matrix);
+	}
+
+	/** Converts the matrix provided trend line calculator into a string */
+	private String matrixToString(RealMatrix matrix) {
+		double[][] data = matrix.getData();
+		
+		String res = "";
+		
+		for (int i = 0; i < data.length; i++) {
+			for (int j = 0; j < data[i].length; j++) {
+				res += data[i][j] + ",";
+			}
+		}
+		
+		return res;
 	}
 
 	/**

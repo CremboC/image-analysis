@@ -148,6 +148,17 @@ public class OutputHelper {
 
 		cellsToAdd.add(new DoubleCell(dbl));
 	}
+	
+	/**
+	 * Adds a single string to the row
+	 * 
+	 * @param str
+	 */
+	public void add(String str) {
+		check();
+		
+		cellsToAdd.add(new StringCell(str));
+	}
 
 	/** Checks if the the row has been opened */
 	private void check() {

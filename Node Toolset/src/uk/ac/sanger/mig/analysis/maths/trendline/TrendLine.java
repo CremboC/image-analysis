@@ -1,4 +1,4 @@
-package uk.ac.sanger.mig.xray.trendline.utils.maths;
+package uk.ac.sanger.mig.analysis.maths.trendline;
 
 /**
  * http://stackoverflow.com/questions/17592139/trend-lines-regression-curve-fitting-java-library

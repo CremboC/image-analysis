@@ -10,6 +10,7 @@ import net.imglib2.type.logic.BitType;
 import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
 import org.knime.core.data.DataType;
+import org.knime.core.data.def.StringCell;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.ExecutionContext;
 import org.knime.core.node.InvalidSettingsException;
@@ -20,10 +21,10 @@ import org.knime.core.node.defaultnodesettings.SettingsModelString;
 import org.knime.knip.base.data.img.ImgPlusCell;
 
 import uk.ac.sanger.mig.analysis.GenericNodeModel;
+import uk.ac.sanger.mig.analysis.maths.trendline.Fitting;
 import uk.ac.sanger.mig.analysis.nodetools.OutputHelper;
 import uk.ac.sanger.mig.analysis.nodetools.Utils;
 import uk.ac.sanger.mig.xray.trendline.utils.Fitter;
-import uk.ac.sanger.mig.xray.trendline.utils.Fitting;
 
 /**
  * This is the model implementation of TrendLine. Takes an image and using its
@@ -35,10 +36,10 @@ import uk.ac.sanger.mig.xray.trendline.utils.Fitting;
 public class TrendLineNodeModel extends GenericNodeModel {
 
 	/** Columns in the schema */
-	private final static String[] COLUMN_NAMES = { "Image" };
+	private final static String[] COLUMN_NAMES = { "Image", "Coeficients", "Trend Type" };
 
 	/** Column types of the schema */
-	private final static DataType[] COLUMN_TYPES = { ImgPlusCell.TYPE };
+	private final static DataType[] COLUMN_TYPES = { ImgPlusCell.TYPE, StringCell.TYPE, StringCell.TYPE };
 
 	/**
 	 * the settings key which is used to retrieve and store the settings (from
@@ -103,9 +104,11 @@ public class TrendLineNodeModel extends GenericNodeModel {
 
 			out.open(row.getKey());
 
-			fitter.fit(ip);
+			String coefs = fitter.fit(ip);
 
 			out.add(fitter.image());
+			out.add(coefs);
+			out.add(fitting.toString());
 
 			out.close();
 		}

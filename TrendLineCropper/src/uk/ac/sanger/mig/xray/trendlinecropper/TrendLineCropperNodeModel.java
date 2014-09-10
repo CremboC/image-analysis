@@ -31,7 +31,7 @@ import uk.ac.sanger.mig.xray.trendlinecropper.utils.TrendCropper;
  * @author Wellcome Trust Sanger Institute
  */
 public class TrendLineCropperNodeModel<T extends RealType<T> & NativeType<T>> extends GenericNodeModel {
-	
+
 	/** Columns in the schema */
 	private final static String[] COLUMN_NAMES = { "Image" };
 
@@ -48,7 +48,7 @@ public class TrendLineCropperNodeModel<T extends RealType<T> & NativeType<T>> ex
 	static final String CFGKEY_END_ROW = "End at Row";
 	static final String CFGKEY_LEFT_MARGIN = "Left Margin";
 	static final String CFGKEY_RIGHT_MARGIN = "Right Margin";
-	
+
 	static final String COEF_COL = "Coeficients";
 	static final String TREND_COL = "Trend Type";
 
@@ -76,7 +76,7 @@ public class TrendLineCropperNodeModel<T extends RealType<T> & NativeType<T>> ex
 		settingsModels.put(CFGKEY_RIGHT_MARGIN, new SettingsModelInteger(
 				CFGKEY_RIGHT_MARGIN, 1));
 	}
-    
+
     /**
      * Constructor for the node model.
      */
@@ -91,33 +91,33 @@ public class TrendLineCropperNodeModel<T extends RealType<T> & NativeType<T>> ex
 	@Override
     protected BufferedDataTable[] execute(final BufferedDataTable[] inData,
             final ExecutionContext exec) throws Exception {
-    	
+
 		indices = Utils.indices(inData[INPORT_0].getDataTableSpec());
 
-		OutputHelper out = new OutputHelper(COLUMN_NAMES, COLUMN_TYPES, exec);
-		
-		int leftMargin = intFromSetting(CFGKEY_LEFT_MARGIN);
-		int rightMargin = intFromSetting(CFGKEY_RIGHT_MARGIN);
-		
-		int startRow = intFromSetting(CFGKEY_START_ROW);
-		int endRow = intFromSetting(CFGKEY_END_ROW);
-		
-		TrendCropper<T> cropper = new TrendCropper<T>(leftMargin, rightMargin, startRow, endRow);
+		final OutputHelper out = new OutputHelper(COLUMN_NAMES, COLUMN_TYPES, exec);
 
-		Iterator<DataRow> iter = inData[INPORT_0].iterator();
+		final int leftMargin = intFromSetting(CFGKEY_LEFT_MARGIN);
+		final int rightMargin = intFromSetting(CFGKEY_RIGHT_MARGIN);
+
+		final int startRow = intFromSetting(CFGKEY_START_ROW);
+		final int endRow = intFromSetting(CFGKEY_END_ROW);
+
+		final TrendCropper<T> cropper = new TrendCropper<T>(leftMargin, rightMargin, startRow, endRow);
+
+		final Iterator<DataRow> iter = inData[INPORT_0].iterator();
 		while (iter.hasNext()) {
-			DataRow row = iter.next();
+			final DataRow row = iter.next();
 
 			// get the image according to the setting
-			ImgPlus<T> ip = (ImgPlus<T>) imageBySetting(row, CFGKEY_IMAGE_COL);
-			String coefs = stringFromRow(row, COEF_COL);
-			String trend = stringFromRow(row, TREND_COL);
+			final ImgPlus<T> ip = (ImgPlus<T>) imageBySetting(row, CFGKEY_IMAGE_COL);
+			final String coefs = stringFromRow(row, COEF_COL);
+			final String trend = stringFromRow(row, TREND_COL);
 
 			out.open(row.getKey());
 
 			// crop out the required part and add it to the output table
 			out.add(cropper.process(ip, coefs, trend));
-			
+
 			out.close();
 		}
 

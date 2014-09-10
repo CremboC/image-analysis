@@ -20,17 +20,31 @@
 		</intro>
 
 
-		<option name="short name of first option (like in the dialog)">description of first option</option>
-		<option name="short name of second option (like in the dialog)">description of second option</option>
+		<option name="Start Row">
+			Which row to start cropping pixels from
+		</option>
+		
+		<option name="End Row">
+			Which row to finish cropping pixels at. -1 is the default, meaning it will crop to the
+			end of each image
+		</option>
+		
+		<option name="Left Margin">
+			How many pixels left of the trend line to crop out
+		</option>
+		
+		<option name="Right Margin">
+			How many pixels right of the trend line to crop out
+		</option>
 	</fullDescription>
 
 	<ports>
 		<inPort index="0" name="Images with coefs">
-			Description of first input port...
+			Images (as formatted by the Trend Line node)
 		</inPort>
 
-		<outPort index="0" name="Images with cropped out regions">
-			Description of first output port...
+		<outPort index="0" name="Cropped Images">
+			Images (with cropped out spines)
 		</outPort>
 
 	</ports>

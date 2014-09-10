@@ -15,4 +15,5 @@ Require-Bundle: org.eclipse.core.runtime,
  uk.ac.sanger.mig.analysis;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: uk.ac.sanger.mig.aligner
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 

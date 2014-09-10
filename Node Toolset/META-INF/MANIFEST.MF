@@ -11,3 +11,4 @@ Bundle-Vendor: Wellcome Trust Sanger Institute
 Export-Package: uk.ac.sanger.mig.analysis,
  uk.ac.sanger.mig.analysis.nodetools,
  uk.ac.sanger.mig.analysis.nodetools.filters
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

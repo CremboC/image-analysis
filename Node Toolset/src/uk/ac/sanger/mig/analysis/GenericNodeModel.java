@@ -18,6 +18,7 @@ import org.knime.core.node.NodeModel;
 import org.knime.core.node.NodeSettingsRO;
 import org.knime.core.node.NodeSettingsWO;
 import org.knime.core.node.defaultnodesettings.SettingsModel;
+import org.knime.core.node.defaultnodesettings.SettingsModelBoolean;
 import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 import org.knime.core.node.defaultnodesettings.SettingsModelDouble;
 import org.knime.core.node.defaultnodesettings.SettingsModelInteger;
@@ -133,6 +134,23 @@ public abstract class GenericNodeModel extends NodeModel {
     	return ((SettingsModelString) setting).getStringValue();
     }
     
+    /**
+     * 
+     * @param cfgkeyCroptop
+     * @return
+     */
+	protected boolean boolFromSettings(String cfgKey) {
+    	SettingsModel setting = settingsModels.get(cfgKey);
+    	
+    	return ((SettingsModelBoolean) setting).getBooleanValue();
+	}
+    
+	/**
+	 * 
+	 * @param row
+	 * @param columnName
+	 * @return
+	 */
     protected String stringFromRow(DataRow row, String columnName) {
     	int index = indices.get(columnName);
     	

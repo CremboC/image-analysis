@@ -18,33 +18,47 @@ import uk.ac.sanger.mig.analysis.nodetools.Image;
 
 /**
  * Wraps the logic to crop the region around the trend line
- *
+ * 
  * @author Paulius pi1@sanger.ac.uk
  * @author MIG Team team110dev@sanger.ac.uk
- *
+ * 
  */
 public class TrendCropper<T extends RealType<T> & NativeType<T>> {
 
-	private final int leftMargin, rightMargin, startRow, endRow;
+	private final int leftMargin, rightMargin, startRow, endRow, topLeftMargin,
+			topRightMargin;
+
+	private final boolean cropTop;
 
 	/**
-	 *
-	 * @param leftMargin how far to the left to crop out pixels
-	 * @param rightMargin how far to the right to crop out pixels
-	 * @param startRow row to start cropping from
-	 * @param endRow last row to start cropping from. -1 is end of image
+	 * 
+	 * @param leftMargin
+	 *            how far to the left to crop out pixels
+	 * @param rightMargin
+	 *            how far to the right to crop out pixels
+	 * @param startRow
+	 *            row to start cropping from
+	 * @param endRow
+	 *            last row to start cropping from. -1 is end of image
+	 * @param topRightMargin
+	 * @param topLeftMargin
+	 * @param cropTop
 	 */
 	public TrendCropper(int leftMargin, int rightMargin, int startRow,
-			int endRow) {
+			int endRow, boolean cropTop, int topLeftMargin, int topRightMargin) {
 		this.leftMargin = leftMargin;
 		this.rightMargin = rightMargin;
 		this.startRow = startRow;
 		this.endRow = endRow;
+
+		this.topLeftMargin = topLeftMargin;
+		this.topRightMargin = topRightMargin;
+		this.cropTop = cropTop;
 	}
 
 	/**
 	 * Crop out a region of the image following the trend line.
-	 *
+	 * 
 	 * @param inImage
 	 *            Image that will be cropped. Original image is not modified
 	 * @param coefs
@@ -66,11 +80,15 @@ public class TrendCropper<T extends RealType<T> & NativeType<T>> {
 
 		// random access to traverse the image vertically
 		final RandomAccess<T> ra = image.randomAccess();
-		// random access to travel anywhere in the image to modify the pixel values
+		// random access to travel anywhere in the image to modify the pixel
+		// values
 		final RandomAccess<T> modRa = ra.copyRandomAccess();
 
 		ra.setPosition(startRow, Image.ROW);
 		ra.setPosition(0, Image.COL);
+
+		final int firstY = ra.getIntPosition(Image.ROW);
+		final int firstX = (int) trend.predict(firstY);
 
 		while (ra.getIntPosition(Image.ROW) != actualEndRow) {
 
@@ -109,15 +127,77 @@ public class TrendCropper<T extends RealType<T> & NativeType<T>> {
 			ra.fwd(Image.ROW);
 		}
 
+		if (cropTop)
+			cropTop(image, firstY, firstX);
+
 		return image;
 	}
 
 	/**
-	 * Converts the trend type specified in the table into a trend line object and sets
-	 * the provided ceofs
-	 *
-	 * @param trendType in form a string
-	 * @param coef in form of a matrix
+	 * 
+	 * @param image
+	 * @param firstX
+	 * @param firstY
+	 */
+	private void cropTop(ImgPlus<T> image, int lastRow, int column) {
+		final long cols = image.dimension(Image.COL);
+		final long rows = image.dimension(Image.ROW);
+		
+		// random access to traverse the image vertically
+		final RandomAccess<T> ra = image.randomAccess();
+		
+		// random access to travel anywhere in the image to modify the pixel
+		// values
+		final RandomAccess<T> modRa = ra.copyRandomAccess();
+		
+		ra.setPosition(0, Image.ROW);
+		ra.setPosition(0, Image.COL);
+		
+		while (ra.getIntPosition(Image.ROW) != lastRow) {
+			
+			final int y = ra.getIntPosition(Image.ROW);
+			
+			// set position to x and y
+			modRa.setPosition(column, Image.COL);
+			modRa.setPosition(y, Image.ROW);
+			
+			// delete pixels to the right of the trend line
+			while (modRa.getIntPosition(Image.COL) != (column + topRightMargin)) {
+				modRa.get().setReal(0);
+
+				// if the line goes very close to the right edge, it might try
+				// to write black pixels there, to avoid that just break, as
+				// we have reached the end
+				if ((modRa.getIntPosition(Image.COL) + 1) > cols)
+					break;
+
+				modRa.fwd(Image.COL);
+			}
+
+			// delete pixels to the left of the trend line
+			while (modRa.getIntPosition(Image.COL) != (column - topLeftMargin)) {
+				modRa.get().setReal(0);
+
+				// if the line goes very close to the left edge, it may go
+				// to negative coordinates. Break to avoid this.
+				if ((modRa.getIntPosition(Image.COL) - 1) < 0)
+					break;
+
+				modRa.bck(Image.COL);
+			}
+			
+			ra.fwd(Image.ROW);
+		}
+	}
+
+	/**
+	 * Converts the trend type specified in the table into a trend line object
+	 * and sets the provided ceofs
+	 * 
+	 * @param trendType
+	 *            in form a string
+	 * @param coef
+	 *            in form of a matrix
 	 * @return
 	 */
 	private OLSTrendLine getTrendType(String trendType, RealMatrix coef) {

@@ -1,8 +1,10 @@
 package uk.ac.sanger.mig.xray.trendlinecropper;
 
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
+import org.knime.core.node.defaultnodesettings.DialogComponentBoolean;
 import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
 import org.knime.core.node.defaultnodesettings.DialogComponentNumber;
+import org.knime.core.node.defaultnodesettings.SettingsModelBoolean;
 import org.knime.core.node.defaultnodesettings.SettingsModelInteger;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
@@ -54,5 +56,19 @@ public class TrendLineCropperNodeDialog extends DefaultNodeSettingsPane {
 						.get(TrendLineCropperNodeModel.CFGKEY_RIGHT_MARGIN),
 				TrendLineCropperNodeModel.CFGKEY_RIGHT_MARGIN, 1, 5));
 
+		addDialogComponent(new DialogComponentBoolean(
+				(SettingsModelBoolean) TrendLineCropperNodeModel.settingsModels
+						.get(TrendLineCropperNodeModel.CFGKEY_CROPTOP),
+				TrendLineCropperNodeModel.CFGKEY_CROPTOP));
+
+		addDialogComponent(new DialogComponentNumber(
+				(SettingsModelInteger) TrendLineCropperNodeModel.settingsModels
+						.get(TrendLineCropperNodeModel.CFGKEY_CT_LEFT_MARGIN),
+				TrendLineCropperNodeModel.CFGKEY_CT_LEFT_MARGIN, 1, 5));
+
+		addDialogComponent(new DialogComponentNumber(
+				(SettingsModelInteger) TrendLineCropperNodeModel.settingsModels
+						.get(TrendLineCropperNodeModel.CFGKEY_CT_RIGHT_MARGIN),
+				TrendLineCropperNodeModel.CFGKEY_CT_RIGHT_MARGIN, 1, 5));
 	}
 }

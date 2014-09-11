@@ -15,6 +15,7 @@ import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.ExecutionContext;
 import org.knime.core.node.InvalidSettingsException;
 import org.knime.core.node.defaultnodesettings.SettingsModel;
+import org.knime.core.node.defaultnodesettings.SettingsModelBoolean;
 import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 import org.knime.core.node.defaultnodesettings.SettingsModelInteger;
 import org.knime.knip.base.data.img.ImgPlusCell;
@@ -25,12 +26,15 @@ import uk.ac.sanger.mig.analysis.nodetools.Utils;
 import uk.ac.sanger.mig.xray.trendlinecropper.utils.TrendCropper;
 
 /**
- * This is the model implementation of TrendLineCropper.
- * Crops out a region following the trendling. Use the left and right margin to specify how many pixels left and right of the trendline will be removed. * n * nDue to the nature of trend lines, parameters for starting row and ending row are also provided.
+ * This is the model implementation of TrendLineCropper. Crops out a region
+ * following the trendling. Use the left and right margin to specify how many
+ * pixels left and right of the trendline will be removed. n nDue to the nature
+ * of trend lines, parameters for starting row and ending row are also provided.
  *
  * @author Wellcome Trust Sanger Institute
  */
-public class TrendLineCropperNodeModel<T extends RealType<T> & NativeType<T>> extends GenericNodeModel {
+public class TrendLineCropperNodeModel<T extends RealType<T> & NativeType<T>>
+		extends GenericNodeModel {
 
 	/** Columns in the schema */
 	private final static String[] COLUMN_NAMES = { "Image" };
@@ -49,6 +53,10 @@ public class TrendLineCropperNodeModel<T extends RealType<T> & NativeType<T>> ex
 	static final String CFGKEY_LEFT_MARGIN = "Left Margin";
 	static final String CFGKEY_RIGHT_MARGIN = "Right Margin";
 
+	static final String CFGKEY_CROPTOP = "Crop Top";
+	static final String CFGKEY_CT_LEFT_MARGIN = "Crop Top Left Margin";
+	static final String CFGKEY_CT_RIGHT_MARGIN = "Crop Top Right Margin";
+
 	static final String COEF_COL = "Coeficients";
 	static final String TREND_COL = "Trend Type";
 
@@ -59,7 +67,7 @@ public class TrendLineCropperNodeModel<T extends RealType<T> & NativeType<T>> ex
 	static final Map<String, SettingsModel> settingsModels;
 
 	static {
-		settingsModels = new HashMap<String, SettingsModel>();
+		settingsModels = new HashMap<>();
 
 		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
 				CFGKEY_IMAGE_COL, "Image"));
@@ -75,26 +83,37 @@ public class TrendLineCropperNodeModel<T extends RealType<T> & NativeType<T>> ex
 
 		settingsModels.put(CFGKEY_RIGHT_MARGIN, new SettingsModelInteger(
 				CFGKEY_RIGHT_MARGIN, 1));
+
+		settingsModels.put(CFGKEY_CROPTOP, new SettingsModelBoolean(
+				CFGKEY_CROPTOP, false));
+
+		settingsModels.put(CFGKEY_CT_LEFT_MARGIN, new SettingsModelInteger(
+				CFGKEY_CT_LEFT_MARGIN, 1));
+
+		settingsModels.put(CFGKEY_CT_RIGHT_MARGIN, new SettingsModelInteger(
+				CFGKEY_CT_RIGHT_MARGIN, 1));
+
 	}
 
-    /**
-     * Constructor for the node model.
-     */
-    protected TrendLineCropperNodeModel() {
-        super(1, 1, settingsModels);
-    }
+	/**
+	 * Constructor for the node model.
+	 */
+	protected TrendLineCropperNodeModel() {
+		super(1, 1, settingsModels);
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @SuppressWarnings("unchecked")
+	/**
+	 * {@inheritDoc}
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
-    protected BufferedDataTable[] execute(final BufferedDataTable[] inData,
-            final ExecutionContext exec) throws Exception {
+	protected BufferedDataTable[] execute(final BufferedDataTable[] inData,
+			final ExecutionContext exec) throws Exception {
 
 		indices = Utils.indices(inData[INPORT_0].getDataTableSpec());
 
-		final OutputHelper out = new OutputHelper(COLUMN_NAMES, COLUMN_TYPES, exec);
+		final OutputHelper out = new OutputHelper(COLUMN_NAMES, COLUMN_TYPES,
+				exec);
 
 		final int leftMargin = intFromSetting(CFGKEY_LEFT_MARGIN);
 		final int rightMargin = intFromSetting(CFGKEY_RIGHT_MARGIN);
@@ -102,14 +121,21 @@ public class TrendLineCropperNodeModel<T extends RealType<T> & NativeType<T>> ex
 		final int startRow = intFromSetting(CFGKEY_START_ROW);
 		final int endRow = intFromSetting(CFGKEY_END_ROW);
 
-		final TrendCropper<T> cropper = new TrendCropper<T>(leftMargin, rightMargin, startRow, endRow);
+		final int topLeftMargin = intFromSetting(CFGKEY_CT_LEFT_MARGIN);
+		final int topRightMargin = intFromSetting(CFGKEY_CT_RIGHT_MARGIN);
+		
+		final boolean cropTop = boolFromSettings(CFGKEY_CROPTOP);
+
+		final TrendCropper<T> cropper = new TrendCropper<T>(leftMargin,
+				rightMargin, startRow, endRow, cropTop, topLeftMargin, topRightMargin);
 
 		final Iterator<DataRow> iter = inData[INPORT_0].iterator();
 		while (iter.hasNext()) {
 			final DataRow row = iter.next();
 
 			// get the image according to the setting
-			final ImgPlus<T> ip = (ImgPlus<T>) imageBySetting(row, CFGKEY_IMAGE_COL);
+			final ImgPlus<T> ip = (ImgPlus<T>) imageBySetting(row,
+					CFGKEY_IMAGE_COL);
 			final String coefs = stringFromRow(row, COEF_COL);
 			final String trend = stringFromRow(row, TREND_COL);
 
@@ -123,17 +149,16 @@ public class TrendLineCropperNodeModel<T extends RealType<T> & NativeType<T>> ex
 
 		// return the output table on the first (0th) outport
 		return new BufferedDataTable[] { out.getOutputTable() };
-    }
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected DataTableSpec[] configure(final DataTableSpec[] inSpecs)
-            throws InvalidSettingsException {
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected DataTableSpec[] configure(final DataTableSpec[] inSpecs)
+			throws InvalidSettingsException {
 
-        // TODO: generated method stub
-        return new DataTableSpec[]{null};
-    }
+		// TODO: generated method stub
+		return new DataTableSpec[] { null };
+	}
 }
-

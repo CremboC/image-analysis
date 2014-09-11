@@ -82,25 +82,25 @@ public class TrendCropper<T extends RealType<T> & NativeType<T>> {
 			modRa.setPosition(y, Image.ROW);
 
 			// delete pixels to the right of the trend line
-			while (modRa.getIntPosition(Image.COL) != x + rightMargin) {
+			while (modRa.getIntPosition(Image.COL) != (x + rightMargin)) {
 				modRa.get().setReal(0);
 
 				// if the line goes very close to the right edge, it might try
 				// to write black pixels there, to avoid that just break, as
 				// we have reached the end
-				if (modRa.getIntPosition(Image.COL) + 1 > cols)
+				if ((modRa.getIntPosition(Image.COL) + 1) > cols)
 					break;
 
 				modRa.fwd(Image.COL);
 			}
 
 			// delete pixels to the left of the trend line
-			while (modRa.getIntPosition(Image.COL) != x - leftMargin) {
+			while (modRa.getIntPosition(Image.COL) != (x - leftMargin)) {
 				modRa.get().setReal(0);
 
 				// if the line goes very close to the left edge, it may go
 				// to negative coordinates. Break to avoid this.
-				if (modRa.getIntPosition(Image.COL) - 1 < 0)
+				if ((modRa.getIntPosition(Image.COL) - 1) < 0)
 					break;
 
 				modRa.bck(Image.COL);

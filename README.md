@@ -24,6 +24,13 @@ Given specific boundaries (upper, lower, left, right) crops out the region insid
 ### Interval Thresholder
 Thresholds an image using a given interval. All pixels outside the interval are assigned a given "background pixel value".
 
+### Trend Line
+Calculates the trend line in respect to the bright pixels on an image. 4 methods are availble - logarithmic, power, polynomial and exponential.
+
+### Trend Line Cropper
+Using the trend line previously calculates by the Trend Line node, crops out a specific region with a user-defined left and right margin from the actual trend line.
+Also gives the possibility to choose from which row to start cropping as well as finishing row.
+
 ## Manual: Creating new nodes in this package
 
 1. Get KNIME SDK (http://www.knime.org/downloads/overview)

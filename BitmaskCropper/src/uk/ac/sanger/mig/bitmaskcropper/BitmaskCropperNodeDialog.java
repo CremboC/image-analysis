@@ -1,11 +1,10 @@
 package uk.ac.sanger.mig.bitmaskcropper;
 
-import org.knime.core.data.DataColumnSpec;
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
 import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
-import org.knime.core.node.util.ColumnFilter;
-import org.knime.knip.base.data.img.ImgPlusCell;
+
+import uk.ac.sanger.mig.analysis.nodetools.filters.ImgPlusColumnFilter;
 
 /**
  * <code>NodeDialog</code> for the "BitmaskCropper" Node. Takes a bitmask
@@ -16,7 +15,8 @@ import org.knime.knip.base.data.img.ImgPlusCell;
  * complex dialog please derive directly from
  * {@link org.knime.core.node.NodeDialogPane}.
  * 
- * @author Paulius @ WTSI
+ * @author Paulius pi1@sanger.ac.uk
+ * @author MIG Team team110dev@sanger.ac.uk
  */
 public class BitmaskCropperNodeDialog extends DefaultNodeSettingsPane {
 
@@ -30,34 +30,12 @@ public class BitmaskCropperNodeDialog extends DefaultNodeSettingsPane {
 		addDialogComponent(new DialogComponentColumnNameSelection(
 				(SettingsModelString) BitmaskCropperNodeModel.settingsModels
 						.get(BitmaskCropperNodeModel.CFGKEY_IMAGE_COL),
-				BitmaskCropperNodeModel.CFGKEY_IMAGE_COL, 0, new ColumnFilter() {
-					
-					@Override
-					public boolean includeColumn(DataColumnSpec colSpec) {
-						return colSpec.getType() == ImgPlusCell.TYPE ? true : false;
-					}
-					
-					@Override
-					public String allFilteredMsg() {
-						return "Missing Image Column";
-					}
-				}));
+				BitmaskCropperNodeModel.CFGKEY_IMAGE_COL, 0, new ImgPlusColumnFilter()));
 		
 		addDialogComponent(new DialogComponentColumnNameSelection(
 				(SettingsModelString) BitmaskCropperNodeModel.settingsModels
 				.get(BitmaskCropperNodeModel.CFGKEY_BITMASK_COL),
-				BitmaskCropperNodeModel.CFGKEY_BITMASK_COL, 0, new ColumnFilter() {
-					
-					@Override
-					public boolean includeColumn(DataColumnSpec colSpec) {
-						return colSpec.getType() == ImgPlusCell.TYPE ? true : false;
-					}
-					
-					@Override
-					public String allFilteredMsg() {
-						return "Missing Bitmask Column";
-					}
-				}));
+				BitmaskCropperNodeModel.CFGKEY_BITMASK_COL, 0, new ImgPlusColumnFilter()));
 
 	}
 }

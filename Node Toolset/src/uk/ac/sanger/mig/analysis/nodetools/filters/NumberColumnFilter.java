@@ -10,7 +10,13 @@ import org.knime.core.node.util.ColumnFilter;
 
 public final class NumberColumnFilter implements ColumnFilter {
 	
-	private DataType[] allowed = { IntCell.TYPE, DoubleCell.TYPE };
+	private final static DataType[] allowed = { IntCell.TYPE, DoubleCell.TYPE };
+	
+	private final String msg;
+	
+	public NumberColumnFilter(String message) {
+		this.msg = message;
+	}
 
 	@Override
 	public boolean includeColumn(DataColumnSpec colSpec) {
@@ -20,7 +26,7 @@ public final class NumberColumnFilter implements ColumnFilter {
 
 	@Override
 	public String allFilteredMsg() {
-		return "No Boundary Columns?";
+		return msg;
 	}
 
 }

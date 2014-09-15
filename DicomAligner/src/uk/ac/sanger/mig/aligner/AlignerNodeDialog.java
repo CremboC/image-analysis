@@ -35,12 +35,12 @@ public class AlignerNodeDialog extends DefaultNodeSettingsPane {
 		addDialogComponent(new DialogComponentColumnNameSelection(
 				(SettingsModelString) AlignerNodeModel.settingsModels
 						.get(AlignerNodeModel.CFGKEY_CENTROID_Y),
-				AlignerNodeModel.CFGKEY_CENTROID_Y, 0, new NumberColumnFilter()));
+				AlignerNodeModel.CFGKEY_CENTROID_Y, 0, new NumberColumnFilter("No Centroid Y Column?")));
 		
 		addDialogComponent(new DialogComponentColumnNameSelection(
 				(SettingsModelString) AlignerNodeModel.settingsModels
 						.get(AlignerNodeModel.CFGKEY_CENTROID_X),
-				AlignerNodeModel.CFGKEY_CENTROID_X, 0, new NumberColumnFilter()));
+				AlignerNodeModel.CFGKEY_CENTROID_X, 0, new NumberColumnFilter("No Centroid X Column?")));
 
 	}
 }

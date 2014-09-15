@@ -56,11 +56,22 @@ public abstract class GenericNodeModel extends NodeModel {
 		this.settingsModels = settingsModels;
 	}
 	
+    /**
+     * {@inheritDoc}
+     */
 	protected abstract BufferedDataTable[] execute(final BufferedDataTable[] inData,
 			final ExecutionContext exec) throws Exception;
 	
-	protected abstract DataTableSpec[] configure(final DataTableSpec[] inSpecs)
-			throws InvalidSettingsException;
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected DataTableSpec[] configure(final DataTableSpec[] inSpecs)
+            throws InvalidSettingsException {
+
+        // TODO: generated method stub
+        return new DataTableSpec[]{null};
+    }
 	
 	/**
 	 * Given a row, fetches an image from the correct column based on settings key

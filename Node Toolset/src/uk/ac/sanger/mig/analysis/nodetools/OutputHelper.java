@@ -159,6 +159,15 @@ public class OutputHelper {
 		
 		cellsToAdd.add(new StringCell(str));
 	}
+	
+	/**
+	 * Stub to avoid errors. Adds a null.
+	 */
+	public void add() {
+		check();
+		
+		cellsToAdd.add(null);
+	}
 
 	/** Checks if the the row has been opened */
 	private void check() {

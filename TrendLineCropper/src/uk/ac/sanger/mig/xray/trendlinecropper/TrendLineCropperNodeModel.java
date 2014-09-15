@@ -28,7 +28,7 @@ import uk.ac.sanger.mig.xray.trendlinecropper.utils.TrendCropper;
 /**
  * This is the model implementation of TrendLineCropper. Crops out a region
  * following the trendling. Use the left and right margin to specify how many
- * pixels left and right of the trendline will be removed. n nDue to the nature
+ * pixels left and right of the trendline will be removed. Due to the nature
  * of trend lines, parameters for starting row and ending row are also provided.
  *
  * @author Wellcome Trust Sanger Institute

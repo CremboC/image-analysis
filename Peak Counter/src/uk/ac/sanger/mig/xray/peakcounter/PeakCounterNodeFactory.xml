@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knimeNode icon="./default.png" type="Manipulator"
+	xmlns="http://knime.org/node/v2.8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://knime.org/node/v2.10 http://knime.org/node/v2.10.xsd">
+	<name>Peak Counter</name>
+
+	<shortDescription>
+		Scans through the image and using buckets counts number of peaks. When it
+		finds a white pixel, it creates a bucket. Continue on scanning, every
+		following white pixel is added to the same bucket. When a black pixel
+		is reached, the bucket is closed.
+	</shortDescription>
+
+	<fullDescription>
+		<intro>
+			Scans through the image and using buckets counts number of peaks. When it
+			finds a white pixel, it creates a bucket. Continue on scanning, every
+			following white pixel is added to the same bucket. When a black pixel
+			is reached, the bucket is closed.
+		</intro>
+
+
+		<option name="Image Column">
+			Which image column to utilise
+		</option>
+		<option name="Bucket Threshold">
+			description of second option
+		</option>
+
+	</fullDescription>
+
+	<ports>
+		<inPort index="0" name="Binary Images">
+			BitType Images 
+		</inPort>
+
+		<outPort index="0" name="Number of Peaks">
+			Number of Peaks found per image
+		</outPort>
+
+	</ports>
+
+</knimeNode>

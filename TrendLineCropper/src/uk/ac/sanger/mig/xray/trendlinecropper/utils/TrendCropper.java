@@ -29,6 +29,8 @@ public class TrendCropper<T extends RealType<T> & NativeType<T>> {
 			topRightMargin;
 
 	private final boolean cropTop;
+	
+	private final static int FORWARD = 0, BACKWARD = 1;
 
 	/**
 	 * 
@@ -100,19 +102,10 @@ public class TrendCropper<T extends RealType<T> & NativeType<T>> {
 			modRa.setPosition(y, Image.ROW);
 
 			// delete pixels to the right of the trend line
-			while (modRa.getIntPosition(Image.COL) != (x + rightMargin)) {
-				modRa.get().setReal(0);
-
-				// if the line goes very close to the right edge, it might try
-				// to write black pixels there, to avoid that just break, as
-				// we have reached the end
-				if ((modRa.getIntPosition(Image.COL) + 1) > cols)
-					break;
-
-				modRa.fwd(Image.COL);
-			}
+			setPixelsIn(modRa, Image.COL, (x + rightMargin), 0, FORWARD, (int) cols);
 
 			// delete pixels to the left of the trend line
+			setPixelsIn(modRa, Image.COL, (x - leftMargin), 0, BACKWARD, (int) cols);
 			while (modRa.getIntPosition(Image.COL) != (x - leftMargin)) {
 				modRa.get().setReal(0);
 
@@ -134,6 +127,8 @@ public class TrendCropper<T extends RealType<T> & NativeType<T>> {
 	}
 
 	/**
+	 * Crops the top of the spine using the first row of the trend line function.
+	 * Uses the user specified left and right margins.
 	 * 
 	 * @param image
 	 * @param firstX
@@ -141,7 +136,6 @@ public class TrendCropper<T extends RealType<T> & NativeType<T>> {
 	 */
 	private void cropTop(ImgPlus<T> image, int lastRow, int column) {
 		final long cols = image.dimension(Image.COL);
-		final long rows = image.dimension(Image.ROW);
 		
 		// random access to traverse the image vertically
 		final RandomAccess<T> ra = image.randomAccess();
@@ -162,32 +156,51 @@ public class TrendCropper<T extends RealType<T> & NativeType<T>> {
 			modRa.setPosition(y, Image.ROW);
 			
 			// delete pixels to the right of the trend line
-			while (modRa.getIntPosition(Image.COL) != (column + topRightMargin)) {
-				modRa.get().setReal(0);
-
-				// if the line goes very close to the right edge, it might try
-				// to write black pixels there, to avoid that just break, as
-				// we have reached the end
-				if ((modRa.getIntPosition(Image.COL) + 1) > cols)
-					break;
-
-				modRa.fwd(Image.COL);
-			}
-
+			setPixelsIn(modRa, Image.COL, (column + topLeftMargin), 0, FORWARD, (int) cols);
+			
 			// delete pixels to the left of the trend line
-			while (modRa.getIntPosition(Image.COL) != (column - topLeftMargin)) {
-				modRa.get().setReal(0);
-
-				// if the line goes very close to the left edge, it may go
-				// to negative coordinates. Break to avoid this.
-				if ((modRa.getIntPosition(Image.COL) - 1) < 0)
-					break;
-
-				modRa.bck(Image.COL);
-			}
+			setPixelsIn(modRa, Image.COL, (column - topLeftMargin), 0, BACKWARD, (int) cols);
 			
 			ra.fwd(Image.ROW);
 		}
+	}
+	
+	/**
+	 * Can set pixel values in a row or column, avoid "out of bounds" exceptions.
+	 * Used for deleting pixels on the side of the trend line.
+	 * 
+	 * @param ra to access the pixels
+	 * @param in Image.ROW or Image.COL usually
+	 * @param until will set pixels until this ra position condition is met
+	 * @param set what value to set the pixels
+	 * @param way go {@link #BACKWARD} or {@link #FORWARD}?
+	 * @param avoid last row/column, if reached, will break loop (protects from exceptions)
+	 */
+	private void setPixelsIn(RandomAccess<T> ra, int in, int until, int set, int way, int avoid) {
+
+		while (ra.getIntPosition(in) != until) {
+			ra.get().setReal(set);
+
+			if (way == FORWARD) {
+				// if the line goes very close to the right edge, it might try
+				// to write black pixels there, to avoid that just break, as
+				// we have reached the end
+				if ((ra.getIntPosition(in) + 1) > avoid)
+					break;
+			} else {
+				// if the line goes very close to the left edge, it may go
+				// to negative coordinates. Break to avoid this.
+				if ((ra.getIntPosition(in) - 1) < 0)
+					break;
+			}
+
+			if (way == FORWARD) {				
+				ra.fwd(in);
+			} else {
+				ra.bck(in);
+			}
+		}
+		
 	}
 
 	/**

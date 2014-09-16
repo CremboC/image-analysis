@@ -9,7 +9,7 @@ import uk.ac.sanger.mig.analysis.nodetools.Image;
  * 
  * @author Paulius pi1@sanger.ac.uk
  * @author MIG Team team110dev@sanger.ac.uk
- *
+ * 
  */
 public class PeakCounter {
 
@@ -47,6 +47,7 @@ public class PeakCounter {
 		int lastPixelValue = BLACK;
 		while (ra.getIntPosition(Image.ROW) != rows) {
 
+			// buckets per row
 			int rowBuckets = 0;
 
 			ra.setPosition(1, Image.COL);
@@ -54,6 +55,8 @@ public class PeakCounter {
 
 				final int currentPixelValue = ra.get().getInteger();
 
+				// if the current pixel is white and the previous is black, may
+				// potentially be a new bucket
 				if (currentPixelValue == WHITE && lastPixelValue == BLACK) {
 
 					if (checkSurround(ra, ra.getIntPosition(Image.COL)))
@@ -78,6 +81,7 @@ public class PeakCounter {
 
 	/**
 	 * Checks previous pixels according to the threshold
+	 * 
 	 * @param inRa
 	 * @param column
 	 * @return whether this the current pixel is a part of a new bucket

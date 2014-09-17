@@ -15,6 +15,9 @@ Calculates the bounding box using given thresholds
 ### DicomAligner
 Given an image and its centroid, calculates the angle from the object faces upwards.
 
+### Centraliser
+Given the centroid of a white blob, moves it to match the centre of the whole image
+
 ### Node Toolset
 Not a node, rather a toolset used throughout all of the provided nodes in this package. Simplifies creation of new nodes.
 

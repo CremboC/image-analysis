@@ -7,6 +7,7 @@ import net.imglib2.type.numeric.RealType;
 
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
+import org.knime.core.node.NodeLogger;
 
 import uk.ac.sanger.mig.analysis.maths.trendline.ExpTrendLine;
 import uk.ac.sanger.mig.analysis.maths.trendline.Fitting;
@@ -15,6 +16,7 @@ import uk.ac.sanger.mig.analysis.maths.trendline.OLSTrendLine;
 import uk.ac.sanger.mig.analysis.maths.trendline.PolyTrendLine;
 import uk.ac.sanger.mig.analysis.maths.trendline.PowerTrendLine;
 import uk.ac.sanger.mig.analysis.nodetools.Image;
+import uk.ac.sanger.mig.xray.trendlinecropper.TrendLineCropperNodeModel;
 
 /**
  * Wraps the logic to crop the region around the trend line
@@ -24,6 +26,10 @@ import uk.ac.sanger.mig.analysis.nodetools.Image;
  * 
  */
 public class TrendCropper<T extends RealType<T> & NativeType<T>> {
+	
+    // the logger instance
+    private static final NodeLogger logger = NodeLogger
+            .getLogger(TrendLineCropperNodeModel.class);
 
 	private final int leftMargin, rightMargin, startRow, endRow, topLeftMargin,
 			topRightMargin;
@@ -92,32 +98,28 @@ public class TrendCropper<T extends RealType<T> & NativeType<T>> {
 		final int firstY = ra.getIntPosition(Image.ROW);
 		final int firstX = (int) trend.predict(firstY);
 
-		while (ra.getIntPosition(Image.ROW) != actualEndRow) {
+		try {
+			while (ra.getIntPosition(Image.ROW) != actualEndRow) {
 
-			final int y = ra.getIntPosition(Image.ROW);
-			final int x = (int) trend.predict(y);
+				final int y = ra.getIntPosition(Image.ROW);
+				final int x = (int) trend.predict(y);
 
-			// set position to predicted x and y
-			modRa.setPosition(x, Image.COL);
-			modRa.setPosition(y, Image.ROW);
+				// set position to predicted x and y
+				modRa.setPosition(x, Image.COL);
+				modRa.setPosition(y, Image.ROW);
 
-			// delete pixels to the right of the trend line
-			setPixelsIn(modRa, Image.COL, (x + rightMargin), 0, FORWARD, (int) cols);
+				// delete pixels to the right of the trend line
+				setPixelsIn(modRa, Image.COL, (x + rightMargin), 0, FORWARD, (int) cols);
 
-			// delete pixels to the left of the trend line
-			setPixelsIn(modRa, Image.COL, (x - leftMargin), 0, BACKWARD, (int) cols);
-			while (modRa.getIntPosition(Image.COL) != (x - leftMargin)) {
-				modRa.get().setReal(0);
+				// delete pixels to the left of the trend line
+				setPixelsIn(modRa, Image.COL, (x - leftMargin), 0, BACKWARD, (int) cols);
 
-				// if the line goes very close to the left edge, it may go
-				// to negative coordinates. Break to avoid this.
-				if ((modRa.getIntPosition(Image.COL) - 1) < 0)
-					break;
-
-				modRa.bck(Image.COL);
-			}
-
-			ra.fwd(Image.ROW);
+				ra.fwd(Image.ROW);
+			}	
+		} catch (ArrayIndexOutOfBoundsException e) {
+			// shouldn't get here
+			logger.debug(e.getStackTrace());
+			logger.fatal("Critical error analysing one of the images.");
 		}
 
 		if (cropTop)

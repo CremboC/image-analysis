@@ -68,8 +68,6 @@ public abstract class GenericNodeModel extends NodeModel {
     @Override
     protected DataTableSpec[] configure(final DataTableSpec[] inSpecs)
             throws InvalidSettingsException {
-
-        // TODO: generated method stub
         return new DataTableSpec[]{null};
     }
 	

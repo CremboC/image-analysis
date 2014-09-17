@@ -16,6 +16,9 @@ import org.knime.core.node.ExecutionContext;
 import org.knime.core.node.InvalidSettingsException;
 import org.knime.core.node.defaultnodesettings.SettingsModel;
 import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
+import org.knime.core.node.defaultnodesettings.SettingsModelString;
+import org.knime.knip.base.data.img.ImgPlusValue;
+import org.knime.knip.base.node.NodeUtils;
 
 import uk.ac.sanger.mig.aligner.helpers.Aligner;
 import uk.ac.sanger.mig.aligner.helpers.Denominator;
@@ -52,7 +55,7 @@ public class AlignerNodeModel extends GenericNodeModel {
 	static final Map<String, SettingsModel> settingsModels;
 	static {
 		settingsModels = new HashMap<String, SettingsModel>();
-		
+
 		// Column name which stores the image
 		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
 				CFGKEY_IMAGE_COL, DEFAULT_IMAGE_COL));
@@ -81,21 +84,26 @@ public class AlignerNodeModel extends GenericNodeModel {
 
 		indices = Utils.indices(inData[INPORT_0].getDataTableSpec());
 
-		OutputHelper out = new OutputHelper(COLUMN_NAMES, COLUMN_TYPES, exec);
+		ensureImageExistance(indices, settingsModels.get(CFGKEY_IMAGE_COL),
+				inData[INPORT_0].getDataTableSpec());
+
+		final OutputHelper out = new OutputHelper(COLUMN_NAMES, COLUMN_TYPES,
+				exec);
 
 		// get data from the first port
-		Iterator<DataRow> iter = inData[INPORT_0].iterator();
+		final Iterator<DataRow> iter = inData[INPORT_0].iterator();
 
 		// have to ensure input image is of bit type for now
 		// get the image from the input, goes thru the rows and finds
 		// the image cell of each row
 		while (iter.hasNext()) {
-			DataRow row = iter.next();
+			final DataRow row = iter.next();
 
-			double centroidX = doubleBySetting(row, CFGKEY_CENTROID_X);
-			double centroidY = doubleBySetting(row, CFGKEY_CENTROID_Y);
+			final double centroidX = doubleBySetting(row, CFGKEY_CENTROID_X);
+			final double centroidY = doubleBySetting(row, CFGKEY_CENTROID_Y);
 
-			ImgPlus<BitType> ip = (ImgPlus<BitType>) imageBySetting(row, CFGKEY_IMAGE_COL);
+			final ImgPlus<BitType> ip = (ImgPlus<BitType>) imageBySetting(row,
+					CFGKEY_IMAGE_COL);
 
 			int[] x = MatrixHelper.x((int) ip.dimension(Image.COL),
 					(int) ip.dimension(Image.ROW));
@@ -105,10 +113,10 @@ public class AlignerNodeModel extends GenericNodeModel {
 			x = MatrixHelper.deductFromEach(x, centroidX);
 			y = MatrixHelper.deductFromEach(y, centroidY);
 
-			Denominator denomCalculator = new Denominator(x, y, ip);
-			Aligner aligner = new Aligner(denomCalculator);
+			final Denominator denomCalculator = new Denominator(x, y, ip);
+			final Aligner aligner = new Aligner(denomCalculator);
 
-			double theta = aligner.thetamin();
+			final double theta = aligner.thetamin();
 
 			out.open(row.getKey());
 
@@ -127,6 +135,47 @@ public class AlignerNodeModel extends GenericNodeModel {
 	protected DataTableSpec[] configure(final DataTableSpec[] inSpecs)
 			throws InvalidSettingsException {
 
+		final DataTableSpec specs = inSpecs[INPORT_0];
+
+		final SettingsModelString centroidXSetting = (SettingsModelString) settingsModels
+				.get(CFGKEY_CENTROID_X);
+		final SettingsModelString centroidYSetting = (SettingsModelString) settingsModels
+				.get(CFGKEY_CENTROID_Y);
+
+		if (specs.findColumnIndex(centroidXSetting.getStringValue()) == -1) {
+			throw new InvalidSettingsException(
+					"Centroid X column doesn't exist in the input table.");
+		}
+
+		if (specs.findColumnIndex(centroidYSetting.getStringValue()) == -1) {
+			throw new InvalidSettingsException(
+					"Centroid Y column doesn't exist in the input table.");
+		}
+
 		return new DataTableSpec[] { null };
+	}
+
+	/**
+	 * Ensure an image column exists to avoid null pointer exception. Basically
+	 * this auto-config.
+	 * 
+	 * @param indices
+	 * @param settingsModel
+	 * @param dataTableSpec
+	 */
+	private void ensureImageExistance(Map<String, Integer> indices,
+			SettingsModel settingsModel, DataTableSpec dataTableSpec) {
+
+		if (indices.get(CFGKEY_IMAGE_COL) != null) {
+			return;
+		}
+
+		final SettingsModelString imageSetting = (SettingsModelString) settingsModel;
+
+		final int imgIndex = NodeUtils.autoOptionalColumnSelection(
+				dataTableSpec, imageSetting, ImgPlusValue.class);
+
+		indices.remove(DEFAULT_IMAGE_COL);
+		indices.put(DEFAULT_IMAGE_COL, imgIndex);
 	}
 }

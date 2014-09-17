@@ -8,7 +8,7 @@
          
       <category
             description=""
-            icon="icons/default.png"
+            icon="icons/wtsi.png"
             level-id="wtsixray"
             name="WTSI Mouse X-Ray Analysis"
             path="/"/>

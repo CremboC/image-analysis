@@ -15,7 +15,6 @@
 			bounds. Everything outside these boundaries is deleted.
 		</intro>
 
-
 		<option name="Image Column">Name of the image column</option>
 		<option name="Upper Boundary Column">Name of the upper boundary column</option>
 		<option name="Lower Boundary Column">Name of the lower boundary column</option>
@@ -28,11 +27,11 @@
 		<inPort index="0" name="Image">
 			The image including the boundaries with column names as defined in the settings
 		</inPort>
-		<!-- possibly more input ports here -->
+
 		<outPort index="0" name="Cropped Image">
 			Cropped image according to the boundaries
 		</outPort>
-		<!-- possibly more output ports here -->
+
 	</ports>
 
 </knimeNode>

@@ -14,24 +14,14 @@
         <option name="Image Column">In case of multiple image columns, specify the column name</option>
         <option name="Centroid X Column">Name of the column with includes the x of the centroid</option>
         <option name="Centroid Y Column">Name of the column with includes the y of the centroid</option>
-        <!-- possibly more options that can also be grouped by tabs -->
-        <!--
-        <tab name="Standard Options">
-            <option name="short name of first option (like in the dialog)">description of first option</option>
-            <option name="short name of second option (like in the dialog)">description of second option</option>
-        </tab>
-        <tab name="Advanced Options">
-            <option name="short name of first advanced option (like in the dialog)">description of first advanced option</option>
-        </tab>
-        -->
+
+
     </fullDescription>
     
     <ports>
         <inPort index="0" name="Input Image">Image</inPort>
-        <!-- possibly more input ports here-->
         
         <outPort index="0" name="Angle">Angle of rotation</outPort>
-        <!-- possibly more output ports here-->
     </ports>    
 
 </knimeNode>

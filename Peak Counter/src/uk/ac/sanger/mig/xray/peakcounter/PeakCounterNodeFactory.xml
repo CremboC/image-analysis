@@ -24,7 +24,8 @@
 			Which image column to utilise
 		</option>
 		<option name="Bucket Threshold">
-			description of second option
+			How many pixels to the left of the current white pixels should be black 
+			for the current white pixel to be considered a part of a different bucket. 
 		</option>
 
 	</fullDescription>

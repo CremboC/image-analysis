@@ -32,10 +32,10 @@ import uk.ac.sanger.mig.xray.peakcounter.utils.PeakCounter;
 public class PeakCounterNodeModel extends GenericNodeModel {
 
 	/** Columns in the schema */
-	private final static String[] COLUMN_NAMES = { "Peaks" };
+	private final static String[] COLUMN_NAMES = { "Peaks", "Peak Row Number" };
 
 	/** Column types of the schema */
-	private final static DataType[] COLUMN_TYPES = { IntCell.TYPE };
+	private final static DataType[] COLUMN_TYPES = { IntCell.TYPE, IntCell.TYPE };
 
 	/**
 	 * the settings key which is used to retrieve and store the settings (from
@@ -97,6 +97,7 @@ public class PeakCounterNodeModel extends GenericNodeModel {
 
 			// crop out the required part and add it to the output table
 			out.add(c.count(ip));
+			out.add(c.row());
 
 			out.close();
 		}

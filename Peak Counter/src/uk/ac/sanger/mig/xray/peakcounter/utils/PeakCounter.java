@@ -17,6 +17,8 @@ public class PeakCounter {
 
 	private final int bucketThreshold;
 
+	private int maxRow;
+
 	/**
 	 * 
 	 * @param bucketThreshold
@@ -75,6 +77,8 @@ public class PeakCounter {
 
 			ra.fwd(Image.ROW);
 		}
+		
+		maxRow = maxBucketsRow;
 
 		return maxBuckets;
 	}
@@ -109,6 +113,10 @@ public class PeakCounter {
 		}
 
 		return true;
+	}
+	
+	public int row() {
+		return maxRow;
 	}
 
 }

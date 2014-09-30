@@ -29,7 +29,7 @@ public class IntervalThresholdNodeFactory<T extends RealType<T> & NativeType<T>>
      */
     @Override
     public int getNrNodeViews() {
-        return 1;
+        return 0;
     }
 
     /**

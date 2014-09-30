@@ -5,8 +5,8 @@ import org.knime.core.node.defaultnodesettings.DialogComponentBoolean;
 import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
 import org.knime.core.node.defaultnodesettings.DialogComponentNumber;
 import org.knime.core.node.defaultnodesettings.SettingsModelBoolean;
+import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 import org.knime.core.node.defaultnodesettings.SettingsModelInteger;
-import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
 import uk.ac.sanger.mig.analysis.nodetools.filters.ImgPlusColumnFilter;
 
@@ -31,44 +31,44 @@ public class TrendLineCropperNodeDialog extends DefaultNodeSettingsPane {
 	protected TrendLineCropperNodeDialog() {
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
-				(SettingsModelString) TrendLineCropperNodeModel.settingsModels
-						.get(TrendLineCropperNodeModel.CFGKEY_IMAGE_COL),
+				new SettingsModelColumnName(
+					TrendLineCropperNodeModel.CFGKEY_IMAGE_COL, "Image"),
 				TrendLineCropperNodeModel.CFGKEY_IMAGE_COL, 0,
 				new ImgPlusColumnFilter()));
 
 		addDialogComponent(new DialogComponentNumber(
-				(SettingsModelInteger) TrendLineCropperNodeModel.settingsModels
-						.get(TrendLineCropperNodeModel.CFGKEY_START_ROW),
+				new SettingsModelInteger(
+					TrendLineCropperNodeModel.CFGKEY_START_ROW, 0),
 				TrendLineCropperNodeModel.CFGKEY_START_ROW, 1, 5));
 
 		addDialogComponent(new DialogComponentNumber(
-				(SettingsModelInteger) TrendLineCropperNodeModel.settingsModels
-						.get(TrendLineCropperNodeModel.CFGKEY_END_ROW),
+				new SettingsModelInteger(
+					TrendLineCropperNodeModel.CFGKEY_END_ROW, -1),
 				TrendLineCropperNodeModel.CFGKEY_END_ROW, 1, 5));
 
 		addDialogComponent(new DialogComponentNumber(
-				(SettingsModelInteger) TrendLineCropperNodeModel.settingsModels
-						.get(TrendLineCropperNodeModel.CFGKEY_LEFT_MARGIN),
+				new SettingsModelInteger(
+					TrendLineCropperNodeModel.CFGKEY_LEFT_MARGIN, 1),
 				TrendLineCropperNodeModel.CFGKEY_LEFT_MARGIN, 1, 5));
 
 		addDialogComponent(new DialogComponentNumber(
-				(SettingsModelInteger) TrendLineCropperNodeModel.settingsModels
-						.get(TrendLineCropperNodeModel.CFGKEY_RIGHT_MARGIN),
+				new SettingsModelInteger(
+					TrendLineCropperNodeModel.CFGKEY_RIGHT_MARGIN, 1),
 				TrendLineCropperNodeModel.CFGKEY_RIGHT_MARGIN, 1, 5));
 
 		addDialogComponent(new DialogComponentBoolean(
-				(SettingsModelBoolean) TrendLineCropperNodeModel.settingsModels
-						.get(TrendLineCropperNodeModel.CFGKEY_CROPTOP),
+				new SettingsModelBoolean(
+					TrendLineCropperNodeModel.CFGKEY_CROPTOP, false),
 				TrendLineCropperNodeModel.CFGKEY_CROPTOP));
 
 		addDialogComponent(new DialogComponentNumber(
-				(SettingsModelInteger) TrendLineCropperNodeModel.settingsModels
-						.get(TrendLineCropperNodeModel.CFGKEY_CT_LEFT_MARGIN),
+				new SettingsModelInteger(
+					TrendLineCropperNodeModel.CFGKEY_CT_LEFT_MARGIN, 1),
 				TrendLineCropperNodeModel.CFGKEY_CT_LEFT_MARGIN, 1, 5));
 
 		addDialogComponent(new DialogComponentNumber(
-				(SettingsModelInteger) TrendLineCropperNodeModel.settingsModels
-						.get(TrendLineCropperNodeModel.CFGKEY_CT_RIGHT_MARGIN),
+				new SettingsModelInteger(
+					TrendLineCropperNodeModel.CFGKEY_CT_RIGHT_MARGIN, 1),
 				TrendLineCropperNodeModel.CFGKEY_CT_RIGHT_MARGIN, 1, 5));
 	}
 }

@@ -37,10 +37,12 @@ import uk.ac.sanger.mig.xray.trendline.utils.Fitter;
 public class TrendLineNodeModel extends GenericNodeModel {
 
 	/** Columns in the schema */
-	private final static String[] COLUMN_NAMES = { "Image", "Coeficients", "Trend Type" };
+	private final static String[] COLUMN_NAMES = { "Image", "Coeficients",
+			"Trend Type" };
 
 	/** Column types of the schema */
-	private final static DataType[] COLUMN_TYPES = { ImgPlusCell.TYPE, StringCell.TYPE, StringCell.TYPE };
+	private final static DataType[] COLUMN_TYPES = { ImgPlusCell.TYPE,
+			StringCell.TYPE, StringCell.TYPE };
 
 	/**
 	 * the settings key which is used to retrieve and store the settings (from
@@ -50,7 +52,7 @@ public class TrendLineNodeModel extends GenericNodeModel {
 	static final String CFGKEY_IMAGE_COL = "Image Column";
 	static final String CFGKEY_FIT_TYPE = "Fitting Type";
 	static final String CFGKEY_POLY_DEG = "Poly Degree";
-	static final String CFGKEY_RET_TYPE = "Return Type";	
+	static final String CFGKEY_RET_TYPE = "Return Type";
 
 	static final String[] FITTING_TYPES = Fitting.names();
 	static final String[] RETURN_TYPES = ReturnType.names();
@@ -59,8 +61,14 @@ public class TrendLineNodeModel extends GenericNodeModel {
 	// and used in the models execution method. The default components of the
 	// dialog work with "SettingsModels".
 
-	static final Map<String, SettingsModel> settingsModels;
-	static {
+	private final Map<String, SettingsModel> settingsModels;
+
+	/**
+	 * Constructor for the node model.
+	 */
+	protected TrendLineNodeModel() {
+		super(1, 1);
+
 		settingsModels = new HashMap<String, SettingsModel>();
 
 		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
@@ -71,16 +79,11 @@ public class TrendLineNodeModel extends GenericNodeModel {
 
 		settingsModels.put(CFGKEY_FIT_TYPE, new SettingsModelString(
 				CFGKEY_FIT_TYPE, Fitting.EXP.toString()));
-		
+
 		settingsModels.put(CFGKEY_RET_TYPE, new SettingsModelString(
 				CFGKEY_RET_TYPE, "Original"));
-	}
 
-	/**
-	 * Constructor for the node model.
-	 */
-	protected TrendLineNodeModel() {
-		super(1, 1, settingsModels);
+		setSettings(settingsModels);
 	}
 
 	/**
@@ -97,7 +100,8 @@ public class TrendLineNodeModel extends GenericNodeModel {
 		Iterator<DataRow> iter = inData[INPORT_0].iterator();
 
 		Fitting fitting = Fitting.whereName(stringFromSetting(CFGKEY_FIT_TYPE));
-		ReturnType retType = ReturnType.whereName(stringFromSetting(CFGKEY_RET_TYPE));
+		ReturnType retType = ReturnType
+				.whereName(stringFromSetting(CFGKEY_RET_TYPE));
 
 		int degree = intFromSetting(CFGKEY_POLY_DEG);
 		Fitter fitter = new Fitter(fitting, degree, retType);
@@ -112,17 +116,17 @@ public class TrendLineNodeModel extends GenericNodeModel {
 			out.open(row.getKey());
 
 			String coefs = fitter.fit(ip);
-			
+
 			out.add((retType == ReturnType.ORIG) ? ip : fitter.image());
 			out.add(coefs);
-			
+
 			// special case for poly trend, need to store the degree
 			if (fitting == Fitting.POLY) {
 				out.add(fitting.toString() + ":" + degree);
 			} else {
 				out.add(fitting.toString());
 			}
-		
+
 			out.close();
 		}
 

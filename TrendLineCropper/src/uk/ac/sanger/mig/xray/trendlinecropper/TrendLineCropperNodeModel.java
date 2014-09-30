@@ -64,11 +64,16 @@ public class TrendLineCropperNodeModel<T extends RealType<T> & NativeType<T>>
 	// and used in the models execution method. The default components of the
 	// dialog work with "SettingsModels".
 
-	static final Map<String, SettingsModel> settingsModels;
+	private final Map<String, SettingsModel> settingsModels;
 
-	static {
+	/**
+	 * Constructor for the node model.
+	 */
+	protected TrendLineCropperNodeModel() {
+		super(1, 1);
+		
 		settingsModels = new HashMap<>();
-
+		
 		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
 				CFGKEY_IMAGE_COL, "Image"));
 
@@ -92,14 +97,8 @@ public class TrendLineCropperNodeModel<T extends RealType<T> & NativeType<T>>
 
 		settingsModels.put(CFGKEY_CT_RIGHT_MARGIN, new SettingsModelInteger(
 				CFGKEY_CT_RIGHT_MARGIN, 1));
-
-	}
-
-	/**
-	 * Constructor for the node model.
-	 */
-	protected TrendLineCropperNodeModel() {
-		super(1, 1, settingsModels);
+		
+		setSettings(settingsModels);
 	}
 
 	/**

@@ -2,7 +2,7 @@ package uk.ac.sanger.mig.regioncropper;
 
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
 import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
-import org.knime.core.node.defaultnodesettings.SettingsModelString;
+import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 
 import uk.ac.sanger.mig.analysis.nodetools.filters.ImgPlusColumnFilter;
 import uk.ac.sanger.mig.analysis.nodetools.filters.IntColumnFilter;
@@ -29,28 +29,37 @@ public class RegionCropperNodeDialog extends DefaultNodeSettingsPane {
 		super();
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
-				(SettingsModelString) RegionCropperNodeModel.settingsModels
-						.get(RegionCropperNodeModel.CFGKEY_IMAGE_COL),
-				RegionCropperNodeModel.CFGKEY_IMAGE_COL, 0, new ImgPlusColumnFilter()));
-		
+				new SettingsModelColumnName(
+						RegionCropperNodeModel.CFGKEY_IMAGE_COL, "Image"),
+				RegionCropperNodeModel.CFGKEY_IMAGE_COL, 0,
+				new ImgPlusColumnFilter()));
+
 		addDialogComponent(new DialogComponentColumnNameSelection(
-				(SettingsModelString) RegionCropperNodeModel.settingsModels
-						.get(RegionCropperNodeModel.CFGKEY_UPBOUND_COL),
-				RegionCropperNodeModel.CFGKEY_UPBOUND_COL, 0, new IntColumnFilter()));
-		
+				new SettingsModelColumnName(
+						RegionCropperNodeModel.CFGKEY_UPBOUND_COL,
+						"Upper Boundary"),
+				RegionCropperNodeModel.CFGKEY_UPBOUND_COL, 0,
+				new IntColumnFilter()));
+
 		addDialogComponent(new DialogComponentColumnNameSelection(
-				(SettingsModelString) RegionCropperNodeModel.settingsModels
-						.get(RegionCropperNodeModel.CFGKEY_RIGHTBOUND_COL),
-				RegionCropperNodeModel.CFGKEY_RIGHTBOUND_COL, 0, new IntColumnFilter()));
-		
+				new SettingsModelColumnName(
+						RegionCropperNodeModel.CFGKEY_RIGHTBOUND_COL,
+						"Right Boundary"),
+				RegionCropperNodeModel.CFGKEY_RIGHTBOUND_COL, 0,
+				new IntColumnFilter()));
+
 		addDialogComponent(new DialogComponentColumnNameSelection(
-				(SettingsModelString) RegionCropperNodeModel.settingsModels
-						.get(RegionCropperNodeModel.CFGKEY_LOWBOUND_COL),
-				RegionCropperNodeModel.CFGKEY_LOWBOUND_COL, 0, new IntColumnFilter()));
-		
+				new SettingsModelColumnName(
+						RegionCropperNodeModel.CFGKEY_LOWBOUND_COL,
+						"Lower Boundary"),
+				RegionCropperNodeModel.CFGKEY_LOWBOUND_COL, 0,
+				new IntColumnFilter()));
+
 		addDialogComponent(new DialogComponentColumnNameSelection(
-				(SettingsModelString) RegionCropperNodeModel.settingsModels
-						.get(RegionCropperNodeModel.CFGKEY_LEFTBOUND_COL),
-				RegionCropperNodeModel.CFGKEY_LEFTBOUND_COL, 0, new IntColumnFilter()));
+				new SettingsModelColumnName(
+						RegionCropperNodeModel.CFGKEY_LEFTBOUND_COL,
+						"Left Boundary"),
+				RegionCropperNodeModel.CFGKEY_LEFTBOUND_COL, 0,
+				new IntColumnFilter()));
 	}
 }

@@ -44,15 +44,21 @@ public class CentraliserNodeModel extends GenericNodeModel {
 	static final String CFGKEY_CENTROID_X = "Centroid X Column";
 	static final String CFGKEY_CENTROID_Y = "Centroid Y Column";
 	
-	private static final String DEFAULT_CENTROIDX_COL = "WeightedCentroid Dim 1";
-	private static final String DEFAULT_CENTROIDY_COL = "WeightedCentroid Dim 2";
+	static final String DEFAULT_CENTROIDX_COL = "WeightedCentroid Dim 1";
+	static final String DEFAULT_CENTROIDY_COL = "WeightedCentroid Dim 2";
 
 	// example value: the models count variable filled from the dialog
 	// and used in the models execution method. The default components of the
 	// dialog work with "SettingsModels".
 
-	static final Map<String, SettingsModel> settingsModels;
-	static {
+	private final Map<String, SettingsModel> settingsModels;
+
+	/**
+	 * Constructor for the node model.
+	 */
+	protected CentraliserNodeModel() {
+		super(1, 1);
+		
 		settingsModels = new HashMap<String, SettingsModel>();
 
 		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
@@ -65,13 +71,8 @@ public class CentraliserNodeModel extends GenericNodeModel {
 		// Column name which stores the y coord of the centroid
 		settingsModels.put(CFGKEY_CENTROID_Y, new SettingsModelColumnName(
 				CFGKEY_CENTROID_Y, DEFAULT_CENTROIDY_COL));
-	}
-
-	/**
-	 * Constructor for the node model.
-	 */
-	protected CentraliserNodeModel() {
-		super(1, 1, settingsModels);
+		
+		setSettings(settingsModels);
 	}
 
 	/**

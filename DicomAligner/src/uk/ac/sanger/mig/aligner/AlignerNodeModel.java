@@ -45,15 +45,18 @@ public class AlignerNodeModel extends GenericNodeModel {
 	static final String CFGKEY_CENTROID_Y = "Centroid Y Column";
 	static final String CFGKEY_IMAGE_COL = "Image Column";
 
-	private static final String DEFAULT_IMAGE_COL = "Image";
-	private static final String DEFAULT_CENTROIDX_COL = "WeightedCentroid Dim 1";
-	private static final String DEFAULT_CENTROIDY_COL = "WeightedCentroid Dim 2";
+	static final String DEFAULT_IMAGE_COL = "Image";
+	static final String DEFAULT_CENTROIDX_COL = "WeightedCentroid Dim 1";
+	static final String DEFAULT_CENTROIDY_COL = "WeightedCentroid Dim 2";
 
 	protected static final int IN_PORTS = 1;
 	protected static final int OUT_PORTS = 1;
 
-	static final Map<String, SettingsModel> settingsModels;
-	static {
+	private final Map<String, SettingsModel> settingsModels;
+
+	protected AlignerNodeModel() {
+		super(IN_PORTS, OUT_PORTS);
+		
 		settingsModels = new HashMap<String, SettingsModel>();
 
 		// Column name which stores the image
@@ -67,11 +70,8 @@ public class AlignerNodeModel extends GenericNodeModel {
 		// Column name which stores the y coord of the centroid
 		settingsModels.put(CFGKEY_CENTROID_Y, new SettingsModelColumnName(
 				CFGKEY_CENTROID_Y, DEFAULT_CENTROIDY_COL));
-
-	}
-
-	protected AlignerNodeModel() {
-		super(IN_PORTS, OUT_PORTS, settingsModels);
+		
+		setSettings(settingsModels);
 	}
 
 	/**

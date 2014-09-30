@@ -49,9 +49,14 @@ public class PeakCounterNodeModel extends GenericNodeModel {
 	// and used in the models execution method. The default components of the
 	// dialog work with "SettingsModels".
 
-	static final Map<String, SettingsModel> settingsModels;
+	private final Map<String, SettingsModel> settingsModels;
 
-	static {
+	/**
+	 * Constructor for the node model.
+	 */
+	protected PeakCounterNodeModel() {
+		super(1, 1);
+		
 		settingsModels = new HashMap<>();
 
 		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
@@ -59,13 +64,8 @@ public class PeakCounterNodeModel extends GenericNodeModel {
 
 		settingsModels.put(CFGKEY_BUC_THRESH, new SettingsModelInteger(
 				CFGKEY_BUC_THRESH, 0));
-	}
-
-	/**
-	 * Constructor for the node model.
-	 */
-	protected PeakCounterNodeModel() {
-		super(1, 1, settingsModels);
+		
+		setSettings(settingsModels);
 	}
 
 	/**

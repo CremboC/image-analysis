@@ -2,7 +2,7 @@ package uk.ac.sanger.mig.xray.centraliser;
 
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
 import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
-import org.knime.core.node.defaultnodesettings.SettingsModelString;
+import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 
 import uk.ac.sanger.mig.analysis.nodetools.filters.ImgPlusColumnFilter;
 import uk.ac.sanger.mig.analysis.nodetools.filters.NumberColumnFilter;
@@ -29,19 +29,21 @@ public class CentraliserNodeDialog extends DefaultNodeSettingsPane {
         super();
         
 		addDialogComponent(new DialogComponentColumnNameSelection(
-				(SettingsModelString) CentraliserNodeModel.settingsModels
-						.get(CentraliserNodeModel.CFGKEY_IMAGE_COL),
+				new SettingsModelColumnName(CentraliserNodeModel.CFGKEY_IMAGE_COL,
+						"Image"),
 				CentraliserNodeModel.CFGKEY_IMAGE_COL, 0, new ImgPlusColumnFilter()));
-		
+
 		addDialogComponent(new DialogComponentColumnNameSelection(
-				(SettingsModelString) CentraliserNodeModel.settingsModels
-						.get(CentraliserNodeModel.CFGKEY_CENTROID_Y),
-				CentraliserNodeModel.CFGKEY_CENTROID_Y, 0, new NumberColumnFilter("No Centroid Y Column?")));
-		
+				new SettingsModelColumnName(CentraliserNodeModel.CFGKEY_CENTROID_Y,
+						CentraliserNodeModel.DEFAULT_CENTROIDY_COL),
+				CentraliserNodeModel.CFGKEY_CENTROID_Y, 0, new NumberColumnFilter(
+						"No Centroid Y Column?")));
+
 		addDialogComponent(new DialogComponentColumnNameSelection(
-				(SettingsModelString) CentraliserNodeModel.settingsModels
-						.get(CentraliserNodeModel.CFGKEY_CENTROID_X),
-				CentraliserNodeModel.CFGKEY_CENTROID_X, 0, new NumberColumnFilter("No Centroid X Column?")));
+				new SettingsModelColumnName(CentraliserNodeModel.CFGKEY_CENTROID_X,
+						CentraliserNodeModel.DEFAULT_CENTROIDX_COL),
+				CentraliserNodeModel.CFGKEY_CENTROID_X, 0, new NumberColumnFilter(
+						"No Centroid X Column?")));
                     
     }
 }

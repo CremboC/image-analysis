@@ -61,32 +61,33 @@ public class BoundingBoxNodeModel<T extends RealType<T> & NativeType<T>>
 	static final String CFGKEY_COL_THRESHOLD = "Column Threshold";
 	static final String CFGKEY_RET_TYPE = "Return Type";
 
-	private static final String DEFAULT_IMAGE_COL = "Image";
+	static final String DEFAULT_IMAGE_COL = "Image";
 
 	static final String[] RETURN_TYPES = ReturnType.names();
 
-	static final Map<String, SettingsModel> settingsModels;
-	static {
-		settingsModels = new HashMap<String, SettingsModel>();
-
-		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
-				CFGKEY_IMAGE_COL, DEFAULT_IMAGE_COL));
-
-		settingsModels.put(CFGKEY_RET_TYPE, new SettingsModelString(
-				CFGKEY_RET_TYPE, "Original"));
-
-		settingsModels.put(CFGKEY_ROW_THRESHOLD, new SettingsModelString(
-				CFGKEY_ROW_THRESHOLD, "0,0"));
-
-		settingsModels.put(CFGKEY_COL_THRESHOLD, new SettingsModelString(
-				CFGKEY_COL_THRESHOLD, "0,0"));
-	}
+	private final Map<String, SettingsModel> settingsModels;
 
 	/**
 	 * Constructor for the node model.
 	 */
 	protected BoundingBoxNodeModel() {
-		super(1, 1, settingsModels);
+		super(1, 1);
+		
+		settingsModels = new HashMap<String, SettingsModel>();
+		
+		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
+				CFGKEY_IMAGE_COL, DEFAULT_IMAGE_COL));
+		
+		settingsModels.put(CFGKEY_RET_TYPE, new SettingsModelString(
+				CFGKEY_RET_TYPE, "Original"));
+		
+		settingsModels.put(CFGKEY_ROW_THRESHOLD, new SettingsModelString(
+				CFGKEY_ROW_THRESHOLD, "0,0"));
+		
+		settingsModels.put(CFGKEY_COL_THRESHOLD, new SettingsModelString(
+				CFGKEY_COL_THRESHOLD, "0,0"));
+		
+		setSettings(settingsModels);
 	}
 
 	/**

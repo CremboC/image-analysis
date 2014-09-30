@@ -2,7 +2,7 @@ package uk.ac.sanger.mig.aligner;
 
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
 import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
-import org.knime.core.node.defaultnodesettings.SettingsModelString;
+import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 
 import uk.ac.sanger.mig.analysis.nodetools.filters.ImgPlusColumnFilter;
 import uk.ac.sanger.mig.analysis.nodetools.filters.NumberColumnFilter;
@@ -26,21 +26,23 @@ public class AlignerNodeDialog extends DefaultNodeSettingsPane {
 	 */
 	protected AlignerNodeDialog() {
 		super();
-		
+
 		addDialogComponent(new DialogComponentColumnNameSelection(
-				(SettingsModelString) AlignerNodeModel.settingsModels
-						.get(AlignerNodeModel.CFGKEY_IMAGE_COL),
+				new SettingsModelColumnName(AlignerNodeModel.CFGKEY_IMAGE_COL,
+						AlignerNodeModel.DEFAULT_IMAGE_COL),
 				AlignerNodeModel.CFGKEY_IMAGE_COL, 0, new ImgPlusColumnFilter()));
-		
+
 		addDialogComponent(new DialogComponentColumnNameSelection(
-				(SettingsModelString) AlignerNodeModel.settingsModels
-						.get(AlignerNodeModel.CFGKEY_CENTROID_Y),
-				AlignerNodeModel.CFGKEY_CENTROID_Y, 0, new NumberColumnFilter("No Centroid Y Column?")));
-		
+				new SettingsModelColumnName(AlignerNodeModel.CFGKEY_CENTROID_Y,
+						AlignerNodeModel.DEFAULT_CENTROIDY_COL),
+				AlignerNodeModel.CFGKEY_CENTROID_Y, 0, new NumberColumnFilter(
+						"No Centroid Y Column?")));
+
 		addDialogComponent(new DialogComponentColumnNameSelection(
-				(SettingsModelString) AlignerNodeModel.settingsModels
-						.get(AlignerNodeModel.CFGKEY_CENTROID_X),
-				AlignerNodeModel.CFGKEY_CENTROID_X, 0, new NumberColumnFilter("No Centroid X Column?")));
+				new SettingsModelColumnName(AlignerNodeModel.CFGKEY_CENTROID_X,
+						AlignerNodeModel.DEFAULT_CENTROIDX_COL),
+				AlignerNodeModel.CFGKEY_CENTROID_X, 0, new NumberColumnFilter(
+						"No Centroid X Column?")));
 
 	}
 }

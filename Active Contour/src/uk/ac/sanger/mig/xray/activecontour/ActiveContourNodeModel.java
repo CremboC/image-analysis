@@ -47,11 +47,16 @@ public class ActiveContourNodeModel extends GenericNodeModel {
 	// and used in the models execution method. The default components of the
 	// dialog work with "SettingsModels".
 
-	static final Map<String, SettingsModel> settingsModels;
+	private final Map<String, SettingsModel> settingsModels;
 
-	static {
+	/**
+	 * Constructor for the node model.
+	 */
+	protected ActiveContourNodeModel() {
+		super(1, 1);
+		
 		settingsModels = new HashMap<>();
-
+		
 		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
 				CFGKEY_IMAGE_COL, "Image"));
 		
@@ -60,13 +65,8 @@ public class ActiveContourNodeModel extends GenericNodeModel {
 		
 		settingsModels.put(CFGKEY_GRADY_COL, new SettingsModelColumnName(
 				CFGKEY_GRADY_COL, ""));
-	}
-
-	/**
-	 * Constructor for the node model.
-	 */
-	protected ActiveContourNodeModel() {
-		super(1, 1, settingsModels);
+		
+		setSettings(settingsModels);
 	}
 
 	/**

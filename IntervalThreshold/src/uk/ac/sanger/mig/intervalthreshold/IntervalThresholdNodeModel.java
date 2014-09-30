@@ -9,11 +9,9 @@ import net.imglib2.type.NativeType;
 import net.imglib2.type.numeric.RealType;
 
 import org.knime.core.data.DataRow;
-import org.knime.core.data.DataTableSpec;
 import org.knime.core.data.DataType;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.ExecutionContext;
-import org.knime.core.node.InvalidSettingsException;
 import org.knime.core.node.defaultnodesettings.SettingsModel;
 import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 import org.knime.core.node.defaultnodesettings.SettingsModelInteger;
@@ -54,9 +52,15 @@ public class IntervalThresholdNodeModel<T extends RealType<T> & NativeType<T>>
 	// and used in the models execution method. The default components of the
 	// dialog work with "SettingsModels".
 
-	static final Map<String, SettingsModel> settingsModels;
-	static {
-		settingsModels = new HashMap<String, SettingsModel>();
+	private final Map<String, SettingsModel> settingsModels;
+
+	/**
+	 * Constructor for the node model.
+	 */
+	protected IntervalThresholdNodeModel() {
+		super(1, 1);
+		
+		settingsModels = new HashMap<>();
 
 		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
 				CFGKEY_IMAGE_COL, "Image"));
@@ -69,17 +73,10 @@ public class IntervalThresholdNodeModel<T extends RealType<T> & NativeType<T>>
 
 		settingsModels.put(CFGKEY_BACKGROUND_VAL, new SettingsModelInteger(
 				CFGKEY_BACKGROUND_VAL, 0));
+		
+		setSettings(settingsModels);
 	}
-
-	/**
-	 * Constructor for the node model.
-	 */
-	protected IntervalThresholdNodeModel() {
-
-		// TODO: Specify the amount of input and output ports needed.
-		super(1, 1, settingsModels);
-	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -116,17 +113,6 @@ public class IntervalThresholdNodeModel<T extends RealType<T> & NativeType<T>>
 
 		// return the output table on the first (0th) outport
 		return new BufferedDataTable[] { out.getOutputTable() };
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected DataTableSpec[] configure(final DataTableSpec[] inSpecs)
-			throws InvalidSettingsException {
-
-		// TODO: generated method stub
-		return new DataTableSpec[] { null };
 	}
 
 }

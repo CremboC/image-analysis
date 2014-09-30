@@ -40,19 +40,20 @@ public abstract class GenericNodeModel extends NodeModel {
 	/** Maps Column Name -> Index */
 	protected Map<String, Integer> indices;
 
-	private final Map<String, SettingsModel> settingsModels;
-
+	private Map<String, SettingsModel> settingsModels;
+	
 	/**
 	 * Constructor for the node model
 	 * @param inPorts number of incoming ports
 	 * @param outPorts number of outgoing ports
 	 * @param settingsModels settings which will appear in the dialog
 	 */
-	protected GenericNodeModel(int inPorts, int outPorts,
-			Map<String, SettingsModel> settingsModels) {
+	protected GenericNodeModel(int inPorts, int outPorts) {
 		// incoming/outgoing ports
 		super(inPorts, outPorts);
-
+	}
+	
+	protected void setSettings(Map<String, SettingsModel> settingsModels) {
 		this.settingsModels = settingsModels;
 	}
 	

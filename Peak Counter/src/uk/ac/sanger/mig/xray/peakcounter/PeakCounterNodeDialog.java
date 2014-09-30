@@ -3,8 +3,8 @@ package uk.ac.sanger.mig.xray.peakcounter;
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
 import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
 import org.knime.core.node.defaultnodesettings.DialogComponentNumber;
+import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 import org.knime.core.node.defaultnodesettings.SettingsModelInteger;
-import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
 import uk.ac.sanger.mig.analysis.nodetools.filters.ImgPlusColumnFilter;
 
@@ -28,14 +28,14 @@ public class PeakCounterNodeDialog extends DefaultNodeSettingsPane {
 	 */
 	protected PeakCounterNodeDialog() {
 		addDialogComponent(new DialogComponentColumnNameSelection(
-				(SettingsModelString) PeakCounterNodeModel.settingsModels
-						.get(PeakCounterNodeModel.CFGKEY_IMAGE_COL),
+				new SettingsModelColumnName(
+						PeakCounterNodeModel.CFGKEY_IMAGE_COL, "Image"),
 				PeakCounterNodeModel.CFGKEY_IMAGE_COL, 0,
 				new ImgPlusColumnFilter()));
 
 		addDialogComponent(new DialogComponentNumber(
-				(SettingsModelInteger) PeakCounterNodeModel.settingsModels
-						.get(PeakCounterNodeModel.CFGKEY_BUC_THRESH),
+				new SettingsModelInteger(
+						PeakCounterNodeModel.CFGKEY_BUC_THRESH, 0),
 				PeakCounterNodeModel.CFGKEY_BUC_THRESH, 1, 5));
 	}
 }

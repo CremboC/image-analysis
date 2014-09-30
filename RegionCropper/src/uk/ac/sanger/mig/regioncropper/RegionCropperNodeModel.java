@@ -56,8 +56,14 @@ public class RegionCropperNodeModel<T extends RealType<T> & NativeType<T>>
 	// and used in the models execution method. The default components of the
 	// dialog work with "SettingsModels".
 
-	static final Map<String, SettingsModel> settingsModels;
-	static {
+	private final Map<String, SettingsModel> settingsModels;
+
+	/**
+	 * Constructor for the node model.
+	 */
+	protected RegionCropperNodeModel() {
+		super(1, 1);
+		
 		settingsModels = new HashMap<String, SettingsModel>();
 
 		settingsModels.put(CFGKEY_IMAGE_COL, new SettingsModelColumnName(
@@ -74,13 +80,8 @@ public class RegionCropperNodeModel<T extends RealType<T> & NativeType<T>>
 
 		settingsModels.put(CFGKEY_LEFTBOUND_COL, new SettingsModelColumnName(
 				CFGKEY_LEFTBOUND_COL, "Left Boundary"));
-	}
-
-	/**
-	 * Constructor for the node model.
-	 */
-	protected RegionCropperNodeModel() {
-		super(1, 1, settingsModels);
+		
+		setSettings(settingsModels);
 	}
 
 	/**

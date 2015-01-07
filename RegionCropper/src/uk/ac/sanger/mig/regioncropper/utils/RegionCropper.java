@@ -1,3 +1,23 @@
+/*
+ * Copyright (c) 2014-2015 Genome Research Ltd.
+ * 
+ * Author: Mouse Informatics Group <team110g@sanger.ac.uk>
+ * This file is part of Region Cropper.
+ * 
+ * Region Cropper is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option ) any
+ * later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package uk.ac.sanger.mig.regioncropper.utils;
 
 import net.imglib2.RandomAccess;
@@ -6,11 +26,10 @@ import net.imglib2.meta.ImgPlus;
 import net.imglib2.type.NativeType;
 import net.imglib2.type.numeric.RealType;
 
-
 /**
  * Main class that contains all the logic to actually crop out the desired area
  * 
- * @author Paulius pi1@sanger.ac.uk
+ * @author pi1 pi1@sanger.ac.uk
  * @param <T>
  * 
  */

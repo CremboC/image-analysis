@@ -1,3 +1,23 @@
+/*
+ * Copyright (c) 2014-2015 Genome Research Ltd.
+ * 
+ * Author: Mouse Informatics Group <team110g@sanger.ac.uk>
+ * This file is part of Peak Counter.
+ * 
+ * Peak Counter is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option ) any
+ * later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package uk.ac.sanger.mig.xray.peakcounter;
 
 import java.util.HashMap;
@@ -83,7 +103,7 @@ public class PeakCounterNodeModel extends GenericNodeModel {
 		
 		final int bucketThreshold = intFromSetting(CFGKEY_BUC_THRESH);
 
-		final PeakCounter c = new PeakCounter(bucketThreshold);
+		final PeakCounter counter = new PeakCounter(bucketThreshold);
 
 		final Iterator<DataRow> iter = inData[INPORT_0].iterator();
 		while (iter.hasNext()) {
@@ -96,8 +116,8 @@ public class PeakCounterNodeModel extends GenericNodeModel {
 			out.open(row.getKey());
 
 			// crop out the required part and add it to the output table
-			out.add(c.count(ip));
-			out.add(c.row());
+			out.add(counter.count(ip));
+			out.add(counter.row());
 
 			out.close();
 		}

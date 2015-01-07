@@ -1,3 +1,23 @@
+/*
+ * Copyright (c) 2014-2015 Genome Research Ltd.
+ * 
+ * Author: Mouse Informatics Group <team110g@sanger.ac.uk>
+ * This file is part of Trend Line Cropper.
+ * 
+ * Trend Line Cropper is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option ) any
+ * later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package uk.ac.sanger.mig.xray.trendlinecropper;
 
 import java.util.HashMap;
@@ -123,7 +143,7 @@ public class TrendLineCropperNodeModel<T extends RealType<T> & NativeType<T>>
 		final int topLeftMargin = intFromSetting(CFGKEY_CT_LEFT_MARGIN);
 		final int topRightMargin = intFromSetting(CFGKEY_CT_RIGHT_MARGIN);
 		
-		final boolean cropTop = boolFromSettings(CFGKEY_CROPTOP);
+		final boolean cropTop = boolFromSetting(CFGKEY_CROPTOP);
 
 		final TrendCropper<T> cropper = new TrendCropper<T>(leftMargin,
 				rightMargin, startRow, endRow, cropTop, topLeftMargin, topRightMargin);
@@ -135,8 +155,8 @@ public class TrendLineCropperNodeModel<T extends RealType<T> & NativeType<T>>
 			// get the image according to the setting
 			final ImgPlus<T> ip = (ImgPlus<T>) imageBySetting(row,
 					CFGKEY_IMAGE_COL);
-			final String coefs = stringFromRow(row, COEF_COL);
-			final String trend = stringFromRow(row, TREND_COL);
+			final String coefs = stringBySetting(row, COEF_COL);
+			final String trend = stringBySetting(row, TREND_COL);
 
 			out.open(row.getKey());
 
